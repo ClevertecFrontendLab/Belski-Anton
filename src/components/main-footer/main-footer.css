@@ -1,0 +1,18 @@
+.main-footer {
+   background: transparent;
+}
+
+
+
+.wrapper-download {
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+
+}
+
+.wrapper-download .download-tel {
+   background: #fff;
+   height: 130px;
+   padding: 24px;
+}

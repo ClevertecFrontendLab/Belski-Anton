@@ -1,0 +1,22 @@
+.header-wrapper{
+   display: flex;
+   align-items: start;
+   justify-content: space-between;
+   height: 100px;
+   margin-bottom: 16px;
+}
+
+.header-wrapper .header-text{
+   font-size: 38px;
+   font-weight: bold;
+   line-height: 130%;
+   color: #000;
+   width: 1020px;
+
+}
+
+.wraperr-header-settings{
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+}
