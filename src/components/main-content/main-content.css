@@ -1,4 +1,11 @@
 .main-content {
    display: flex;
-  height: 1024px;
+   flex-direction: column;
+}
+
+.wrapper-list-cards{
+   display: flex;
+   gap:16px;
+   margin: 24px 0 24px 24px;
+
 }

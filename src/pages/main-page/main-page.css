@@ -1,19 +1,33 @@
-.bg-wrapper{
-   background-image: url('/assets//images/bg.jpg');
+
+.ant-layout .site-layout{
+   background-image: url('../../../public/assets/images/bg.png');
    background-repeat: no-repeat;
-   background-size: cover
+   background-size: cover;
+   width: 100%; 
+   height: 1024px;; 
 }
 
-.fit-logo{
+
+
+.ant-layout.site-layout > .ant-layout-header{
+   background:#F0F5FF ;
+}
+
+
+
+
+
+
+.fit-logo {
    width: 30px;
 }
 
-.wrapper-text{
+.wrapper-text {
    display: flex;
    flex-direction: column;
 }
 
-.main-text-description{
+.main-text-description {
    color: #061178;
    font-size: 16px;
    line-height: 130%;
@@ -22,17 +36,16 @@
    background: #fff;
    height: auto;
    padding: 24px;
-   height: 250px;
 }
 
-.main-text-description span{
+.main-text-description span {
    display: block;
 }
 
-.main-info-message{
+.main-info-message {
    padding: 24px;
    margin: 24px 0 24px 24px;
-   background:#fff ;
+   background: #fff;
    width: 700px;
    color: #262626;
    font-size: 20px;
@@ -40,9 +53,17 @@
 }
 
 
-.wrapper-sidebar{
+.wrapper-sidebar {
    display: flex;
-   height: 1194px;
+   height: inherit;
    flex-direction: column;
    justify-content: space-between;
+}
+
+.viewReviews {
+   color: #2F54EB;
+}
+
+.ant-menu>.ant-menu-item:last-child {
+   margin-top: auto;
 }

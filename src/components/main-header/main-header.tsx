@@ -10,7 +10,7 @@ interface CustomContentProps {
 
 const CustomHeader: React.FC<CustomContentProps> = () => {
     return (
-        <Header style={{ background: 'none', height: 'auto', lineHeight: 'none' }}>
+        <Header style={{height: 'auto', lineHeight: 'none' }}>
             <div>
                 <div>Главная страница</div>
                 <div className='header-wrapper'>

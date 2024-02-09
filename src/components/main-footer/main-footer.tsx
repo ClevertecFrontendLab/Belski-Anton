@@ -12,7 +12,7 @@ const CustomFooter: React.FC<CustomContentProps> = () => {
     return (
         <Footer className='main-footer' style={{ background: 'transparent'}}>
             <div className='wrapper-download'>
-                <div>Смотреть отзывы</div>
+                <div className='viewReviews'>Смотреть отзывы</div>
                 <div className='download-tel'>
                     <div>Скачать на телефон</div>
                     <div>Доступно в PRO-тарифе</div>
