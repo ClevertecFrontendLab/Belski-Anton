@@ -7,7 +7,7 @@ interface MainCardProps {
 
 export const MainCard= ({ title,children }: MainCardProps) => {
     return (
-            <AntdCard title={title} bordered={false} style={{ width: 240 }}>
+            <AntdCard title={title} bordered={false} style={{minWidth: '160px', flex: '1' }}>
             {children}
             </AntdCard>
     );

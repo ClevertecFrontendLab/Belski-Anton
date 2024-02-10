@@ -17,16 +17,18 @@ const TitleCard = () =>{
     return (
         <Footer className='main-footer' style={{ background: 'transparent', padding: '24px' }}>
         <div className='view-reviews'>Смотреть отзывы</div>
-        <MainCard title={<TitleCard />}><div className="list-phones">
-            <div className="phone">
-                <AndroidFilled style={{ fontSize: '12px' }} />
-                <span>Android OS</span>
-            </div>
-            <div className="phone">
-                <AppleFilled style={{ fontSize: '12px' }} />
-                <span>Apple iOS</span>
-            </div>
-        </div></MainCard>
+       <div className='wrapper-card'>
+            <MainCard title={<TitleCard />}><div className="list-phones">
+                <div className="phone">
+                    <AndroidFilled style={{ fontSize: '12px' }} />
+                    <span>Android OS</span>
+                </div>
+                <div className="phone">
+                    <AppleFilled style={{ fontSize: '12px' }} />
+                    <span>Apple iOS</span>
+                </div>
+            </div></MainCard>
+       </div>
     </Footer>
     );
 };

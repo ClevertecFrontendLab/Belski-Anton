@@ -1,6 +1,7 @@
 .ant-layout .site-layout {
-   background-image: url('../../../public/assets/images/bg.png');
+   background-image: url('/assets/images/bg.png');
    background-repeat: no-repeat;
+   background-size: auto 100%;
    background-position: right;
    width: 100%;
    min-height: 100vh;
@@ -8,12 +9,5 @@
    padding-bottom: 18px;
 }
 
-.switcher {
-   position: absolute;
-   width: 20px;
-   height: 66px;
-   top: calc(50% - 33px);
-   left: -1px;
-   z-index: 10;
-   cursor: pointer;
-}
+
+

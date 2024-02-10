@@ -6,23 +6,25 @@
    display: block;
 }
 
-.main-text-description {
-   color: #061178;
-   max-width: 752px;
-   font-size: 16px;
-   line-height: 130%;
-   background: #fff;
-   padding: 24px;
-}
-
+.main-text-description,
 .main-info-message {
    max-width: 752px;
    padding: 24px;
+}
+
+.main-text-description {
+   color: #061178;
+   font-size: 16px;
+   line-height: 130%;
+   background: var(--color-White);
+}
+
+.main-info-message {
    margin-top: 24px;
-   background: #fff;
+   background: var(--color-White);
    font-weight: 500;
    line-height: 130%;
-   color: #262626;
+   color: var(--color-Gray);
    font-size: 20px;
 }
 
@@ -31,5 +33,17 @@
    margin-top: 16px;
    display: flex;
    gap: 16px;
-   flex-wrap: wrap;
+}
+
+@media (max-width: 780px) {
+   .wrapper-list-cards {
+       flex-wrap: wrap;
+   }
+}
+
+@media (max-width: 568px) {
+   .main-text-description,
+   .main-info-message {
+       padding: 16px;
+   }
 }
