@@ -1,30 +1,34 @@
-import React from 'react';
 import { Layout } from 'antd';
 import './main-footer.css';
 import { AndroidFilled, AppleFilled } from '@ant-design/icons';
+import { MainCard } from '@components/main-card';
 const { Footer } = Layout;
 
-interface CustomContentProps {
-    children: React.ReactNode;
+const TitleCard = () =>{
+    return (
+        <div className='title'>
+             <span>Скачать на телефон</span>
+            <span>Доступно в PRO-тарифе</span>
+        </div>
+    )
 }
 
-const CustomFooter: React.FC<CustomContentProps> = () => {
+ export const  CustomFooter = () => {
     return (
-        <Footer className='main-footer' style={{ background: 'transparent'}}>
-            <div className='wrapper-download'>
-                <div className='viewReviews'>Смотреть отзывы</div>
-                <div className='download-tel'>
-                    <div>Скачать на телефон</div>
-                    <div>Доступно в PRO-тарифе</div>
-                    <hr />
-                    <AndroidFilled />
-                    <span>Android OS</span>
-                    <AppleFilled />
-                    <span>Apple iOS</span>
-                </div>
+        <Footer className='main-footer' style={{ background: 'transparent', padding: '24px' }}>
+        <div className='view-reviews'>Смотреть отзывы</div>
+        <MainCard title={<TitleCard />}><div className="list-phones">
+            <div className="phone">
+                <AndroidFilled style={{ fontSize: '12px' }} />
+                <span>Android OS</span>
             </div>
-        </Footer>
+            <div className="phone">
+                <AppleFilled style={{ fontSize: '12px' }} />
+                <span>Apple iOS</span>
+            </div>
+        </div></MainCard>
+    </Footer>
     );
 };
 
-export default CustomFooter;
+

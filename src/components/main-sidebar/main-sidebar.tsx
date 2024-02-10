@@ -1,73 +1,70 @@
-import { CalendarTwoTone, HeartFilled, IdcardFilled, TrophyOutlined } from '@ant-design/icons';
+import { CalendarTwoTone, HeartFilled, IdcardOutlined, TrophyFilled } from '@ant-design/icons';
 import exit from '/assets/icons/icon-exit.svg';
 import { Layout, Menu } from 'antd';
+import logoFit from '/assets/icons/logo-fit-sidebar.svg';
+import logo from '/assets/icons/logo.svg';
 const { Sider } = Layout;
+import './main-sidebar.css';
 
 const items = [
     {
         key: '1',
-        icon: <CalendarTwoTone twoToneColor='#061178' />,
-        label: 'календарь',
+        icon: <CalendarTwoTone twoToneColor='#061178' style={{ fontSize: '12.5px' }} />,
+        label: 'Календарь',
     },
     {
         key: '2',
-        icon: <HeartFilled style={{ color: '#061178' }} />,
+        icon: <HeartFilled style={{ fontSize: '12.5px', color: '#061178' }} />,
         label: 'Тренировки',
     },
     {
         key: '3',
-        icon: <TrophyOutlined style={{ color: '#061178' }} />,
+        icon: <TrophyFilled style={{ fontSize: '12.5px', color: '#061178' }} />,
         label: 'Достижения',
     },
     {
         key: '4',
-        icon: <IdcardFilled style={{ color: '#061178' }} />,
+        icon: <IdcardOutlined style={{ fontSize: '12.5px', color: '#061178' }} />,
         label: 'Профиль',
-    },
-    {
-        key: '5',
-        icon: <img src={exit} alt='logo' />,
-        label: 'Выход',
     },
 ];
 
 interface IPropsSideBar {
     collapsed: boolean;
-    logo: string;
-    logoFit: string;
 }
 
-const SideBar = ({ collapsed, logo, logoFit }: IPropsSideBar) => {
+export const SideBar = ({ collapsed }: IPropsSideBar) => {
     return (
         <Sider
             trigger={null}
             collapsible
             collapsed={collapsed}
-            style={{ width: '208px', backgroundColor: '#fff' }}
+            width={208}
+            collapsedWidth={64}
+            style={{
+                backgroundColor: '#fff',
+            }}
         >
             <div className='logo'>
                 <img
-                    src={logo}
+                    src={collapsed ? logoFit : logo}
                     alt=''
-                    className={`logo-image ${logo === logoFit ? 'fit-logo' : ''}`}
-                    style={{
-                        width: `${logo === logoFit ? '30px' : '130px'}`,
-                        margin: '44px 0 50px',
-                    }}
+                    className={`logo-image ${collapsed ? 'fit-logo' : ''}`}
                 />
             </div>
-
             <Menu
                 style={{
                     backgroundColor: '#fff',
                     display: 'flex',
                     flexDirection: 'column',
-                    height: 'calc(100vh - 80px)',
+                    gap: '6px',
                 }}
                 items={items}
             />
+            <div className='exit'>
+                <img src={exit} alt='' />
+                {!collapsed && <span>Выход</span>}
+            </div>
         </Sider>
     );
 };
-
-export default SideBar;

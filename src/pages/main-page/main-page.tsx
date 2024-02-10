@@ -1,34 +1,39 @@
-import React, { useState } from 'react';
 import { Layout } from 'antd';
-import CustomFooter from '@components/main-footer/main-footer';
-
-import logoFit from '/assets/icons/logo-fit-sidebar.svg';
+import React, { useState } from 'react';
 import './main-page.css';
-import CustomHeader from '@components/main-header/main-header';
-import MainContent from '../../components/main-content/main-content';
-import SideBar from '@components/main-sidebar/main-sidebar';
+import close from '/assets/icons/close.svg';
+import open from '/assets/icons/icon-switcher.svg';
+import { SideBar } from '@components/main-sidebar';
+import { MainHeader } from '@components/main-header';
+import { MainContent } from '@components/main-content';
+import { MainFooter } from '@components/main-footer';
+
+
 
 export const MainPage: React.FC = () => {
     const [collapsed, setCollapsed] = useState(false);
-    const [logo, setLogo] = useState('assets/icons/logo.svg');
 
     const toggleCollapsed = () => {
-        setCollapsed(!collapsed);
-        setLogo(collapsed ? 'assets/icons/logo.svg' : logoFit);
+        setCollapsed(!collapsed)
     };
 
     return (
         <Layout>
-            <SideBar collapsed={collapsed} logo={logo} logoFit={logoFit} />
+            <SideBar collapsed={collapsed} />
             <Layout className='site-layout'>
-                <CustomHeader />
+                <img
+                    className='switcher'
+                    src={collapsed ? close : open}
+                    alt='switcher icon'
+                    onClick={toggleCollapsed}
+                    data-test-id='sider-switch'
+                />
+                <MainHeader />
 
-                <MainContent toggleCollapsed={toggleCollapsed} />
-
-                <CustomFooter>Footer</CustomFooter>
+                <MainContent />
+                <MainFooter />
             </Layout>
         </Layout>
     );
 };
 
-export default MainPage;

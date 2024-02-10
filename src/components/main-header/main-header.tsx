@@ -1,31 +1,24 @@
-import React from 'react';
 import { Layout } from 'antd';
 import './main-header.css';
 import { SettingOutlined } from '@ant-design/icons';
 const { Header } = Layout;
 
-interface CustomContentProps {
-    children?: React.ReactNode;
-}
-
-const CustomHeader: React.FC<CustomContentProps> = () => {
+export const CustomHeader = () => {
     return (
-        <Header style={{height: 'auto', lineHeight: 'none' }}>
-            <div>
-                <div>Главная страница</div>
-                <div className='header-wrapper'>
-                   <div className='header-text'>
-                      Приветствуем тебя в CleverFit — приложении, которое поможет тебе добиться своей
-                      мечты!
-                   </div>
-                   <div className='wraperr-header-settings'>
-                   <div><SettingOutlined /></div>
-                   <div> Настройка</div>
-                   </div>
+        <Header style={{ height: 'auto', lineHeight: '1', padding: '16px 40px 20px 24px' }}>
+            <div className='breadcrumbs'>
+                <span>Главная</span>
+            </div>
+            <div className='header-wrapper'>
+                <div className='header-text'>
+                    Приветствуем тебя в CleverFit — приложении, которое поможет тебе добиться своей
+                    мечты!
+                </div>
+                <div className='wrapper-header-settings'>
+                    <SettingOutlined />
+                    <span>Настройки</span>
                 </div>
             </div>
         </Header>
     );
 };
-
-export default CustomHeader;

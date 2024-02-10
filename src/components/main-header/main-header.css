@@ -1,22 +1,32 @@
-.header-wrapper{
+.ant-layout.site-layout > .ant-layout-header {
+   background: #f0f5ff;
+}
+
+.breadcrumbs {
+   color: #262626;
+   cursor: pointer;
+}
+
+.header-wrapper {
    display: flex;
    align-items: start;
    justify-content: space-between;
-   height: 100px;
-   margin-bottom: 16px;
+   gap: 10px;
+   margin-top: 16px;
 }
 
-.header-wrapper .header-text{
+.header-wrapper .header-text {
    font-size: 38px;
-   font-weight: bold;
+   font-weight: 700;
    line-height: 130%;
-   color: #000;
-   width: 1020px;
-
+   color: #262626;
+   max-width: 1020px;
+   letter-spacing: 0.2px;
 }
 
-.wraperr-header-settings{
-    display: flex;
-    gap: 10px;
-    cursor: pointer;
+.wrapper-header-settings {
+   display: flex;
+   gap: 10px;
+   padding: 4px 0;
+   cursor: pointer;
 }

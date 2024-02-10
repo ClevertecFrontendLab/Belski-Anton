@@ -1,18 +1,40 @@
 .main-footer {
    background: transparent;
-}
-
-
-
-.wrapper-download {
    display: flex;
    justify-content: space-between;
-   align-items: center;
-
+   align-items: flex-end;
+   margin-top: 135px;
 }
 
-.wrapper-download .download-tel {
-   background: #fff;
-   height: 130px;
-   padding: 24px;
+.view-reviews {
+   color: #2f54eb;
+   font-size: 16px;
+   padding: 9.5px 15px;
+   cursor: pointer;
+}
+
+.ant-card > .ant-card-head > .ant-card-head-wrapper > .ant-card-head-title > .title {
+   display: flex;
+   flex-direction: column;
+   text-align: start;
+   gap: 6px;
+}
+
+.title > span:first-child {
+   color: #2f54eb;
+}
+.title > span:last-child {
+   color: #8c8c8c;
+   font-size: 14px;
+}
+
+.list-phones {
+   display: flex;
+   justify-content: space-between;
+}
+
+.list-phones > .phone {
+   display: flex;
+   gap: 8px;
+   cursor: pointer;
 }

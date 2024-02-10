@@ -1,69 +1,19 @@
-
-.ant-layout .site-layout{
+.ant-layout .site-layout {
    background-image: url('../../../public/assets/images/bg.png');
    background-repeat: no-repeat;
-   background-size: cover;
-   width: 100%; 
-   height: 1024px;; 
+   background-position: right;
+   width: 100%;
+   min-height: 100vh;
+   position: relative;
+   padding-bottom: 18px;
 }
 
-
-
-.ant-layout.site-layout > .ant-layout-header{
-   background:#F0F5FF ;
-}
-
-
-
-
-
-
-.fit-logo {
-   width: 30px;
-}
-
-.wrapper-text {
-   display: flex;
-   flex-direction: column;
-}
-
-.main-text-description {
-   color: #061178;
-   font-size: 16px;
-   line-height: 130%;
-   margin: 24px 0 24px 24px;
-   width: 700px;
-   background: #fff;
-   height: auto;
-   padding: 24px;
-}
-
-.main-text-description span {
-   display: block;
-}
-
-.main-info-message {
-   padding: 24px;
-   margin: 24px 0 24px 24px;
-   background: #fff;
-   width: 700px;
-   color: #262626;
-   font-size: 20px;
-   font-weight: medium;
-}
-
-
-.wrapper-sidebar {
-   display: flex;
-   height: inherit;
-   flex-direction: column;
-   justify-content: space-between;
-}
-
-.viewReviews {
-   color: #2F54EB;
-}
-
-.ant-menu>.ant-menu-item:last-child {
-   margin-top: auto;
+.switcher {
+   position: absolute;
+   width: 20px;
+   height: 66px;
+   top: calc(50% - 33px);
+   left: -1px;
+   z-index: 10;
+   cursor: pointer;
 }

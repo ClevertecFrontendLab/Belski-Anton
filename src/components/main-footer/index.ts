@@ -1,0 +1,1 @@
+export { CustomFooter as MainFooter } from './main-footer';

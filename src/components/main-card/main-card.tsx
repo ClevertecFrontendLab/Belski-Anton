@@ -1,21 +1,16 @@
 import { Card as AntdCard } from 'antd';
-import React from 'react';
 import './main-card.css'
 interface MainCardProps {
-    title: string;
-    icon: JSX.Element;
-    subtitle: string;
+    title: string| React.ReactNode;
+    children: React.ReactNode
 }
 
-const MainCard: React.FC<MainCardProps> = ({ title, icon, subtitle }) => {
+export const MainCard= ({ title,children }: MainCardProps) => {
     return (
-        <div className='site-card-border-less-wrapper'>
-            <AntdCard title={title} bordered={false} style={{ width: 222 }}>
-               <span> {icon}</span>
-                <span>{subtitle}</span>
+            <AntdCard title={title} bordered={false} style={{ width: 240 }}>
+            {children}
             </AntdCard>
-        </div>
     );
 };
 
-export default MainCard;
+
