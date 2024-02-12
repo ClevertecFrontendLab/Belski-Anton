@@ -1,0 +1,1 @@
+export { CustomHeader as MainHeader } from './main-header'

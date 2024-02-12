@@ -1,0 +1,95 @@
+.ant-layout-sider-children {
+   display: flex;
+   flex-direction: column;
+}
+
+.logo {
+   width: 100%;
+   padding-left: 28px;
+   margin: 43px 0 56px;
+   cursor: pointer;
+}
+
+.logo > img {
+   cursor: pointer;
+}
+
+.logo.mob {
+   padding-left: 0;
+   text-align: center;
+}
+
+.logo.mob > img {
+   width: 72px;
+   height: 18px;
+}
+
+.ant-menu-item > .anticon {
+   padding: 2px;
+}
+
+.ant-menu-title-content,
+.exit {
+   color: var(--color-Gray);
+}
+
+.exit {
+   border-top: 1px solid #f0f0f0;
+   margin-top: auto;
+   padding: 10px 16px;
+   display: flex;
+   gap: 25px;
+   cursor: pointer;
+}
+
+.ant-layout-sider-collapsed > .ant-layout-sider-children > .logo {
+   padding-left: 16px;
+   margin: 47px 0 58px;
+}
+
+.switcher {
+   position: absolute;
+   width: 20px;
+   height: 66px;
+   top: calc(50% - 33px);
+   right: -20px;
+   z-index: 10;
+   cursor: pointer;
+}
+
+@media (max-width: 834px) {
+   .switcher {
+       top: 69vh;
+   }
+}
+
+@media (max-width: 576px) {
+   .switcher {
+       top: 24px;
+   }
+
+   .ant-layout > .ant-layout-sider {
+       height: 100vh;
+       position: fixed;
+   }
+
+   .ant-layout > .ant-layout-sider {
+       z-index: 2;
+   }
+
+   .ant-menu.ant-menu-root > .ant-menu-item {
+       padding: 0 8px;
+   }
+
+   .ant-menu.ant-menu-root > .ant-menu-item > .anticon {
+       display: none;
+   }
+
+   .ant-menu-item > .ant-menu-item-icon + .ant-menu-title-content {
+       margin-left: 0;
+   }
+
+   .exit {
+       justify-content: center;
+   }
+}
