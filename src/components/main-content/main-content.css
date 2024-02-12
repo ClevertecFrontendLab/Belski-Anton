@@ -35,6 +35,12 @@
    gap: 16px;
 }
 
+@media (max-width: 834px){
+   .ant-layout-content.main-content{
+      margin-bottom: 82px;
+   }
+}
+
 @media (max-width: 780px) {
    .wrapper-list-cards {
        flex-wrap: wrap;
