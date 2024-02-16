@@ -1,0 +1,85 @@
+.wrapper-form {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      position: relative;
+      margin: 0 auto;
+      background: #fff;
+}
+
+.wrapper-logo {
+      margin: 0 auto;
+      text-align: center;
+      background: #fff;
+      width: 540px;
+      position: relative;
+      z-index: 99999;
+      padding: 62px 60px 0;
+}
+
+.wrapper-button {
+      display: flex;
+      justify-content:center;
+      gap: 80px;
+      position: relative;
+      background: #fff;
+      padding: 56px 0 35px;
+      font-size: 16px;
+
+}
+
+
+form {
+      background: #fff;
+}
+
+.ant-form-item>.ant-row.ant-form-item-row {
+      width: 370px;
+}
+
+.ant-row.ant-form-item-row>.ant-form-item-control {
+      display: flex;
+      justify-content: center;
+      flex-direction: row;
+      align-items: flex-end;
+}
+
+
+.ant-form-item-control-input-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 370px;
+}
+
+.ant-form-item-control-input {
+      align-items: flex-end; 
+}
+
+.ant-row {
+      justify-content: center;
+      align-items: flex-end;
+}
+
+.ant-input-wrapper.ant-input-group>.ant-input {
+      padding: 10px 11px;
+}
+
+.ant-input-affix-wrapper.ant-input-password>.ant-input {
+      padding: 6px 5px;
+}
+
+.ant-form-item {
+      margin-bottom: 30px;
+}
+
+.ant-form-item:nth-last-child(2) {
+      margin-bottom: 18px;
+}
+
+.wrapper-button-icon {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap:5px
+}
