@@ -11,6 +11,7 @@ import 'normalize.css';
 import './index.css';
 import 'antd/dist/antd.css';
 import { AuthForm } from '@components/form';
+import {LoginFailed} from '@components/login-failed';
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
 
@@ -25,6 +26,14 @@ root.render(
                         element={
                             <AuthPage>
                                 <AuthForm />
+                            </AuthPage>
+                        }
+                    />
+                    <Route
+                        path='/login-failed'
+                        element={
+                            <AuthPage>
+                                <LoginFailed />
                             </AuthPage>
                         }
                     />

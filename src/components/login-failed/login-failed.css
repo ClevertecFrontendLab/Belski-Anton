@@ -1,0 +1,25 @@
+.wrapper-logon-failed {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+   z-index: 99999;
+   background: #fff;
+   text-align: center;
+   min-width: 540px;
+   min-height: 345px;
+
+
+}
+
+.card-login-failed {
+   display: flex;
+   flex-direction: column;
+   min-width: 368px;
+   gap: 18px;
+}
+
+
+.title-failed {
+   font-size: 24px;
+}
