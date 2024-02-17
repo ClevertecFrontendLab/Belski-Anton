@@ -1,5 +1,5 @@
 import './auth-status-card.css';
-import { Button, Card } from 'antd';
+import { Button} from 'antd';
 
 interface IPropsCard {
     icon: string;
