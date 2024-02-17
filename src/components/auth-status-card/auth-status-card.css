@@ -1,4 +1,4 @@
-.wrapper-logon-failed {
+.wrapper-auth-status {
    display: flex;
    justify-content: center;
    align-items: center;
@@ -12,14 +12,14 @@
 
 }
 
-.card-login-failed {
+.card-status{
    display: flex;
    flex-direction: column;
-   min-width: 368px;
+   width: 368px;
    gap: 18px;
 }
 
 
-.title-failed {
+.status-description {
    font-size: 24px;
 }
