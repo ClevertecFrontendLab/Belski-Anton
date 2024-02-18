@@ -1,3 +1,7 @@
+import 'normalize.css';
+import './index.css';
+import 'antd/dist/antd.css';
+
 import React from 'react';
 import failed from '/assets/icons/failed.svg';
 import errorIcon from '/assets/icons/error.svg';
@@ -12,11 +16,11 @@ import { MainPage } from './pages';
 import { AuthPage } from './pages/auth-page';
 import { HistoryRouter } from 'redux-first-history/rr6';
 import { store, history } from './redux/configure-store';
-import 'normalize.css';
-import './index.css';
-import 'antd/dist/antd.css';
+
 import { AuthForm } from '@components/form';
 import { AuthStatusCard } from '@components/auth-status-card';
+import Lottie from 'lottie-react';
+import animationLoader from '../src/loader/animation.json';
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
 
@@ -138,6 +142,7 @@ root.render(
                     <Route path='/' element={<Navigate to='/auth' />} />
                 </Routes>
             </HistoryRouter>
+            <Lottie animationData={animationLoader} loop={true} data-test-id='loader' />
         </Provider>
     </React.StrictMode>,
 );
