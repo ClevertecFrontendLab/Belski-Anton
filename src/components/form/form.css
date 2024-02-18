@@ -1,41 +1,39 @@
+.wrapper-form-auth {
+      background: #fff;
+      z-index: 9999;
+      padding: 64px 85.5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+}
+
+.logo-form {
+      width: 309px;
+}
+
+.ant-tabs.ant-tabs-top {
+      margin-top: 48px;
+}
+
+.ant-tabs-top>.ant-tabs-nav {
+      margin-bottom: 24px;
+}
+
+.ant-tabs-nav-list {
+      width: 100%;
+}
+
+.ant-tabs-tab {
+      width: 50%;
+      justify-content: center;
+}
+
 .wrapper-form {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      position: relative;
-      margin: 0 auto;
-      background: #fff;
+      max-width: 370px;
+      min-width: 240px;
+      width: 100%;
 }
 
-.wrapper-logo {
-      margin: 0 auto;
-      text-align: center;
-      background: #fff;
-      width: 540px;
-      position: relative;
-      z-index: 99999;
-      padding: 62px 60px 0;
-}
-
-.wrapper-button {
-      display: flex;
-      justify-content: center;
-      gap: 80px;
-      position: relative;
-      background: #fff;
-      padding: 56px 0 35px;
-      font-size: 16px;
-
-}
-
-
-form {
-      background: #fff;
-}
-
-.ant-form-item>.ant-row.ant-form-item-row {
-      width: 370px;
-}
 
 .ant-row.ant-form-item-row>.ant-form-item-control {
       display: flex;
@@ -49,7 +47,7 @@ form {
 .ant-form-item-control-input-content {
       display: flex;
       justify-content: space-between;
-      align-items: flex-end;
+      align-items: center;
       width: 370px;
 }
 
