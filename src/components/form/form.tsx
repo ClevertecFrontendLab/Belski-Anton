@@ -46,13 +46,30 @@ export const AuthForm = () => {
                         initialValues={{ remember: true }}
                         autoComplete='off'
                     >
-                        <Form.Item rules={[{ type: 'email' }]}>
+                        <Form.Item
+                            name='email'
+                            rules={[
+                                { required: true, message: 'Пожалуйста, введите свой пароль' },
+                                {
+                                    pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                                    message: 'Пожалуйста, введите правильный e-mail!',
+                                },
+                            ]}
+                        >
                             <Input addonBefore='e-mail' />
                         </Form.Item>
 
                         <Form.Item
                             name='password'
-                            rules={[{ required: true, message: 'Please input your password!' }]}
+                            rules={[
+                                { required: true, message: 'Пожалуйста, введите свой пароль!!' },
+                                {
+                                    pattern: /^(?=.*[A-Z])(?=.*\d).{8,}$/,
+                                    message:
+                                        'Пароль не менее 8 символов, заглавной буквой и цифрой!',
+                                },
+                            ]}
+                            help={isRegistration ?'Пароль не менее 8 символов, с заглавной буквой и цифрой':'' }
                         >
                             <Input.Password placeholder='Пароль' />
                         </Form.Item>
@@ -62,20 +79,20 @@ export const AuthForm = () => {
                                 name='confirmPassword'
                                 dependencies={['password']}
                                 rules={[
-                                    { required: true, message: 'Please confirm your password!' },
+                                    {
+                                        required: true,
+                                        message: 'Пожалуйста, повторите свой пароль!!!',
+                                    },
                                     ({ getFieldValue }) => ({
                                         validator(_, value) {
                                             if (!value || getFieldValue('password') === value) {
                                                 return Promise.resolve();
                                             }
-                                            return Promise.reject(
-                                                new Error(
-                                                    'The two passwords that you entered do not match!',
-                                                ),
-                                            );
+                                            return Promise.reject(new Error('Пароли не совпадают'));
                                         },
                                     }),
                                 ]}
+
                             >
                                 <Input.Password placeholder='Повторите пароль' />
                             </Form.Item>

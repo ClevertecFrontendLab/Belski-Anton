@@ -25,7 +25,7 @@ export const AuthStatusCard = ({ icon, title, subtitle, btnText }: IPropsCard) =
                     </div>
                     <div className='status-description'>{title}</div>
                     <div>{subtitle}</div>
-                    <Button type='primary' style={{ width: '368px' }}>
+                    <Button type='link' style={{ width: '368px' }}>
                       {btnText}
                     </Button>
                 </div>

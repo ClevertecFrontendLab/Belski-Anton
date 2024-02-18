@@ -2,6 +2,7 @@ import React from 'react';
 import failed from '/assets/icons/failed.svg';
 import errorIcon from '/assets/icons/error.svg';
 import success from '/assets/icons/success.svg';
+import wrongIcon from '/assets/icons/wrong-icon.svg';
 
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
@@ -26,7 +27,7 @@ root.render(
                 <Routes>
                     <Route path='/result/main' element={<MainPage />} />
                     <Route
-                        path='/result/auth'
+                        path='/auth'
                         element={
                             <AuthPage>
                                 <AuthForm />
@@ -90,6 +91,20 @@ root.render(
                         }
                     />
                     <Route
+                        path='/result/error-check-email'
+                        element={
+                            <AuthPage>
+                                <AuthStatusCard
+                                    icon={wrongIcon}
+                                    title='Что-то пошло не так'
+                                    subtitle='Произошла ошибка, попробуйте отправить форму ещё раз.'
+                                    btnText='Назад'
+                                    path=''
+                                />
+                            </AuthPage>
+                        }
+                    />
+                    <Route
                         path='/result/success'
                         element={
                             <AuthPage>
@@ -103,7 +118,7 @@ root.render(
                             </AuthPage>
                         }
                     />
-                    <Route path='/' element={<Navigate to='/result/auth' />} />
+                    <Route path='/' element={<Navigate to='/auth' />} />
                 </Routes>
             </Router>
         </Provider>

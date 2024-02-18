@@ -19,7 +19,7 @@
 
 .wrapper-button {
       display: flex;
-      justify-content:center;
+      justify-content: center;
       gap: 80px;
       position: relative;
       background: #fff;
@@ -39,6 +39,7 @@ form {
 
 .ant-row.ant-form-item-row>.ant-form-item-control {
       display: flex;
+      flex-wrap: wrap;
       justify-content: center;
       flex-direction: row;
       align-items: flex-end;
@@ -53,12 +54,30 @@ form {
 }
 
 .ant-form-item-control-input {
-      align-items: flex-end; 
+      align-items: flex-end;
 }
 
 .ant-row {
       justify-content: center;
       align-items: flex-end;
+}
+
+.ant-form-item-explain-error {
+      width: 353px;
+      text-align: left;
+      font-size: 12px;
+}
+
+.ant-form-item-with-help.ant-form-item-explain {
+      width: 353px;
+      text-align: left;
+      font-size: 12px;
+}
+
+.ant-form-item-explain.ant-form-item-explain-connected {
+      width: 353px;
+      text-align: left;
+      font-size: 12px;
 }
 
 .ant-input-wrapper.ant-input-group>.ant-input {
@@ -81,5 +100,5 @@ form {
       display: flex;
       justify-content: center;
       align-items: center;
-      gap:5px
+      gap: 5px
 }
