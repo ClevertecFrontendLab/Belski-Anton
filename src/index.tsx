@@ -19,8 +19,10 @@ import { store, history } from './redux/configure-store';
 
 import { AuthForm } from '@components/form';
 import { AuthStatusCard } from '@components/auth-status-card';
-import Lottie from 'lottie-react';
-import animationLoader from '../src/loader/animation.json';
+// import Lottie from 'lottie-react';
+import CardPasswordReset from './components/password-recovery/reset-password/reset-password';
+import ChangePassword from '@components/password-recovery/change-password/change-password';
+// import animationLoader from '../src/loader/animation.json';
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
 
@@ -138,11 +140,21 @@ root.render(
                             </AuthPage>
                         }
                     />
+                    <Route path='/auth/confirm-email' element={<CardPasswordReset />} />
+                    <Route
+                        path='/auth/change-password'
+                        element={
+                            <AuthPage>
+                                <ChangePassword />
+                            </AuthPage>
+                        }
+                    />
+                    {/* <Route path='/auth/change-password' element={<ChangePassword />} /> */}
 
                     <Route path='/' element={<Navigate to='/auth' />} />
                 </Routes>
             </HistoryRouter>
-            <Lottie animationData={animationLoader} loop={true} data-test-id='loader' />
+            {/* <Lottie animationData={animationLoader} loop={true} data-test-id='loader' /> */}
         </Provider>
     </React.StrictMode>,
 );
