@@ -1,30 +1,62 @@
 import './form.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Button, Checkbox, Form, Input, Tabs } from 'antd';
 import logo from '/assets/icons/logo.svg';
 import logoGoogle from '/assets/icons/google.svg';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { useLoginMutation, useRegistrationMutation } from '../../api/auth-api.ts';
+import { history, store } from '@redux/configure-store.ts';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
+import { clearAuthState, setFields } from '@redux/auth-slice.ts';
 
 interface IBaseForm {
     isRegistration: boolean;
 }
 
+interface IErrorResponse {
+    data: { statusCode: number; error: string; message: string };
+    status: number;
+}
+
 const BaseForm = ({ isRegistration }: IBaseForm) => {
+    const dispatch = useAppDispatch();
+    const {
+        auth: { email, password },
+        router,
+    } = useAppSelector((state) => state);
     const [registration] = useRegistrationMutation();
     const [login] = useLoginMutation();
     const [data, setData] = useState({
-        email: '',
-        password: '',
-        confirmPassword: '',
+        email: email,
+        password: password,
+        confirmPassword: password,
         isRemember: false,
     });
-    const navigate = useNavigate();
+
+    console.log(router.previousLocations);
+
+    const handlerError = (e: IErrorResponse) => {
+        switch (e.status) {
+            case 409:
+                history.push('../../result/error-user-exist');
+                break;
+            default:
+                dispatch(setFields({ email: data.email, password: data.password }));
+                history.push('../../result/error');
+        }
+    };
+
     const registrationUser = () => {
         registration({ email: data.email, password: data.password })
             .unwrap()
             .then(() => {
-                navigate('../../result/success');
+                if (email) {
+                    dispatch(clearAuthState());
+                }
+                history.push('../../result/success');
+            })
+            .catch((e) => {
+                handlerError(e);
             });
     };
     const loginUser = () => {
@@ -36,9 +68,24 @@ const BaseForm = ({ isRegistration }: IBaseForm) => {
                 } else {
                     sessionStorage.setItem('token', res.accessToken);
                 }
-                navigate('../main');
+                history.push('../main');
+            })
+            .catch(() => {
+                history.push('../result/error-login');
             });
     };
+
+    useEffect(() => {
+        if (
+            email &&
+            password &&
+            router.previousLocations &&
+            router.previousLocations[router.previousLocations?.length - 1].location?.pathname ===
+                '/result/error'
+        ) {
+            registrationUser();
+        }
+    }, [email, password, router.previousLocations]);
     return (
         <div className='wrapper-form'>
             <Form
@@ -195,16 +242,17 @@ const BaseForm = ({ isRegistration }: IBaseForm) => {
 export const AuthForm = () => {
     const { pathname } = useLocation();
     const isRegistration = pathname.includes('registration');
-    const navigate = useNavigate();
     const onChange = (key: string) => {
-        navigate(key);
+        history.push(key);
     };
+    console.log(store.getState().authApi);
+    const checkedTab = pathname.includes('registration') ? '/auth/registration' : '/auth';
 
     return (
         <div className='wrapper-form-auth'>
             <img src={logo} className='logo-form' alt='logo' />
             <Tabs
-                defaultActiveKey='/auth'
+                defaultActiveKey={checkedTab}
                 onChange={onChange}
                 items={[
                     {

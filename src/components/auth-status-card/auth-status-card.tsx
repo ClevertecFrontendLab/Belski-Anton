@@ -1,6 +1,6 @@
-import { useNavigate } from 'react-router-dom';
 import './auth-status-card.css';
 import { Button } from 'antd';
+import { history } from '@redux/configure-store';
 
 interface IPropsCard {
     icon: string;
@@ -11,8 +11,14 @@ interface IPropsCard {
     dataTestId: string;
 }
 
-export const AuthStatusCard = ({ icon, title, subtitle, btnText, dataTestId ,path}: IPropsCard) => {
-    const navigate = useNavigate()
+export const AuthStatusCard = ({
+    icon,
+    title,
+    subtitle,
+    btnText,
+    dataTestId,
+    path,
+}: IPropsCard) => {
     return (
         <div className='wrapper-auth-status'>
             <div className='card-status'>
@@ -28,7 +34,12 @@ export const AuthStatusCard = ({ icon, title, subtitle, btnText, dataTestId ,pat
                 </div>
                 <div className='status-description'>{title}</div>
                 <div>{subtitle}</div>
-                <Button type='primary' data-test-id={dataTestId} onClick={() => navigate(path)} style={{ width: '368px' }}>
+                <Button
+                    type='primary'
+                    data-test-id={dataTestId}
+                    onClick={() => history.push(path)}
+                    style={{ width: '368px' }}
+                >
                     {btnText}
                 </Button>
             </div>

@@ -3,17 +3,20 @@ import { configureStore } from "@reduxjs/toolkit";
 import { createReduxHistoryContext } from "redux-first-history";
 import { createBrowserHistory } from "history";
 import { authApi } from "../api/auth-api";
-
+import authReducer from './auth-slice';
 const {
   createReduxHistory,
   routerMiddleware,
   routerReducer
-} = createReduxHistoryContext({ history: createBrowserHistory() });
+} = createReduxHistoryContext({ history: createBrowserHistory(),
+    savePreviousLocations:50,
+ });
 
 export const store = configureStore({
   reducer: combineReducers({
     router: routerReducer,
-    [authApi.reducerPath]: authApi.reducer
+    [authApi.reducerPath]: authApi.reducer,
+    auth: authReducer,
   }),
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(routerMiddleware,authApi.middleware),
 });
