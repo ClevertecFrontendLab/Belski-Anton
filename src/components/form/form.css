@@ -100,3 +100,14 @@
       align-items: center;
       gap: 5px
 }
+
+@media(max-width:760px) {
+      .wrapper-form-auth {
+            padding: 30px;
+      }
+
+      .ant-form-item-control-input-content {
+           
+            width: 300px;
+      }
+}

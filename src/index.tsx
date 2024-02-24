@@ -19,13 +19,17 @@ import { store, history } from './redux/configure-store';
 
 import { AuthForm } from '@components/form';
 import { AuthStatusCard } from '@components/auth-status-card';
-import Lottie from 'lottie-react';
 import CardPasswordReset from './components/password-recovery/reset-password/reset-password';
 import ChangePassword from '@components/password-recovery/change-password/change-password';
-import animationLoader from '../src/loader/animation.json';
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
+const AuthRedirect = () => {
+    const isAuthenticated = localStorage.getItem('token');
 
+    return isAuthenticated ? <Navigate to='/main' replace /> : <Navigate to='/auth' replace />;
+};
+
+export default AuthRedirect;
 root.render(
     <React.StrictMode>
         <Provider store={store}>
@@ -57,8 +61,53 @@ root.render(
                                     title='Регистрация успешна'
                                     subtitle='Регистрация прошла успешно. Зайдите в приложение, используя свои e-mail и пароль.'
                                     btnText='Войти'
-                                    path='/auth'
+                                    path='../../auth'
                                     dataTestId='registration-enter-button'
+                                />
+                            </AuthPage>
+                        }
+                    />
+                    <Route
+                        path='/result/success-change-password'
+                        element={
+                            <AuthPage>
+                                <AuthStatusCard
+                                    icon={success}
+                                    title='Пароль успешно изменен'
+                                    subtitle='Теперь можно войти в аккаунт, используя свой логин и новый пароль.'
+                                    btnText='Вход'
+                                    path='../../auth'
+                                    dataTestId=''
+                                />
+                            </AuthPage>
+                        }
+                    />
+                    <Route
+                        path='/result/error-user-exist'
+                        element={
+                            <AuthPage>
+                                <AuthStatusCard
+                                    icon={errorIcon}
+                                    title='Данные не сохранились'
+                                    subtitle='Такой e-mail уже записан в системе. Попробуйте зарегистрироваться по другому e-mail.'
+                                    btnText='Назад к регистрации'
+                                    path='/auth/registration'
+                                    dataTestId='registration-back-button'
+                                />
+                            </AuthPage>
+                        }
+                    />
+                    <Route
+                        path='/result/error-change-password'
+                        element={
+                            <AuthPage>
+                                <AuthStatusCard
+                                    icon={errorIcon}
+                                    title='Данные не сохранились'
+                                    subtitle='Что-то пошло не так. Попробуйте ещё раз.'
+                                    btnText='Повторить'
+                                    path='/auth/change-password'
+                                    dataTestId='change-retry-button'
                                 />
                             </AuthPage>
                         }
@@ -103,7 +152,7 @@ root.render(
                                     title='Вход не выполнен'
                                     subtitle='Что-то пошло не так. Попробуйте еще раз'
                                     btnText='Повторить'
-                                    path='/auth/registration'
+                                    path='/auth'
                                     dataTestId='login-retry-button'
                                 />
                             </AuthPage>
@@ -134,7 +183,7 @@ root.render(
                                     title='Что-то пошло не так'
                                     subtitle='Произошла ошибка, попробуйте отправить форму ещё раз.'
                                     btnText='Назад'
-                                    path='/auth/registration'
+                                    path='/auth'
                                     dataTestId='check-back-button'
                                 />
                             </AuthPage>
@@ -151,10 +200,9 @@ root.render(
                     />
                     {/* <Route path='/auth/change-password' element={<ChangePassword />} /> */}
 
-                    <Route path='/' element={<Navigate to='/auth' />} />
+                    <Route path='/' element={<AuthRedirect />} />
                 </Routes>
             </HistoryRouter>
-            <Lottie animationData={animationLoader} loop={true} data-test-id='loader' />
         </Provider>
     </React.StrictMode>,
 );
