@@ -12,7 +12,10 @@ const CardPasswordReset = () => {
     const [value, setValue] = useState('');
     const [error, setError] = useState(false);
     const [confirmEmail] = useConfirmEmailMutation();
-    const { auth:{email},load:{isLoading} } = useAppSelector((store) => store);
+    const {
+        auth: { email },
+        load: { isLoading },
+    } = useAppSelector((store) => store);
 
     const dispatch = useAppDispatch();
     const sendData = () => {
@@ -32,12 +35,12 @@ const CardPasswordReset = () => {
             })
             .finally(() => dispatch(setIsLoading(false)));
     };
-   
-    useEffect(()=>{
-       if(value.length === 6 && email && !isLoading){
-        sendData()
-       }
-    },[value,email,isLoading])
+
+    useEffect(() => {
+        if (value.length === 6 && email && !isLoading) {
+            sendData();
+        }
+    }, [value, email, isLoading]);
 
     return (
         <div className='bg-wrapper-recovery-password'>
@@ -54,7 +57,7 @@ const CardPasswordReset = () => {
                     </div>
                     <VerificationInput
                         validChars='0-9'
-                        inputProps={{ inputMode: 'numeric' }}
+                        inputProps={{ inputMode: 'numeric', 'data-test-id': 'verification-input' }}
                         length={6}
                         value={value}
                         onChange={(val) => setValue(val)}

@@ -61,7 +61,7 @@ root.render(
                                     title='Регистрация успешна'
                                     subtitle='Регистрация прошла успешно. Зайдите в приложение, используя свои e-mail и пароль.'
                                     btnText='Войти'
-                                    path='../../auth'
+                                    path='/auth'
                                     dataTestId='registration-enter-button'
                                 />
                             </AuthPage>
@@ -76,8 +76,8 @@ root.render(
                                     title='Пароль успешно изменен'
                                     subtitle='Теперь можно войти в аккаунт, используя свой логин и новый пароль.'
                                     btnText='Вход'
-                                    path='../../auth'
-                                    dataTestId=''
+                                    path='/auth'
+                                    dataTestId='change-entry-button'
                                 />
                             </AuthPage>
                         }
@@ -198,8 +198,6 @@ root.render(
                             </AuthPage>
                         }
                     />
-                    {/* <Route path='/auth/change-password' element={<ChangePassword />} /> */}
-
                     <Route path='/' element={<AuthRedirect />} />
                 </Routes>
             </HistoryRouter>
