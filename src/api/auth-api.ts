@@ -50,6 +50,7 @@ export const authApi = createApi({
                 url:'/auth/confirm-email',
                 method: 'POST',
                 body,
+                credentials:'include'
             }),
         }),
         changePassword: builder.mutation<string, IChangePasswordProps>({
@@ -57,6 +58,7 @@ export const authApi = createApi({
                 url: '/auth/change-password',
                 method: 'POST',
                 body,
+                credentials:'include'
             }),
         }),
     }),

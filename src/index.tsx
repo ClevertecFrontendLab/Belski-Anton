@@ -31,7 +31,7 @@ const AuthRedirect = () => {
 
 export default AuthRedirect;
 root.render(
-    <React.StrictMode>
+     <React.StrictMode>
         <Provider store={store}>
             <HistoryRouter history={history}>
                 <Routes>
@@ -189,7 +189,14 @@ root.render(
                             </AuthPage>
                         }
                     />
-                    <Route path='/auth/confirm-email' element={<CardPasswordReset />} />
+                    <Route
+                        path='/auth/confirm-email'
+                        element={
+                            <AuthPage>
+                                <CardPasswordReset />
+                            </AuthPage>
+                        }
+                    />
                     <Route
                         path='/auth/change-password'
                         element={
@@ -202,5 +209,5 @@ root.render(
                 </Routes>
             </HistoryRouter>
         </Provider>
-    </React.StrictMode>,
+     </React.StrictMode>, 
 );

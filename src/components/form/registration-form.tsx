@@ -54,6 +54,7 @@ const RegistrationForm = () => {
             email &&
             password &&
             router.previousLocations &&
+            router.previousLocations.length > 1 &&
             router.previousLocations[1].location?.pathname === '/result/error'
         ) {
             registrationUser();
@@ -182,4 +183,4 @@ const RegistrationForm = () => {
     );
 };
 
-export default RegistrationForm
+export default RegistrationForm;

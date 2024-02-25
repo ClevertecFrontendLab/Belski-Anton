@@ -66,6 +66,7 @@ const LoginForm = () => {
         if (
             data.email &&
             router.previousLocations &&
+            router.previousLocations.length > 1 &&
             router.previousLocations[1].location?.pathname === '/result/error-check-email'
         ) {
             handlerCheckEmail();
