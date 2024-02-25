@@ -24,24 +24,22 @@ const LoginForm = () => {
     });
 
     const handlerCheckEmail = () => {
-        if (isEmailValid) {
-            dispatch(setIsLoading(true));
-            checkEmail(data.email)
-                .unwrap()
-                .then(() => {
-                    dispatch(setFields({ email: data.email, password: data.password }));
-                    history.push('/auth/confirm-email');
-                })
-                .catch((e: IErrorResponse) => {
-                    !email && dispatch(setFields({ email: data.email, password: data.password }));
-                    if (e.status === 404 && e.data.message === 'Email не найден') {
-                        history.push('../../result/error-check-email-no-exist');
-                    } else {
-                        history.push('../../result/error-check-email');
-                    }
-                })
-                .finally(() => dispatch(setIsLoading(false)));
-        }
+        dispatch(setIsLoading(true));
+        checkEmail(data.email)
+            .unwrap()
+            .then(() => {
+                dispatch(setFields({ email: data.email, password: data.password }));
+                history.push('/auth/confirm-email');
+            })
+            .catch((e: IErrorResponse) => {
+                !email && dispatch(setFields({ email: data.email, password: data.password }));
+                if (e.status === 404 && e.data.message === 'Email не найден') {
+                    history.push('../../result/error-check-email-no-exist');
+                } else {
+                    history.push('../../result/error-check-email');
+                }
+            })
+            .finally(() => dispatch(setIsLoading(false)));
     };
 
     const loginUser = () => {
@@ -64,14 +62,14 @@ const LoginForm = () => {
 
     useEffect(() => {
         if (
-            data.email &&
+            email &&
             router.previousLocations &&
             router.previousLocations.length > 1 &&
             router.previousLocations[1].location?.pathname === '/result/error-check-email'
         ) {
             handlerCheckEmail();
         }
-    }, [data.email, router.previousLocations]);
+    }, [email, router.previousLocations]);
     return (
         <>
             <div className='wrapper-form'>

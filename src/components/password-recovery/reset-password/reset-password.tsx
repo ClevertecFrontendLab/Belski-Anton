@@ -1,21 +1,23 @@
-import recovery from '@public/assets/icons/recovery.svg';
-import './reset-password.css';
-import VerificationInput from 'react-verification-input';
-import { useEffect, useState } from 'react';
-import { useConfirmEmailMutation } from '../../../api/auth-api';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import errorIcon from '@public/assets/icons/error.svg';
-import { setIsLoading } from '@redux/loading-slice';
+import recovery from '@public/assets/icons/recovery.svg';
 import { clearAuthState } from '@redux/auth-slice';
 import { history } from '@redux/configure-store';
+import { setIsLoading } from '@redux/loading-slice';
+import { useEffect, useState } from 'react';
+import VerificationInput from 'react-verification-input';
+import { useConfirmEmailMutation } from '../../../api/auth-api';
+import './reset-password.css';
 const CardPasswordReset = () => {
     const [value, setValue] = useState('');
     const [error, setError] = useState(false);
+
     const [confirmEmail] = useConfirmEmailMutation();
     const {
         auth: { email },
         load: { isLoading },
     } = useAppSelector((store) => store);
+
 
     const dispatch = useAppDispatch();
     const sendData = () => {
