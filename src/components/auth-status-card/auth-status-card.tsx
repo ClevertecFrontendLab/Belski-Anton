@@ -33,12 +33,12 @@ export const AuthStatusCard = ({
                     />
                 </div>
                 <div className='status-description'>{title}</div>
-                <div>{subtitle}</div>
+                <div className='text-subtitle'>{subtitle}</div>
                 <Button
                     type='primary'
                     data-test-id={dataTestId}
                     onClick={() => history.push(path)}
-                    style={{ width: '368px' }}
+                    style={{ width: '368px' ,background:' #2F54EB'}}
                 >
                     {btnText}
                 </Button>

@@ -1,0 +1,41 @@
+.wrapper-form-registration {
+   width: 100%;
+}
+
+:global(.ant-tabs-nav-list) {
+   margin-bottom: 12px;
+}
+
+:global(.ant-form-item-explain) {
+   font-size: 12px;
+   margin-bottom: 20px;
+
+}
+
+
+
+.registration-button {
+   width: 100%;
+   background: #2F54EB;
+   font-size: 16px;
+   line-height: 130%;
+   height: 40px;
+   margin-bottom: 0;
+}
+
+.registration-google-btn {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 40px;
+   gap: 5px;
+   width: 100%;
+   background: #fff;
+   font-size: 16px;
+}
+
+.wrapper-button-icon {
+   display: flex;
+   align-items: center;
+   gap: 10px
+}

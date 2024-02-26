@@ -1,0 +1,60 @@
+.wrapper-form-login {
+   width: 100%;
+}
+
+.login-form-forgot {
+   font-size: 16px;
+   border: none;
+   color: #2F54EB;
+   padding: 0;
+}
+
+:global(.ant-row) {
+   justify-content: center;
+}
+
+:global(.ant-form-item-control-input-content) {
+   display: flex;
+   justify-content:space-between;
+   align-items: center;
+}
+
+
+:global(.ant-input){
+   padding: 11px;
+}
+
+
+:global(.ant-form.ant-form-horizontal > .ant-form-item:nth-last-child(2)){
+   margin-bottom: 12px;
+}
+
+:global(.ant-form-item-explain-error){
+   color:#8C8C8C;
+}
+
+.login-button {
+   width: 100%;
+   background: #2F54EB;
+   font-size: 16px;
+   line-height: 130%;
+   height: 40px;
+   margin-bottom: 0;
+}
+
+.login-google-btn {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   height: 40px;
+   gap: 5px;
+   width: 100%;
+   background: #fff;
+   font-size: 16px;
+}
+
+.wrapper-button-icon{
+   display: flex;
+   align-items: center;
+   gap:10px
+}

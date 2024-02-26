@@ -45,7 +45,6 @@ const CardPasswordReset = () => {
     }, [value, email, isLoading]);
 
     return (
-        <div className='bg-wrapper-recovery-password'>
             <div className='wrapper-recovery-password'>
                 <div className='card-recovery-password'>
                     <img
@@ -64,12 +63,12 @@ const CardPasswordReset = () => {
                         value={value}
                         onChange={(val) => setValue(val)}
                         classNames={{ container: error ? 'error' : '' }}
+                        placeholder=' '
                     />
 
-                    <div>Не пришло письмо? Проверьте папку Спам.</div>
+                    <div className='text-input-verification'>Не пришло письмо? Проверьте папку Спам.</div>
                 </div>
             </div>
-        </div>
     );
 };
 

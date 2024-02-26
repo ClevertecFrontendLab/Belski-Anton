@@ -25,6 +25,10 @@
    cursor: pointer;
 }
 
+/* .ant-btn.ant-btn-primary{
+   background: #2F54EB;
+} */
+
 @media (max-width: 834px) {
    .ant-card > .ant-card-head {
        text-align: start;

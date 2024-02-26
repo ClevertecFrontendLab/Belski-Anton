@@ -1,0 +1,55 @@
+.wrapper-form-auth {
+      background: #fff;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      padding: 60px 85.5px;
+      width: 539px;
+      height: 742px;
+}
+
+
+.ant-tabs>.ant-tabs-nav .ant-tabs-nav-list {
+      justify-content: center;
+      width: 100%;
+}
+
+
+.ant-row {
+      justify-content: center;
+      justify-content: center;
+}
+
+.logo-form {
+      width: 309px;
+      margin: 0 auto 46px;
+}
+
+:global(.ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap) {
+      justify-content: center;
+}
+
+
+:global(.ant-col.ant-form-item-control) {
+      min-width: 100%;
+      max-width: 100%;
+}
+
+
+:global(.ant-tabs-nav-list) {
+      width: 100%;
+}
+
+:global(.ant-tabs-tab) {
+      width: 50%;
+      justify-content: center;
+}
+
+:global(.ant-tabs-tab-btn) {
+      font-size: 16px;
+}
+
+
+/* :global(.ant-tabs-nav-wrap){
+      flex-direction: column;
+} */

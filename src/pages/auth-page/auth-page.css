@@ -16,8 +16,7 @@
    right: 0;
    bottom: 0;
    left: 0;
-   background-image: url('/assets/images/bg-dark.png');
+   background-image: url('/assets/images/blure.png');
    background-repeat: no-repeat;
    background-size: cover;
-   filter: blur(11px);
 }
