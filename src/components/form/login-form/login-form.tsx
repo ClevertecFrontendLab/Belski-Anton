@@ -59,6 +59,8 @@ const LoginForm = () => {
             })
             .finally(() => dispatch(setIsLoading(false)));
     };
+    console.log(history.location);
+    
 
     useEffect(() => {
         if (

@@ -26,7 +26,7 @@
    font-size: 16px;
    line-height: 130%;
    height: 40px;
-   margin: 36px 0 0  ;
+   margin: 36px 0 0;
 }
 
 .registration-google-btn {
@@ -63,6 +63,8 @@
       font-size: 12px;
    }
 
+
+
    .registration-google-btn {
       font-size: 12px;
    }
@@ -74,16 +76,24 @@
 
 }
 
-@media(max-width:360px){
+@media(max-width:360px) {
 
-   :global(.ant-tabs >.ant-tabs-nav){
-     margin-bottom: 0;
+   :global(.ant-tabs >.ant-tabs-nav) {
+      margin-bottom: 0;
    }
-  
-   :global(.ant-input-affix-wrapper .ant-input-password){
+
+   :global(.ant-input-affix-wrapper .ant-input-password) {
       margin-top: 0;
    }
 
+   /* :global(.ant-form-item .ant-form-item-with-help){
+      margin-bottom: 8px;
+   } */
+
+   /* :global(.ant-form-item-control-input-content){
+      justify-content: flex-start; 
+      align-items: stretch; 
+   } */
 
    :global(.ant-form-item-explain) {
       font-size: 12px;
@@ -96,7 +106,8 @@
    .registration-google-btn {
       font-size: 14px;
    }
-   .logo-google{
+
+   .logo-google {
       display: none;
    }
 }
