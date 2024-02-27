@@ -128,6 +128,7 @@ const LoginForm = () => {
                             data-test-id='login-remember'
                             checked={data.isRemember}
                             onChange={(e) => setData({ ...data, isRemember: e.target.checked })}
+                            
                         >
                             Запомнить меня
                         </Checkbox>

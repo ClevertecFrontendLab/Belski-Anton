@@ -74,7 +74,7 @@ const RegistrationForm = () => {
                 <Form.Item
                     name='email'
                     rules={[
-                        { required: true, message: 'Пожалуйста, введите свой пароль' },
+                        { required: true, message: '' },
                         {
                             pattern: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                             message: 'Пожалуйста, введите правильный e-mail!',
@@ -86,11 +86,14 @@ const RegistrationForm = () => {
                         onChange={(e) => setData({ ...data, email: e.target.value })}
                         addonBefore='e-mail'
                         data-test-id={'registration-email'}
-                        style={{marginBottom:'11'}}
+                        style={{ marginBottom: '11' }}
                     />
                 </Form.Item>
 
                 <Form.Item
+                    label='Confirm Password'
+                    dependencies={['password']}
+                    hasFeedback
                     name='password'
                     rules={[
                         { required: true, message: 'Пожалуйста, введите свой пароль!!' },
@@ -106,7 +109,7 @@ const RegistrationForm = () => {
                         onChange={(e) => setData({ ...data, password: e.target.value })}
                         placeholder='Пароль'
                         data-test-id={'registration-password'}
-                        style={{padding:'10px'}}
+                        style={{ padding: '10px' }}
                     />
                 </Form.Item>
 
@@ -116,7 +119,7 @@ const RegistrationForm = () => {
                     rules={[
                         {
                             required: true,
-                            message: 'Пожалуйста, повторите свой пароль!!!',
+                            message: '',
                         },
                         ({ getFieldValue }) => ({
                             validator(_, value) {
@@ -134,7 +137,7 @@ const RegistrationForm = () => {
                         placeholder='Повторите пароль'
                         data-test-id='registration-confirm-password'
                         className={registrationForm['confirm-password']}
-                        style={{padding:'10px',marginBottom:'40px'}}
+                        style={{ padding: '10px', marginTop: '20px' }}
                     />
                 </Form.Item>
 
@@ -156,11 +159,13 @@ const RegistrationForm = () => {
                         htmlType='submit'
                         className={registrationForm['registration-google-btn']}
                     >
-                        < div className={registrationForm['wrapper-button-icon']}>
-                            
-                                <img src={logoGoogle} alt='logo' className={registrationForm['logo-google']} />
-                               <div> Регистрация  через Google</div>
-                        
+                        <div className={registrationForm['wrapper-button-icon']}>
+                            <img
+                                src={logoGoogle}
+                                alt='logo'
+                                className={registrationForm['logo-google']}
+                            />
+                            <div> Регистрация через Google</div>
                         </div>
                     </Button>
                 </Form.Item>
