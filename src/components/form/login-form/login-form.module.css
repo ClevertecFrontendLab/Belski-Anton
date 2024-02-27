@@ -119,8 +119,8 @@
       font-size: 14px;
    }
   
-   :global(.ant-tabs-nav-list){
-      margin-bottom: 10px;
+   :global(.ant-tabs-content-holder){
+      margin-top: 10px;
    }
 
    :global(.ant-form.ant-form-horizontal > .ant-form-item:nth-child(3)) {

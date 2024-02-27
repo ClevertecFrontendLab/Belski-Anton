@@ -28,7 +28,7 @@ const RegistrationForm = () => {
                 history.push('../../result/error-user-exist');
                 break;
             default:
-                dispatch(setFields({ email: data.email, password: data.password }));
+                dispatch(setFields({ email: data.email, password: data.password,token:'' }));
                 history.push('../../result/error');
         }
     };

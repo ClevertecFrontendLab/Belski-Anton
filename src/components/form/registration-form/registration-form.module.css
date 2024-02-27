@@ -86,14 +86,11 @@
       margin-top: 0;
    }
 
-   /* :global(.ant-form-item .ant-form-item-with-help){
-      margin-bottom: 8px;
-   } */
+   :global(.ant-form-item.ant-form-item-with-help){
+      margin-bottom: 0;
+   }
 
-   /* :global(.ant-form-item-control-input-content){
-      justify-content: flex-start; 
-      align-items: stretch; 
-   } */
+ 
 
    :global(.ant-form-item-explain) {
       font-size: 12px;
@@ -109,5 +106,8 @@
 
    .logo-google {
       display: none;
+   }
+   .registration-button {
+      margin: 20px 0 0;
    }
 }

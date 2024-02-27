@@ -170,6 +170,7 @@ root.render(
                                     btnText='Попробовать снова'
                                     path='/auth'
                                     dataTestId='check-retry-button'
+                                    className='error-exist'
                                 />
                             </AuthPage>
                         }
@@ -185,6 +186,7 @@ root.render(
                                     btnText='Назад'
                                     path='/auth'
                                     dataTestId='check-back-button'
+                                    className='error-check'
                                 />
                             </AuthPage>
                         }

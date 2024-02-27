@@ -18,7 +18,6 @@ const CardPasswordReset = () => {
         load: { isLoading },
     } = useAppSelector((store) => store);
 
-
     const dispatch = useAppDispatch();
     const sendData = () => {
         dispatch(setIsLoading(true));
@@ -45,30 +44,32 @@ const CardPasswordReset = () => {
     }, [value, email, isLoading]);
 
     return (
-            <div className='wrapper-recovery-password'>
-                <div className='card-recovery-password'>
-                    <img
-                        src={error ? errorIcon : recovery}
-                        alt='icon'
-                        style={{ height: '70px', width: '70px' }}
-                    />
-                    <div className='password-title'>
-                        <div>{error && 'Неверный код. '}Введите код</div>
-                        для восстановления аккауанта
-                    </div>
-                    <VerificationInput
-                        validChars='0-9'
-                        inputProps={{ inputMode: 'numeric', 'data-test-id': 'verification-input' }}
-                        length={6}
-                        value={value}
-                        onChange={(val) => setValue(val)}
-                        classNames={{ container: error ? 'error' : '' }}
-                        placeholder=' '
-                    />
+        <div className='wrapper-recovery-password'>
+            <div className='card-recovery-password'>
+                <img
+                    src={error ? errorIcon : recovery}
+                    alt='icon'
+                    style={{ height: '70px', width: '70px' }}
+                />
+                <div className='password-title'>
+                    <div>{error && 'Неверный код. '}Введите код</div>
+                    для восстановления аккауанта
+                </div>
+                <VerificationInput
+                    validChars='0-9'
+                    inputProps={{ inputMode: 'numeric', 'data-test-id': 'verification-input' }}
+                    length={6}
+                    value={value}
+                    onChange={(val) => setValue(val)}
+                    classNames={{ container: error ? 'error' : '' }}
+                    placeholder=' '
+                />
 
-                    <div className='text-input-verification'>Не пришло письмо? Проверьте папку Спам.</div>
+                <div className='text-input-verification'>
+                    Не пришло письмо? Проверьте папку Спам.
                 </div>
             </div>
+        </div>
     );
 };
 

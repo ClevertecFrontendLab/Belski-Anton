@@ -31,6 +31,7 @@ const ChangePassword = () => {
                         setFields({
                             password: data.password,
                             email: '',
+                            token:''
                         }),
                     );
                 history.push('../../result/error-change-password');

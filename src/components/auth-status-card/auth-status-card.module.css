@@ -1,0 +1,71 @@
+.wrapper-auth-status {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   position: relative;
+   z-index: 99999;
+   background: #fff;
+   text-align: center;
+   min-width: 540px;
+   min-height: 363px;
+}
+
+.icon {
+   width: 70px;
+   height: 70px;
+}
+
+.wrapper-auth-status.error-check {
+   min-height: 550px;
+}
+
+.error-check .icon {
+   width: 253px;
+   height: 293px;
+}
+
+.btn-status-card {
+   margin: 0 auto;
+   width: 368px;
+   background: #2F54EB;
+   height: 40px;
+}
+
+.error-check .btn-status-card {
+   width: 74px;
+}
+
+.error-exist .btn-status-card {
+   width: 167px;
+}
+
+.card-status {
+   display: flex;
+   flex-direction: column;
+   max-width: 475px;
+   gap: 18px;
+}
+
+.wrapper-title-subtitle {
+   display: flex;
+   flex-direction: column;
+}
+
+
+.status-description {
+   font-size: 24px;
+   margin-bottom: 0;
+}
+
+.text-subtitle {
+   color: #8C8C8C;
+}
+
+@media(max-width:670px) {
+   .wrapper-auth-status {
+      max-width: 600px;
+      min-width: 300px;
+      margin: 0 20px;
+   }
+
+}
