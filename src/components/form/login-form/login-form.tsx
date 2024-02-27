@@ -1,6 +1,6 @@
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { Button, Checkbox, Form, Input } from 'antd';
-import { setFields } from '@redux/auth-slice';
+import { setFields, setToken } from '@redux/auth-slice';
 import { history } from '@redux/configure-store';
 import { setIsLoading } from '@redux/loading-slice';
 import { useEffect, useState } from 'react';
@@ -28,11 +28,11 @@ const LoginForm = () => {
         checkEmail(data.email)
             .unwrap()
             .then(() => {
-                dispatch(setFields({ email: data.email, password: data.password }));
+                dispatch(setFields({ email: data.email, password: data.password,token:'' }));
                 history.push('/auth/confirm-email');
             })
             .catch((e: IErrorResponse) => {
-                !email && dispatch(setFields({ email: data.email, password: data.password }));
+                !email && dispatch(setFields({ email: data.email, password: data.password,token:'' }));
                 if (e.status === 404 && e.data.message === 'Email не найден') {
                     history.push('../../result/error-check-email-no-exist');
                 } else {
@@ -50,7 +50,7 @@ const LoginForm = () => {
                 if (data.isRemember) {
                     localStorage.setItem('token', res.accessToken);
                 } else {
-                    sessionStorage.setItem('token', res.accessToken);
+                    dispatch(setToken(res.accessToken))
                 }
                 history.push('../../main');
             })
@@ -59,7 +59,7 @@ const LoginForm = () => {
             })
             .finally(() => dispatch(setIsLoading(false)));
     };
-    console.log(history.location);
+
     
 
     useEffect(() => {
