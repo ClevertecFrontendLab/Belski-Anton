@@ -70,6 +70,17 @@
       font-size: 30px;
 }
 
+:global(.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn) {
+      color: #2F54EB;
+}
+
+:global(.ant-tabs-ink-bar.ant-tabs-ink-bar-animated ) {
+      background: #2F54EB;
+     
+}
+
+;
+
 @media(max-width:480px) {
       .wrapper-form-auth {
             max-width: 400px;
