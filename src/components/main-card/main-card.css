@@ -25,6 +25,7 @@
    cursor: pointer;
 }
 
+
 @media (max-width: 834px) {
    .ant-card > .ant-card-head {
        text-align: start;

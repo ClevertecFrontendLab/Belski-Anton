@@ -1,0 +1,139 @@
+.wrapper-form-auth {
+      background: #fff;
+      z-index: 9999;
+      display: flex;
+      flex-direction: column;
+      padding: 60px 85.5px;
+      width: 539px;
+      height: 90vh;
+      max-height: 742px;
+}
+
+
+.ant-tabs>.ant-tabs-nav .ant-tabs-nav-list {
+      justify-content: center;
+      width: 100%;
+}
+
+
+.ant-row {
+      justify-content: center;
+      justify-content: center;
+}
+
+.logo-form {
+      width: 309px;
+      margin: 0 auto 46px;
+}
+
+.ant-tabs-tab-btn {
+      font-size: 16px;
+}
+
+:global(.ant-tabs > .ant-tabs-nav .ant-tabs-nav-wrap) {
+      justify-content: center;
+}
+
+
+:global(.ant-col.ant-form-item-control) {
+      min-width: 100%;
+      max-width: 100%;
+}
+
+
+:global(.ant-tabs-nav-list) {
+      width: 100%;
+}
+
+:global(.ant-tabs-tab) {
+      width: 50%;
+      justify-content: center;
+}
+
+:global(.ant-tabs-tab-btn) {
+      font-size: 16px;
+}
+
+@media(max-width:590px) {
+      .wrapper-form-auth {
+            padding: 60px;
+            max-width: 450px;
+      }
+
+      .logo-form {
+            width: 250px;
+      }
+
+}
+
+.size {
+      font-size: 30px;
+}
+
+:global(.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn) {
+      color: #2F54EB;
+}
+
+:global(.ant-tabs-ink-bar.ant-tabs-ink-bar-animated ) {
+      background: #2F54EB;
+     
+}
+
+;
+
+@media(max-width:480px) {
+      .wrapper-form-auth {
+            max-width: 400px;
+      }
+
+      .logo-form {
+            width: 200px;
+      }
+
+      :global(.ant-tabs-tab-btn) {
+            font-size: 12px;
+      }
+}
+
+
+@media(max-width:430px) {
+
+      .wrapper-form-auth {
+            max-width: 350px;
+            padding: 30px;
+      }
+
+
+}
+
+@media(max-width:400px) {
+
+      .wrapper-form-auth {
+            max-width: 300px;
+      }
+
+
+}
+
+
+@media(max-width:360px) {
+      .wrapper-form-auth {
+            max-width: 326px;
+            max-height: 612px;
+            padding: 27px 13px 15px;
+      }
+
+      .registration {
+            max-height: 564px;
+      }
+
+      .logo-form {
+            margin-bottom: 34px;
+      }
+
+      :global(.ant-tabs-tab-btn) {
+            font-size: 14px;
+      }
+
+
+}

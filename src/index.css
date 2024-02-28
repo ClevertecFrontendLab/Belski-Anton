@@ -10,3 +10,20 @@
    font-family: 'Inter', sans-serif;
 }
 
+.loader{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    z-index: 100000;
+    background-color:  #799cd47b;
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.loader > svg{
+  height:calc(max(100px, 20vh))!important;
+}
