@@ -27,7 +27,11 @@ export const AuthForm = () => {
     }, [token, localStorage]);
     return (
         <>
-            <div className={form['wrapper-form-auth']}>
+            <div
+                className={`${form['wrapper-form-auth']} ${
+                    pathname.includes('registration') ? form['registration'] : ''
+                }`}
+            >
                 <img src={logo} className={form['logo-form']} alt='logo' />
                 <Tabs
                     defaultActiveKey={checkedTab}

@@ -46,6 +46,12 @@
    gap: 10px
 }
 
+@media(max-width:840){
+   .registration-button {
+      margin-top: 38px;
+   }
+}
+
 @media(max-width:480px) {
    .registration-button {
       font-size: 14px;
@@ -108,6 +114,6 @@
       display: none;
    }
    .registration-button {
-      margin: 20px 0 0;
+      margin: 47px 0 0;
    }
 }
