@@ -51,9 +51,12 @@ const CardPasswordReset = () => {
                     alt='icon'
                     style={{ height: '70px', width: '70px' }}
                 />
-                <div className='password-title'>
-                    <div>{error && 'Неверный код. '}Введите код</div>
-                    для восстановления аккауанта
+                <div className='wrapper-text-send'>
+                    <div className='password-title'>
+                        <div>{error && 'Неверный код. '}Введите код</div>
+                        для восстановления аккауанта
+                    </div>
+                    <div className='text-send-email'>Мы отправили вам на e-mail <span>{email}</span> шестизначный код. Введите его в поле ниже.</div>
                 </div>
                 <VerificationInput
                     validChars='0-9'
@@ -64,7 +67,7 @@ const CardPasswordReset = () => {
                     classNames={{ container: error ? 'error' : '' }}
                     placeholder=' '
                 />
-
+           
                 <div className='text-input-verification'>
                     Не пришло письмо? Проверьте папку Спам.
                 </div>
