@@ -21,6 +21,8 @@ import { AuthForm } from '@components/form';
 import { AuthStatusCard } from '@components/auth-status-card';
 import CardPasswordReset from './components/password-recovery/reset-password/reset-password';
 import ChangePassword from '@components/password-recovery/change-password/change-password';
+import FeedBacks from '@pages/feed-backs/feed-backs';
+import BasePage from '@pages/base-page/base-page';
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
 const AuthRedirect = () => {
@@ -31,11 +33,14 @@ const AuthRedirect = () => {
 
 export default AuthRedirect;
 root.render(
-     <React.StrictMode>
+    <React.StrictMode>
         <Provider store={store}>
             <HistoryRouter history={history}>
                 <Routes>
-                    <Route path='/main' element={<MainPage />} />
+                    <Route path='/' element={<BasePage />}>
+                        <Route path='main' element={<MainPage />} />
+                        <Route path='feedbacks' element={<FeedBacks />} />
+                    </Route>
                     <Route
                         path='/auth'
                         element={
@@ -211,5 +216,5 @@ root.render(
                 </Routes>
             </HistoryRouter>
         </Provider>
-     </React.StrictMode>, 
+    </React.StrictMode>,
 );
