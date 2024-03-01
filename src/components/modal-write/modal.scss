@@ -1,0 +1,15 @@
+.ant-modal-root {
+   .ant-modal-mask{
+      background-color:transparent;
+      backdrop-filter: blur(2px);
+   }
+    .ant-modal-content {
+        .ant-input {
+            height: 46px;
+        }
+        .ant-btn-primary {
+            background-color: #2f54eb;
+            color: #fff;
+        }
+    }
+}
