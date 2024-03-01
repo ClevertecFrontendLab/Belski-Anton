@@ -1,7 +1,6 @@
 .ant-layout-sider-children {
    display: flex;
    flex-direction: column;
-   min-height: 1024px;
 }
 
 .logo {

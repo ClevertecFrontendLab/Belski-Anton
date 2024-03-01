@@ -1,6 +1,6 @@
 import { Button, Input, Modal, Rate } from 'antd';
 const { TextArea } = Input;
-import './modal.scss';
+import './modal-write.scss';
 const ModalWrite = ({ isOpen, onOk, centered, onCancel }) => {
     return (
         <Modal

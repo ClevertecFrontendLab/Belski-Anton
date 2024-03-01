@@ -6,7 +6,7 @@ import './feed-backs.scss';
 import { UserOutlined } from '@ant-design/icons';
 import { useGetReviewsQuery } from '../../api/auth-api';
 import { useState } from 'react';
-import ModalWrite from '@components/modal-write/modal';
+import ModalWrite from '@components/modal-write/modal-write';
 const routes = [
     {
         path: 'main',
@@ -20,6 +20,8 @@ const routes = [
 const FeedBacks = () => {
     const { data: reviews } = useGetReviewsQuery();
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [showAllReviews, setShowAllReviews] = useState(false);
+
     const showModal = () => {
         setIsModalOpen(true);
     };
@@ -32,16 +34,19 @@ const FeedBacks = () => {
         setIsModalOpen(false);
     }
     
+    const toggleReviews = () => {
+        setShowAllReviews(prevState => !prevState);
+    };
 
     return (
         <div className='feedbacks-content'>
             <header>
                 <Breadcrumbs items={routes} />
             </header>
-            <div className='wrapper-feedbacks-conten'>
+            <div className='wrapper-feedbacks-content'>
                 <div className='wrapper-commit'>
                     {!!reviews?.length &&
-                        reviews.slice(-4).map((el) => (
+                       (showAllReviews ? reviews : reviews.slice(-4)).map((el) => (
                             <div className='wrapper-card-commit' key={el.id}>
                                 <div className='description-user'>
                                     <div>
@@ -69,8 +74,8 @@ const FeedBacks = () => {
                     <Button type='text' className='write-review-btn' onClick={showModal}>
                         Написать отзыв
                     </Button>
-                    <Button type='text' className='expand-reviews-btn'>
-                        Развернуть все отзывы
+                    <Button type='text' className='expand-reviews-btn' onClick={toggleReviews}>
+                       {showAllReviews ? 'Свернуть все отзывы' : 'Развернуть все отзывы'}
                     </Button>
                 </div>
             </div>
