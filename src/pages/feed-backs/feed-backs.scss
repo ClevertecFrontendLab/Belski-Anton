@@ -1,18 +1,18 @@
-.ant-layout.ant-layout-has-sider {
-    .ant-layout {
-        background-size: auto auto;
-    }
-}
-
-.feed-backs-content {
+.feedbacks-content {
     header {
         padding: 16px 24px;
         background-color: #f0f5ff;
     }
+    .wrapper-feedbacks-conten {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
     .wrapper-card-commit {
         display: flex;
         background-color: #fff;
-        margin: 24px 24px 20px;
+        margin: 20px 24px 20px;
         min-height: 128px;
         padding: 16px;
         gap: 10px;
@@ -39,19 +39,26 @@
         .ant-rate {
             font-size: 14px;
         }
-        .wrapper-rate-date{
+        .wrapper-rate-date {
             display: flex;
             gap: 15px;
-        }    
-        .date-commit{
-            font-size: 10px;
-            color:#BFBFBF ;
         }
-  
+        .date-commit {
+            font-size: 10px;
+            color: #bfbfbf;
+        }
     }
     .anticon-star {
         width: 13px;
         height: 13px;
         color: #faad14;
+    }
+
+    .wrapper-commit-btn {
+        margin: 60px 0 0 22px;
+    }
+    .write-review-btn {
+        background-color: #2f54eb;
+        color: #fff;
     }
 }
