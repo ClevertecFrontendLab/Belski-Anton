@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_API_URL } from '../constants/index';
+import { store } from '@redux/configure-store';
 
 interface IPropsRegistration {
     email: string;
@@ -16,13 +17,31 @@ interface IChangePasswordProps {
 }
 
 interface IConfirmEmailProps {
-    email:string,
-    code: string 
+    email: string;
+    code: string;
+}
+
+interface IReview {
+    id: string;
+    fullName: string | null;
+    imageSrc: string | null;
+    message: string | null;
+    rating: number;
+    createdAt: string;
 }
 
 export const authApi = createApi({
     reducerPath: 'authApi',
-    baseQuery: fetchBaseQuery({ baseUrl: BASE_API_URL }),
+    baseQuery: fetchBaseQuery({
+        baseUrl: BASE_API_URL,
+        prepareHeaders: (headers) => {
+            const token = localStorage.getItem('token') || store.getState().auth.token;
+            if (token) {
+                headers.set('Authorization', `Bearer ${token}`);
+            }
+            return headers;
+        },
+    }),
     endpoints: (builder) => ({
         registration: builder.mutation<unknown, IPropsRegistration>({
             query: (body) => ({
@@ -42,15 +61,15 @@ export const authApi = createApi({
             query: (email) => ({
                 url: '/auth/check-email',
                 method: 'POST',
-                body:{email},
+                body: { email },
             }),
         }),
         confirmEmail: builder.mutation<unknown, IConfirmEmailProps>({
             query: (body) => ({
-                url:'/auth/confirm-email',
+                url: '/auth/confirm-email',
                 method: 'POST',
                 body,
-                credentials:'include'
+                credentials: 'include',
             }),
         }),
         changePassword: builder.mutation<string, IChangePasswordProps>({
@@ -58,10 +77,22 @@ export const authApi = createApi({
                 url: '/auth/change-password',
                 method: 'POST',
                 body,
-                credentials:'include'
+                credentials: 'include',
+            }),
+        }),
+        getReviews: builder.query<IReview[], void>({
+            query: () => ({
+                url: '/feedback',
             }),
         }),
     }),
 });
 
-export const { useRegistrationMutation, useLoginMutation, useChangePasswordMutation,useCheckEmailMutation,useConfirmEmailMutation } = authApi;
+export const {
+    useRegistrationMutation,
+    useLoginMutation,
+    useChangePasswordMutation,
+    useCheckEmailMutation,
+    useConfirmEmailMutation,
+    useGetReviewsQuery,
+} = authApi;

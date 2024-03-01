@@ -1,8 +1,9 @@
-import { Avatar, Comment, List, Rate, Tooltip } from 'antd';
+import { Avatar, Comment, Rate } from 'antd';
 import Breadcrumbs from '@components/breadcrumb/breadcrumb';
 import avatar from '../../../public/assets/icons/avatar.svg';
 import './feed-backs.scss';
 import { UserOutlined } from '@ant-design/icons';
+import { useGetReviewsQuery } from '../../api/auth-api';
 const routes = [
     {
         path: 'main',
@@ -13,35 +14,40 @@ const routes = [
     },
 ];
 
-
-
-
-
-
 const FeedBacks = () => {
+    const { data: reviews } = useGetReviewsQuery();
+
     return (
         <div className='feed-backs-content'>
             <header>
                 <Breadcrumbs items={routes} />
             </header>
-            <div className='wrapper-card-commit'>
-                <div className='description-user'>
-                    <div><Avatar size={42} icon={<UserOutlined />} /></div>
-                    <div className='name-user'>
-                       <span> Вероника </span>
-                       <span> Киверова </span>
+            {!!reviews?.length &&
+                reviews.slice(-4).map((el, idx) => (
+                    <div className='wrapper-card-commit' key={el.id}>
+                        <div className='description-user'>
+                            <div>
+                                <Avatar
+                                    size={42}
+                                    src={el.imageSrc || ''}
+                                    icon={!el.imageSrc ? <UserOutlined /> : undefined}
+                                />
+                            </div>
+                            <div className='name-user'>{el.fullName || 'Пользователь'}</div>
                         </div>
-                </div>
-               <div className='wrapper-rate-text'>
-                    <div className='wrapper-rate-date'>
-                        <Rate value={3} />
-                        <div className='date-commit'>05.12.2023</div>
+                        <div className='wrapper-rate-text'>
+                            <div className='wrapper-rate-date'>
+                                <Rate disabled value={el.rating} />
+                                <div className='date-commit'>
+                                {new Date(el.createdAt).toLocaleDateString()}
+                                </div>
+                            </div>
+                            <p>
+                            {el.message || ''}
+                            </p>
+                        </div>
                     </div>
-                    <p>
-                        Я очень довольна этим приложением! Оно помогает мне следить за своим здоровьем и физической формой, предлагая разнообразные упражнения и питание. Я люблю, что приложение адаптируется к моему уровню и целям, и дает мне полезные советы и обратную связь. Я рекомендую это приложение всем, кто хочет улучшить свою жизнь!
-                        </p>
-               </div>
-            </div>
+                ))}
         </div>
     );
 };
