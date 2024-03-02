@@ -1,6 +1,7 @@
+import { StarOutlined } from '@ant-design/icons';
 import { Button, Input, Modal, Rate } from 'antd';
-const { TextArea } = Input;
 import './modal-write.scss';
+const { TextArea } = Input;
 const ModalWrite = ({ isOpen, onOk, centered, onCancel }) => {
     return (
         <Modal
@@ -14,7 +15,8 @@ const ModalWrite = ({ isOpen, onOk, centered, onCancel }) => {
                     Опубликовать
                 </Button>,
             ]}
-        >    <Rate disabled />
+        >
+            <Rate disabled character={<StarOutlined />} />
             <TextArea />
         </Modal>
     );

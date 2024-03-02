@@ -1,8 +1,11 @@
 import { Layout } from 'antd';
-import './main-footer.css';
+import { useState } from 'react';
 import { AndroidFilled, AppleFilled } from '@ant-design/icons';
 import { MainCard } from '@components/main-card';
+import ModalWrong from '@components/popup/wrong-modal/modal-wrong';
 const { Footer } = Layout;
+import './main-footer.css';
+
 
 const TitleCard = () => {
     return (
@@ -13,14 +16,31 @@ const TitleCard = () => {
     );
 };
 
-interface CustomFooterProps{
-    onViewReviewsClick:()=>void
+interface CustomFooterProps {
+    onViewReviewsClick: () => void;
+    
 }
 
-export const CustomFooter = ({ onViewReviewsClick}:CustomFooterProps) => {
+
+
+export const CustomFooter = ({ onViewReviewsClick }: CustomFooterProps) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const showModal = () => {
+        setIsModalOpen(true);
+    };
+    
+    const handleOk = () => {
+        setIsModalOpen(false);
+    };
+    
+    const handleCancel = () => {
+        setIsModalOpen(false);
+    }
     return (
         <Footer className='main-footer' style={{ background: 'transparent', padding: '24px' }}>
-            <div className='view-reviews' onClick={onViewReviewsClick}>Смотреть отзывы</div>
+            <div className='view-reviews' onClick={showModal}>
+                Смотреть отзывы
+            </div>
             <div className='wrapper-card'>
                 <MainCard title={<TitleCard />}>
                     <div className='list-phones'>
@@ -35,6 +55,10 @@ export const CustomFooter = ({ onViewReviewsClick}:CustomFooterProps) => {
                     </div>
                 </MainCard>
             </div>
+            <ModalWrong
+             isOpen={isModalOpen} 
+             centered={true}
+             />
         </Footer>
     );
 };

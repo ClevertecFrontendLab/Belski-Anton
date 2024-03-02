@@ -6,7 +6,7 @@ import './feed-backs.scss';
 import { UserOutlined } from '@ant-design/icons';
 import { useGetReviewsQuery } from '../../api/auth-api';
 import { useState } from 'react';
-import ModalWrite from '@components/modal-write/modal-write';
+import ModalWrite from '@components/popup/modal-write/modal-write';
 const routes = [
     {
         path: 'main',
@@ -21,6 +21,8 @@ const FeedBacks = () => {
     const { data: reviews } = useGetReviewsQuery();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [showAllReviews, setShowAllReviews] = useState(false);
+     
+     
 
     const showModal = () => {
         setIsModalOpen(true);
@@ -38,8 +40,12 @@ const FeedBacks = () => {
         setShowAllReviews(prevState => !prevState);
     };
 
+  console.log(reviews);
+  
+
     return (
         <div className='feedbacks-content'>
+            
             <header>
                 <Breadcrumbs items={routes} />
             </header>
