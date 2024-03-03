@@ -1,11 +1,9 @@
-import { Layout } from 'antd';
-import { useState } from 'react';
 import { AndroidFilled, AppleFilled } from '@ant-design/icons';
 import { MainCard } from '@components/main-card';
-import ModalWrong from '@components/popup/wrong-modal/modal-wrong';
-const { Footer } = Layout;
+import { history } from '@redux/configure-store';
+import { Layout } from 'antd';
 import './main-footer.css';
-
+const { Footer } = Layout;
 
 const TitleCard = () => {
     return (
@@ -16,29 +14,11 @@ const TitleCard = () => {
     );
 };
 
-interface CustomFooterProps {
-    onViewReviewsClick: () => void;
-    
-}
+export const CustomFooter = () => {
 
-
-
-export const CustomFooter = ({ onViewReviewsClick }: CustomFooterProps) => {
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const showModal = () => {
-        setIsModalOpen(true);
-    };
-    
-    const handleOk = () => {
-        setIsModalOpen(false);
-    };
-    
-    const handleCancel = () => {
-        setIsModalOpen(false);
-    }
     return (
         <Footer className='main-footer' style={{ background: 'transparent', padding: '24px' }}>
-            <div className='view-reviews' onClick={showModal}>
+            <div className='view-reviews' data-test-id='see-reviews' onClick={() => history.push('/feedbacks')}>
                 Смотреть отзывы
             </div>
             <div className='wrapper-card'>
@@ -55,10 +35,6 @@ export const CustomFooter = ({ onViewReviewsClick }: CustomFooterProps) => {
                     </div>
                 </MainCard>
             </div>
-            <ModalWrong
-             isOpen={isModalOpen} 
-             centered={true}
-             />
         </Footer>
     );
 };

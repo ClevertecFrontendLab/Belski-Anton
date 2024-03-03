@@ -1,0 +1,54 @@
+.ant-modal-root {
+    .ant-modal-content {
+        min-width: 539px;
+        width: 100%;
+        .ant-result-500 {
+            .ant-result-title {
+                font-size: 24px;
+                font-weight: 600;
+            }
+
+            .ant-btn-primary {
+                background-color: #2f54eb;
+            }
+        }
+        @media (max-width: 630px) {
+            .ant-modal-body {
+                display: flex;
+                flex-direction: column;
+            }
+        }
+    }
+    @media (max-width: 610px) {
+        .ant-modal-content {
+            min-width: 330px;
+        }
+    }
+    @media (max-width: 360px) {
+        .ant-result-500 {
+            padding: 21px 18px 5px 18px;
+        }
+        @media (max-width: 360px){
+         .ant-result-image {
+            margin: bottom 20px;
+        }
+    }
+        }
+       
+    @media (max-width: 360px) {
+        .ant-result-title {
+            width: 264px;
+            text-align: center;
+            margin: 0 auto;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .ant-result-subtitle {
+            text-align: center;
+            width: 200px;
+            margin: 0 auto;
+            line-height: 1.2;
+        }
+    }
+}

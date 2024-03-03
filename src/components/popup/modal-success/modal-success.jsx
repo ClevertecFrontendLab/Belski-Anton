@@ -1,14 +1,14 @@
 import { Button, Modal, Result } from 'antd';
-
-const ModalSuccess = () => {
+import './modal-success.scss'
+const ModalSuccess = ({ isOpen, onCancel }) => {
     return (
-        <Modal title={null} open={isOpen} centered={centered} footer={null} closable={false}>
+        <Modal title={null} onCancel={onCancel} open={isOpen} centered={true} footer={null} closable={false}>
             <Result
                 status='success'
                 title='Отзыв успешно опубликован'
                 subTitle=''
                 extra={[
-                    <Button type='primary' key='console'>
+                    <Button type='primary' key='console' onClick={onCancel} className='success-btn'>
                         Отлично
                     </Button>,
                   

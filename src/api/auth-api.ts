@@ -30,6 +30,11 @@ interface IReview {
     createdAt: string;
 }
 
+interface ICreateReview {
+    message: string;
+    rating: number;
+}
+
 export const authApi = createApi({
     reducerPath: 'authApi',
     baseQuery: fetchBaseQuery({
@@ -42,6 +47,7 @@ export const authApi = createApi({
             return headers;
         },
     }),
+    tagTypes: ['Feedback'],
     endpoints: (builder) => ({
         registration: builder.mutation<unknown, IPropsRegistration>({
             query: (body) => ({
@@ -84,6 +90,15 @@ export const authApi = createApi({
             query: () => ({
                 url: '/feedback',
             }),
+            providesTags:['Feedback']
+        }),
+        createReview: builder.mutation<unknown, ICreateReview>({
+            query: (review) => ({
+                url: '/feedback', 
+                method: 'POST',
+                body: review,
+            }),
+            invalidatesTags:['Feedback']
         }),
     }),
 });
@@ -95,4 +110,5 @@ export const {
     useCheckEmailMutation,
     useConfirmEmailMutation,
     useGetReviewsQuery,
+    useCreateReviewMutation
 } = authApi;

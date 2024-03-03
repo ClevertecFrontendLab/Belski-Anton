@@ -67,7 +67,7 @@ describe('Sprint 3', () => {
         it('First review', () => {
             cy.intercept('GET', 'feedback', { body: feedbacks.emptyFeedbacks }).as('getFeedbacks');
             cy.intercept('POST', 'feedback', {
-                body: { message: 'test321', rating: 3, createdAt: '2024-02-01T06:57:32.243Z' },
+                body: { message: 'test321', rating: 3 },
                 statusCode: 200,
             }).as('postFeedback');
 
@@ -90,7 +90,7 @@ describe('Sprint 3', () => {
             checkRating(2);
             cy.get('.ant-modal textarea').type('test321');
             cy.intercept('GET', 'feedback', {
-                body: [{ message: 'test321', rating: 3, createdAt: '2024-02-01T06:57:32.243Z' }],
+                body: [{ message: 'test321', rating: 3 }],
             }).as('getFeedbacks');
             cy.get('[data-test-id="new-review-submit-button"]').click();
             cy.wait('@postFeedback');
@@ -102,7 +102,7 @@ describe('Sprint 3', () => {
         it('More than 4 reviews', () => {
             cy.intercept('GET', 'feedback', { body: feedbacks.feedbacksList }).as('getFeedbacks');
             cy.intercept('POST', 'feedback', {
-                body: { rating: 2, createdAt: '2024-02-01T06:57:32.243Z' },
+                body: { rating: 2 },
                 statusCode: 200,
             }).as('postFeedback');
 

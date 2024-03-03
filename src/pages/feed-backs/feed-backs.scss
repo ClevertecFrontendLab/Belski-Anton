@@ -1,6 +1,4 @@
 .feedbacks-content {
-   
-
     header {
         padding: 16px 24px;
         background-color: #f0f5ff;
@@ -14,6 +12,7 @@
     .wrapper-commit {
         height: 616px;
         overflow-y: auto;
+        overflow-x: hidden;
     }
     .wrapper-card-commit {
         display: flex;
@@ -43,6 +42,9 @@
         .ant-rate {
             font-size: 14px;
         }
+        .text{
+            word-break: break-all;
+        }
         .wrapper-rate-date {
             display: flex;
             gap: 15px;
@@ -55,11 +57,9 @@
     .anticon-star {
         width: 13px;
         height: 13px;
-        color: #faad14;
+        // color: #faad14;
     }
 
-    
-   
     .wrapper-commit-btn {
         margin: 108px 0 0 22px;
     }
@@ -72,3 +72,5 @@
         font-size: 16px;
     }
 }
+
+

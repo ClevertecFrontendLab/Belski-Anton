@@ -1,0 +1,43 @@
+.container-not-review {
+    height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 24px;
+    .wrapper-not-reviews{
+      width: 1184px;
+    }
+    .text-not-reviews {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin: 0 auto;
+        background-color: #fff;
+        height: 245px;
+    }
+    .title-not-reviews {
+        color: #061178;
+        font-weight: 600;
+        font-size: 24px;
+        text-align: center;
+        padding: 56px 0 48px;
+    }
+    .subtitle-not-reviews {
+        margin: 0 auto;
+        text-align: center;
+        width: 521px;
+        color: #8c8c8c;
+        line-height: 130%;
+    }
+
+    .wrapper-btn-write-commit {
+        text-align: center;
+        margin-top: 43px;
+        .btn-write-commit {
+            background-color: #2f54eb;
+            font-size: 14px;
+            color: #fff;
+            height: 40px;
+        }
+    }
+}
