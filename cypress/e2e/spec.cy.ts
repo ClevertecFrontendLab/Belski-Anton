@@ -175,13 +175,13 @@ describe('Sprint 3', () => {
         });
     });
 
-    // describe('Google auth', () => {
+    describe('Google auth', () => {
     // TODO: реализовать тест google-auth
-    // it('Auth with google', () => {
-    //     cy.visit('/');
-    //     cy.viewport(1440, 900);
-    //     cy.visit('/auth');
-    //     cy.get('[data-test-id="google-submit-button"]').click();
-    // });
-    // });
+    it('Auth with google', () => {
+        cy.visit('/');
+        cy.viewport(1440, 900);
+        cy.visit('/auth');
+        cy.get('[data-test-id="google-submit-button"]').click();
+    });
+    });
 });

@@ -7,7 +7,9 @@ import { useEffect, useState } from 'react';
 import { useCheckEmailMutation, useLoginMutation } from '../../../api/auth-api';
 import { IErrorResponse } from '../form';
 import logoGoogle from '/assets/icons/google.svg';
+import { BASE_API_URL } from '../../../constants/index';
 import loginForm from './login-form.module.css';
+
 const LoginForm = () => {
     const dispatch = useAppDispatch();
     const {
@@ -28,11 +30,12 @@ const LoginForm = () => {
         checkEmail(data.email)
             .unwrap()
             .then(() => {
-                dispatch(setFields({ email: data.email, password: data.password,token:'' }));
+                dispatch(setFields({ email: data.email, password: data.password, token: '' }));
                 history.push('/auth/confirm-email');
             })
             .catch((e: IErrorResponse) => {
-                !email && dispatch(setFields({ email: data.email, password: data.password,token:'' }));
+                !email &&
+                    dispatch(setFields({ email: data.email, password: data.password, token: '' }));
                 if (e.status === 404 && e.data.message === 'Email не найден') {
                     history.push('../../result/error-check-email-no-exist');
                 } else {
@@ -50,7 +53,7 @@ const LoginForm = () => {
                 if (data.isRemember) {
                     localStorage.setItem('token', res.accessToken);
                 } else {
-                    dispatch(setToken(res.accessToken))
+                    dispatch(setToken(res.accessToken));
                 }
                 history.push('../../main');
             })
@@ -60,7 +63,10 @@ const LoginForm = () => {
             .finally(() => dispatch(setIsLoading(false)));
     };
 
-    
+    const handleGoogleAuth = () => {
+        const googleAuthUrl = `${BASE_API_URL}/auth/google`;
+        window.location.href = googleAuthUrl;
+    };
 
     useEffect(() => {
         if (
@@ -72,6 +78,7 @@ const LoginForm = () => {
             handlerCheckEmail();
         }
     }, [email, router.previousLocations]);
+
     return (
         <div className={loginForm['wrapper-form-login']}>
             <Form
@@ -120,7 +127,7 @@ const LoginForm = () => {
                         onChange={(e) => setData({ ...data, password: e.target.value })}
                         placeholder='Пароль'
                         data-test-id={'login-password'}
-                        style={{padding:'10px',marginBottom:'26px'}}
+                        style={{ padding: '10px', marginBottom: '26px' }}
                     />
                 </Form.Item>
 
@@ -130,7 +137,6 @@ const LoginForm = () => {
                             data-test-id='login-remember'
                             checked={data.isRemember}
                             onChange={(e) => setData({ ...data, isRemember: e.target.checked })}
-                            
                         >
                             Запомнить меня
                         </Checkbox>
@@ -157,14 +163,15 @@ const LoginForm = () => {
 
                 <Form.Item>
                     <Button
-                        disabled
+                        onClick={handleGoogleAuth}
                         type='primary'
                         htmlType='submit'
                         className={loginForm['login-google-btn']}
+                        data-test-id="google-submit-button"
                     >
                         <div className={loginForm['wrapper-button-icon']}>
                             <img src={logoGoogle} alt='logo' className={loginForm['logo-google']} />
-                            <div>Войти через Google</div>
+                            <div className={loginForm['text-google']}>Войти через Google</div>
                         </div>
                     </Button>
                 </Form.Item>

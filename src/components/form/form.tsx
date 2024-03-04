@@ -1,12 +1,12 @@
+import { useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
 import { history } from '@redux/configure-store.ts';
 import { Tabs } from 'antd';
+import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
+import form from './form.module.css';
 import LoginForm from './login-form/login-form.tsx';
 import RegistrationForm from './registration-form/registration-form.tsx';
 import logo from '/assets/icons/logo.svg';
-import form from './form.module.css';
-import { useAppSelector } from '@hooks/typed-react-redux-hooks.ts';
-import { useEffect } from 'react';
 
 export interface IErrorResponse {
     data: { statusCode: number; error: string; message: string };

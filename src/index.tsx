@@ -27,9 +27,9 @@ const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
 const AuthRedirect = () => {
     const isAuthenticated = localStorage.getItem('token');
-
     return isAuthenticated ? <Navigate to='/main' replace /> : <Navigate to='/auth' replace />;
 };
+
 
 export default AuthRedirect;
 root.render(
