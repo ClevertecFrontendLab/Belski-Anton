@@ -1,13 +1,16 @@
 import { Button, Input, Modal, Rate } from 'antd';
 import { useState } from 'react';
 import { useCreateReviewMutation } from '../../../api/auth-api';
-import './modal-write.scss';
+import { StarTwoTone, StarFilled } from '@ant-design/icons';
+import './modal-write.css';
 const { TextArea } = Input;
 const ModalWrite = ({ isOpen, onOk, centered, onCancel, onError }) => {
     const [createReview] = useCreateReviewMutation();
     const [rating, setRating] = useState(0);
     const [reviewText, setReviewText] = useState('');
-
+    const handleRatingChange = (newRating) => {
+        setRating(newRating);
+    };
     const handlePublishClick = () => {
         if (rating) {
             createReview({ message: reviewText, rating })
@@ -24,28 +27,38 @@ const ModalWrite = ({ isOpen, onOk, centered, onCancel, onError }) => {
     };
 
     return (
-        <Modal
-            title='Ваш отзыв'
-            open={isOpen}
-            onOk={onOk}
-            centered={centered}
-            onCancel={onOk}
-            footer={[
-                <Button
-                    key='submit'
-                    type='primary'
-                    onClick={handlePublishClick}
-                    data-test-id='new-review-submit-button'
-                    on
-                >
-                    Опубликовать
-                </Button>,
-            ]}
-        >
-            <Rate onChange={setRating} value={rating} />
-
-            <TextArea onChange={(e) => setReviewText(e.target.value)} value={reviewText} />
-        </Modal>
+            <Modal
+                title='Ваш отзыв'
+                open={isOpen}
+                onOk={onOk}
+                centered={centered}
+                onCancel={onOk}
+                footer={[
+                    <Button
+                        key='submit'
+                        type='primary'
+                        onClick={handlePublishClick}
+                        data-test-id='new-review-submit-button'
+                        className='btn-write-new-commit'
+                    >
+                        Опубликовать
+                    </Button>,
+                ]}
+            >
+                <Rate
+                    onChange={handleRatingChange}
+                    value={rating}
+                    character={({ index }) =>
+                        index < rating ? (
+                            <StarFilled style={{ color: '#FAAD14' }} />
+                        ) : (
+                            <StarTwoTone twoToneColor='#FAAD14' />
+                        )
+                    }
+                />
+    
+                <TextArea onChange={(e) => setReviewText(e.target.value)} value={reviewText} />
+            </Modal>
     );
 };
 

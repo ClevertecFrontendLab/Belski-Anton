@@ -41,8 +41,12 @@
         flex-direction: column;
         .ant-rate {
             font-size: 14px;
+            color: #faad14;
+            .ant-rate-star-focused {
+                color: red;
+            }
         }
-        .text{
+        .text {
             word-break: break-all;
         }
         .wrapper-rate-date {
@@ -53,11 +57,6 @@
             font-size: 10px;
             color: #bfbfbf;
         }
-    }
-    .anticon-star {
-        width: 13px;
-        height: 13px;
-        // color: #faad14;
     }
 
     .wrapper-commit-btn {
@@ -71,6 +70,32 @@
         color: #2f54eb;
         font-size: 16px;
     }
+    @media (max-width: 700px) {
+        .wrapper-card-commit {
+            flex-direction: column;
+        }
+    }
+    @media(max-width:400px){
+        .description-user {
+            flex-direction: row;
+            justify-content: center;
+            gap: 4px;
+        }
+        .wrapper-commit-btn{
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            .write-review-btn{
+                max-width: 328px;
+            }
+        }
+    }
+    @media(max-width:360px){
+        .description-user   {
+          align-items: flex-start; 
+          justify-content:flex-start;
+          gap: 10px;
+        }
+    }
+    
 }
-
-
