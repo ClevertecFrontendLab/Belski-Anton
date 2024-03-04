@@ -1,20 +1,19 @@
-import { Avatar, Button, Rate } from 'antd';
 import Breadcrumbs from '@components/breadcrumb/breadcrumb';
-import avatar from '../../../public/assets/icons/avatar.svg';
+import { Avatar, Button, Rate } from 'antd';
 import './feed-backs.scss';
 
 import { UserOutlined } from '@ant-design/icons';
-import { useGetReviewsQuery } from '../../api/auth-api';
-import { useEffect, useState } from 'react';
+import { IErrorResponse } from '@components/form/form';
+import NotReviews from '@components/not-reviews/not-reviews';
+import ModalSaveError from '@components/popup/modal-save-error/modal-save-error';
+import ModalSuccess from '@components/popup/modal-success/modal-success';
 import ModalWrite from '@components/popup/modal-write/modal-write';
 import ModalWrong from '@components/popup/wrong-modal/modal-wrong';
-import { history } from '@redux/configure-store';
-import { IErrorResponse } from '@components/form/form';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { clearAuthState } from '@redux/auth-slice';
-import NotReviews from '@components/not-reviews/not-reviews';
-import ModalSuccess from '@components/popup/modal-success/modal-success';
-import ModalSaveError from '@components/popup/modal-save-error/modal-save-error';
+import { history } from '@redux/configure-store';
+import { useEffect, useState } from 'react';
+import { useGetReviewsQuery } from '../../api/auth-api';
 const routes = [
     {
         path: 'main',
@@ -27,7 +26,7 @@ const routes = [
 
 const FeedBacks = () => {
     const dispatch = useAppDispatch();
-    const { data: reviews, isError, error, refetch } = useGetReviewsQuery();
+    const { data: reviews, isError, error } = useGetReviewsQuery();
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [isModalSuccess, setIsModalSuccess] = useState(false);
     const [isModalOpenError, setIsModalError] = useState(false);
@@ -57,8 +56,8 @@ const FeedBacks = () => {
     };
 
     const handleShowErorModulSave = () => {
-        setIsModalOpen(false);
         setModalErrorSave(true);
+        setIsModalOpen(false);
     };
 
     useEffect(() => {
@@ -75,7 +74,6 @@ const FeedBacks = () => {
     }, [isError, error]);
 
     const onClickCloseModalSuccess = () => {
-        // refetch();
         setIsModalSuccess(false);
     };
 
