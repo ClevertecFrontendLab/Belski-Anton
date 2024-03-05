@@ -82,6 +82,9 @@ const FeedBacks = () => {
             <header>
                 <Breadcrumbs items={routes} />
             </header>
+            {/* <header>
+                <Breadcrumbs items={routes} />
+            </header>
 
             <div className='wrapper-feedbacks-content'>
                 {!!reviews?.length && (
@@ -149,7 +152,8 @@ const FeedBacks = () => {
                 open={isModalErrorSave}
                 onCancel={handleErrorSave}
                 onOk={() => setModalErrorSave(!isModalErrorSave)}
-            />
+            /> */}
+            <NotReviews onAddReview={showModal} />
         </div>
     );
 };

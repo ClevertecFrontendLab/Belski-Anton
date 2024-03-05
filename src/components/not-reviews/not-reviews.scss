@@ -4,8 +4,8 @@
     justify-content: center;
     align-items: center;
     padding: 24px;
-    .wrapper-not-reviews{
-      width: 1184px;
+    .wrapper-not-reviews {
+        width: 1184px;
     }
     .text-not-reviews {
         display: flex;
@@ -38,6 +38,36 @@
             font-size: 14px;
             color: #fff;
             height: 40px;
+            border: none;
         }
+    }
+    @media (max-width: 790px) {
+        .wrapper-not-reviews {
+            width: 500px;
+        }
+        .text-not-reviews {
+            height: auto;
+        }
+        .subtitle-not-reviews {
+            width: auto;
+        }
+    }
+    @media (max-width: 360px) {
+        .title-not-reviews {
+            padding-top: 44px;
+        }
+        .subtitle-not-reviews {
+            width: 264px;
+            padding-bottom: 48px;
+        }
+        .wrapper-btn-write-commit {
+            .btn-write-commit {
+                width: 100%;
+            }
+        }
+    }
+
+    @media (max-width: 360px) {
+        align-items: flex-start;
     }
 }
