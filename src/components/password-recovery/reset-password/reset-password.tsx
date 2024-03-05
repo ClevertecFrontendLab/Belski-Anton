@@ -29,7 +29,7 @@ const CardPasswordReset = () => {
             .unwrap()
             .then(() => {
                 dispatch(clearAuthState());
-                history.push(`../../${PATHS.AUTH_CHANGE_PASSWORD}`);
+                history.push(`../..${PATHS.AUTH_CHANGE_PASSWORD}`);
             })
             .catch(() => {
                 setError(true);

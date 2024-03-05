@@ -20,7 +20,7 @@ export const AuthForm = () => {
     const onChange = (key: string) => {
         history.push(key);
     };
-    const checkedTab = pathname.includes('registration') ? '/auth/registration' : '/auth';
+    const checkedTab = pathname.includes('registration') ? PATHS.AUTH_REGISTRATION : PATHS.AUTH;
     useEffect(() => {
         if (token || localStorage.getItem('token')) {
             history.push(PATHS.MAIN);

@@ -37,9 +37,9 @@ const LoginForm = () => {
                 !email &&
                     dispatch(setFields({ email: data.email, password: data.password, token: '' }));
                 if (e.status === 404 && e.data.message === 'Email не найден') {
-                    history.push(`../../${PATHS.RESULT_ERROR_CHECK_EMAIL_NO_EXIST}`);
+                    history.push(`../..${PATHS.RESULT_ERROR_CHECK_EMAIL_NO_EXIST}`);
                 } else {
-                    history.push(`../../${PATHS.RESULT_ERROR_CHECK_EMAIL}`);
+                    history.push(`../..${PATHS.RESULT_ERROR_CHECK_EMAIL}`);
                 }
             })
             .finally(() => dispatch(setIsLoading(false)));
@@ -55,10 +55,10 @@ const LoginForm = () => {
                 } else {
                     dispatch(setToken(res.accessToken));
                 }
-                history.push(`../../${PATHS.MAIN}`);
+                history.push(`../..${PATHS.MAIN}`);
             })
             .catch(() => {
-                history.push(`../${PATHS.RESULT_ERROR_LOGIN}`);
+                history.push(`..${PATHS.RESULT_ERROR_LOGIN}`);
             })
             .finally(() => dispatch(setIsLoading(false)));
     };
@@ -73,7 +73,7 @@ const LoginForm = () => {
             email &&
             router.previousLocations &&
             router.previousLocations.length > 1 &&
-            router.previousLocations[1].location?.pathname === '/result/error-check-email'
+            router.previousLocations[1].location?.pathname === PATHS.RESULT_ERROR_CHECK_EMAIL
         ) {
             handlerCheckEmail();
         }

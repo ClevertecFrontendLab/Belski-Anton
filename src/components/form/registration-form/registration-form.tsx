@@ -26,11 +26,11 @@ const RegistrationForm = () => {
     const handlerError = (e: IErrorResponse) => {
         switch (e.status) {
             case 409:
-                history.push(`../../${PATHS.RESULT_ERROR_USER_EXIST}`);
+                history.push(`../..${PATHS.RESULT_ERROR_USER_EXIST}`);
                 break;
             default:
                 dispatch(setFields({ email: data.email, password: data.password, token: '' }));
-                history.push(`../../${PATHS.RESULT_ERROR}`);
+                history.push(`../..${PATHS.RESULT_ERROR}`);
         }
     };
 
@@ -42,7 +42,7 @@ const RegistrationForm = () => {
                 if (email) {
                     dispatch(clearAuthState());
                 }
-                history.push(`../../${PATHS.RESULT_SUCCESS}`);
+                history.push(`../..${PATHS.RESULT_SUCCESS}`);
             })
             .catch((e) => {
                 handlerError(e);

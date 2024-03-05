@@ -14,8 +14,8 @@ const ModalSuccess = ({ isOpen, onCancel }) => {
             closable={false}
         >
             <Result
-                status='success'
-                title={STATUS_CODES.SUCCESS}
+                status={STATUS_CODES.SUCCESS}
+                title='Отзыв успешно опубликован'
                 subTitle=''
                 extra={[
                     <Button type='primary' key='console' onClick={onCancel} className='success-btn'>

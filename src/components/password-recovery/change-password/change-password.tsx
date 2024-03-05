@@ -25,7 +25,7 @@ const ChangePassword = () => {
         dispatch(setIsLoading(true));
         changePassword(data)
             .unwrap()
-            .then(() => history.push(`../../${PATHS.RESULT_SUCCESS_CHANGE_PASSWORD}`))
+            .then(() => history.push(`../..${PATHS.RESULT_SUCCESS_CHANGE_PASSWORD}`))
             .catch(() => {
                 !password &&
                     dispatch(
@@ -35,7 +35,7 @@ const ChangePassword = () => {
                             token: '',
                         }),
                     );
-                history.push(`../../${PATHS.RESULT_ERROR_CHANGE_PASSWORD}`);
+                history.push(`../..${PATHS.RESULT_ERROR_CHANGE_PASSWORD}`);
             })
             .finally(() => dispatch(setIsLoading(false)));
     };
