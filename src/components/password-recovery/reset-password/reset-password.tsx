@@ -8,6 +8,7 @@ import { useEffect, useState } from 'react';
 import VerificationInput from 'react-verification-input';
 import { useConfirmEmailMutation } from '../../../api/methods-api';
 import './reset-password.css';
+import { PATHS } from '@constants/index';
 const CardPasswordReset = () => {
     const [value, setValue] = useState('');
     const [error, setError] = useState(false);
@@ -28,7 +29,7 @@ const CardPasswordReset = () => {
             .unwrap()
             .then(() => {
                 dispatch(clearAuthState());
-                history.push('../../auth/change-password');
+                history.push(`../../${PATHS.AUTH_CHANGE_PASSWORD}`);
             })
             .catch(() => {
                 setError(true);

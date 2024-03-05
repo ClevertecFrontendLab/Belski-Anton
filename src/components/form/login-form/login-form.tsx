@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react';
 import { useCheckEmailMutation, useLoginMutation } from '../../../api/methods-api';
 import { IErrorResponse } from '../form';
 import logoGoogle from '/assets/icons/google.svg';
-import { BASE_API_URL, API_ROUTES } from '../../../constants/index';
+import { BASE_API_URL, API_ROUTES, PATHS } from '../../../constants/index';
 import loginForm from './login-form.module.css';
 
 const LoginForm = () => {
@@ -31,15 +31,15 @@ const LoginForm = () => {
             .unwrap()
             .then(() => {
                 dispatch(setFields({ email: data.email, password: data.password, token: '' }));
-                history.push('/auth/confirm-email');
+                history.push(PATHS. AUTH_CONFIRM_EMAIL);
             })
             .catch((e: IErrorResponse) => {
                 !email &&
                     dispatch(setFields({ email: data.email, password: data.password, token: '' }));
                 if (e.status === 404 && e.data.message === 'Email не найден') {
-                    history.push('../../result/error-check-email-no-exist');
+                    history.push(`../../${PATHS.RESULT_ERROR_CHECK_EMAIL_NO_EXIST}`);
                 } else {
-                    history.push('../../result/error-check-email');
+                    history.push(`../../${PATHS.RESULT_ERROR_CHECK_EMAIL}`);
                 }
             })
             .finally(() => dispatch(setIsLoading(false)));
@@ -55,10 +55,10 @@ const LoginForm = () => {
                 } else {
                     dispatch(setToken(res.accessToken));
                 }
-                history.push('../../main');
+                history.push(`../../${PATHS.MAIN}`);
             })
             .catch(() => {
-                history.push('../result/error-login');
+                history.push(`../${PATHS.RESULT_ERROR_LOGIN}`);
             })
             .finally(() => dispatch(setIsLoading(false)));
     };

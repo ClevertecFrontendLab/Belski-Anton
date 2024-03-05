@@ -1,6 +1,6 @@
 import { Button, Modal, Result } from 'antd';
 import { history } from '@redux/configure-store';
-import { STATUS_CODES } from '../../../constants/index'
+import { PATHS, STATUS_CODES } from '../../../constants/index'
 import './modal-wrong.scss';
 const ModalWrong = ({ isOpen, centered }) => {
     return (
@@ -12,7 +12,7 @@ const ModalWrong = ({ isOpen, centered }) => {
                 extra={
                     <Button
                         onClick={() => {
-                            history.push('/main');
+                            history.push(PATHS.MAIN);
                         }}
                         type='primary'
                     >

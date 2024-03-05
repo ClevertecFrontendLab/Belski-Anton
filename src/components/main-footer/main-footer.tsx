@@ -3,6 +3,7 @@ import { MainCard } from '@components/main-card';
 import { history } from '@redux/configure-store';
 import { Layout } from 'antd';
 import './main-footer.css';
+import { PATHS } from '@constants/index';
 const { Footer } = Layout;
 
 const TitleCard = () => {
@@ -18,7 +19,7 @@ export const CustomFooter = () => {
 
     return (
         <Footer className='main-footer' style={{ background: 'transparent', padding: '24px' }}>
-            <div className='view-reviews' data-test-id='see-reviews' onClick={() => history.push('/feedbacks')}>
+            <div className='view-reviews' data-test-id='see-reviews' onClick={() => history.push(PATHS.FEEDBACKS)}>
                 Смотреть отзывы
             </div>
             <div className='wrapper-card'>

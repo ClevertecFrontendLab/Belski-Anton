@@ -8,7 +8,7 @@ import close from '/assets/icons/close.svg';
 import open from '/assets/icons/icon-switcher.svg';
 import { useEffect, useState } from 'react';
 import './main-sidebar.css';
-import { MAX_WIDTH_SIDEBAR, MIN_WIDTH_SIDEBAR, MOB_WIDTH_SIDEBAR } from '@constants/index';
+import { MAX_WIDTH_SIDEBAR, MIN_WIDTH_SIDEBAR, MOB_WIDTH_SIDEBAR, PATHS } from '@constants/index';
 import { history } from '@redux/configure-store';
 import { useAppSelector } from '@hooks/typed-react-redux-hooks';
 
@@ -41,12 +41,12 @@ export const SideBar = () => {
     const { token } = useAppSelector((state) => state.auth);
     const logOut = () => {
         localStorage.clear();
-        history.push('/auth');
+        history.push(PATHS.AUTH);
     };
 
     useEffect(() => {
         if (!token && !localStorage.getItem('token')) {
-            history.push('/auth');
+            history.push(PATHS.AUTH);
         }
     }, [token, localStorage]);
     return (

@@ -14,6 +14,7 @@ import { clearAuthState } from '@redux/auth-slice';
 import { history } from '@redux/configure-store';
 import { useEffect, useState } from 'react';
 import { useGetReviewsQuery } from '../../api/methods-api';
+import { PATHS } from '@constants/index';
 const routes = [
     {
         path: 'main',
@@ -66,7 +67,7 @@ const FeedBacks = () => {
             if (fetchError.status === 403) {
                 localStorage.removeItem('token');
                 dispatch(clearAuthState());
-                history.push('/auth');
+                history.push(PATHS.AUTH);
             } else {
                 setIsModalError(true);
             }

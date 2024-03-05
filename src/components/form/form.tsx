@@ -7,6 +7,7 @@ import form from './form.module.css';
 import LoginForm from './login-form/login-form.tsx';
 import RegistrationForm from './registration-form/registration-form.tsx';
 import logo from '/assets/icons/logo.svg';
+import { PATHS } from '@constants/index.ts';
 
 export interface IErrorResponse {
     data: { statusCode: number; error: string; message: string };
@@ -22,7 +23,7 @@ export const AuthForm = () => {
     const checkedTab = pathname.includes('registration') ? '/auth/registration' : '/auth';
     useEffect(() => {
         if (token || localStorage.getItem('token')) {
-            history.push('/main');
+            history.push(PATHS.MAIN);
         }
     }, [token, localStorage]);
     return (

@@ -16,7 +16,7 @@ import { MainPage } from './pages';
 import { AuthPage } from './pages/auth-page';
 import { HistoryRouter } from 'redux-first-history/rr6';
 import { store, history } from './redux/configure-store';
-
+import { PATHS } from './constants/index';
 import { AuthForm } from '@components/form';
 import { AuthStatusCard } from '@components/auth-status-card';
 import CardPasswordReset from './components/password-recovery/reset-password/reset-password';
@@ -30,7 +30,6 @@ const AuthRedirect = () => {
     return isAuthenticated ? <Navigate to='/main' replace /> : <Navigate to='/auth' replace />;
 };
 
-
 export default AuthRedirect;
 root.render(
     <React.StrictMode>
@@ -38,11 +37,11 @@ root.render(
             <HistoryRouter history={history}>
                 <Routes>
                     <Route path='/' element={<BasePage />}>
-                        <Route path='main' element={<MainPage />} />
-                        <Route path='feedbacks' element={<FeedBacks />} />
+                        <Route path={PATHS.MAIN} element={<MainPage />} />
+                        <Route path={PATHS.FEEDBACKS} element={<FeedBacks />} />
                     </Route>
                     <Route
-                        path='/auth'
+                        path={PATHS.AUTH}
                         element={
                             <AuthPage>
                                 <AuthForm />
@@ -50,7 +49,7 @@ root.render(
                         }
                     />
                     <Route
-                        path='/auth/registration'
+                        path={PATHS.AUTH_REGISTRATION}
                         element={
                             <AuthPage>
                                 <AuthForm />
@@ -58,7 +57,7 @@ root.render(
                         }
                     />
                     <Route
-                        path='/result/success'
+                        path={PATHS.RESULT_SUCCESS}
                         element={
                             <AuthPage>
                                 <AuthStatusCard
@@ -73,7 +72,7 @@ root.render(
                         }
                     />
                     <Route
-                        path='/result/success-change-password'
+                        path={PATHS.RESULT_SUCCESS_CHANGE_PASSWORD}
                         element={
                             <AuthPage>
                                 <AuthStatusCard
@@ -88,7 +87,7 @@ root.render(
                         }
                     />
                     <Route
-                        path='/result/error-user-exist'
+                        path={PATHS.RESULT_ERROR_USER_EXIST}
                         element={
                             <AuthPage>
                                 <AuthStatusCard
@@ -103,7 +102,7 @@ root.render(
                         }
                     />
                     <Route
-                        path='/result/error-change-password'
+                        path={PATHS.RESULT_ERROR_CHANGE_PASSWORD}
                         element={
                             <AuthPage>
                                 <AuthStatusCard
@@ -118,7 +117,7 @@ root.render(
                         }
                     />
                     <Route
-                        path='/result/error-user-exist'
+                        path={PATHS.RESULT_ERROR_USER_EXIST}
                         element={
                             <AuthPage>
                                 <AuthStatusCard
@@ -133,7 +132,7 @@ root.render(
                         }
                     />
                     <Route
-                        path='/result/error'
+                        path={PATHS.RESULT_ERROR}
                         element={
                             <AuthPage>
                                 <AuthStatusCard
@@ -149,7 +148,7 @@ root.render(
                     />
 
                     <Route
-                        path='/result/error-login'
+                        path={PATHS.RESULT_ERROR_LOGIN}
                         element={
                             <AuthPage>
                                 <AuthStatusCard
@@ -165,7 +164,7 @@ root.render(
                     />
 
                     <Route
-                        path='/result/error-check-email-no-exist'
+                        path={PATHS.RESULT_ERROR_CHECK_EMAIL_NO_EXIST}
                         element={
                             <AuthPage>
                                 <AuthStatusCard
@@ -181,7 +180,7 @@ root.render(
                         }
                     />
                     <Route
-                        path='/result/error-check-email'
+                        path={PATHS.RESULT_ERROR_CHECK_EMAIL}
                         element={
                             <AuthPage>
                                 <AuthStatusCard
@@ -197,7 +196,7 @@ root.render(
                         }
                     />
                     <Route
-                        path='/auth/confirm-email'
+                        path={PATHS.AUTH_CONFIRM_EMAIL}
                         element={
                             <AuthPage>
                                 <CardPasswordReset />
@@ -205,7 +204,7 @@ root.render(
                         }
                     />
                     <Route
-                        path='/auth/change-password'
+                        path={PATHS.AUTH_CHANGE_PASSWORD}
                         element={
                             <AuthPage>
                                 <ChangePassword />

@@ -3,6 +3,7 @@ import { Layout } from 'antd';
 import { Outlet } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
+import { PATHS } from '@constants/index';
 import './base-page.css';
 const BasePage = () => {
     const navigate = useNavigate();
@@ -14,7 +15,7 @@ const BasePage = () => {
 
         if (accessToken) {
             localStorage.setItem('token', accessToken);
-            navigate('/main');
+            navigate(PATHS.MAIN);
         }
     }, [navigate, location.search]);
     return (
