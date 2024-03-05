@@ -33,11 +33,6 @@ const FeedBacks = () => {
     const [showAllReviews, setShowAllReviews] = useState(false);
     const [isModalErrorSave, setModalErrorSave] = useState(false);
 
-  const success =()=>{
-    setIsModalError(true)
-  }
-
-
     const showModal = () => {
         setIsModalOpen(true);
     };
@@ -122,7 +117,7 @@ const FeedBacks = () => {
                             <Button
                                 type='text'
                                 className='write-review-btn'
-                                onClick={success}
+                                onClick={showModal}
                                 data-test-id='write-review'
                             >
                                 Написать отзыв
