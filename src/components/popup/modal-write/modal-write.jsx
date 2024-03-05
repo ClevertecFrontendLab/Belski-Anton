@@ -2,7 +2,7 @@ import { Button, Input, Modal, Rate } from 'antd';
 import { useState } from 'react';
 import { useCreateReviewMutation } from '../../../api/auth-api';
 import { StarTwoTone, StarFilled } from '@ant-design/icons';
-import './modal-write.css';
+import './modal-write.scss';
 const { TextArea } = Input;
 const ModalWrite = ({ isOpen, onOk, centered, onCancel, onError }) => {
     const [createReview] = useCreateReviewMutation();
@@ -28,6 +28,7 @@ const ModalWrite = ({ isOpen, onOk, centered, onCancel, onError }) => {
 
     return (
             <Modal
+            className='wrapper-write-modal'
                 title='Ваш отзыв'
                 open={isOpen}
                 onOk={onOk}
@@ -40,6 +41,7 @@ const ModalWrite = ({ isOpen, onOk, centered, onCancel, onError }) => {
                         onClick={handlePublishClick}
                         data-test-id='new-review-submit-button'
                         className='btn-write-new-commit'
+                        disabled={rating === 0}
                     >
                         Опубликовать
                     </Button>,

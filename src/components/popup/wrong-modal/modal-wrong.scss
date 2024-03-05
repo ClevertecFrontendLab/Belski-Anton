@@ -1,54 +1,39 @@
-.ant-modal-root {
-    .ant-modal-content {
-        min-width: 539px;
-        width: 100%;
-        .ant-result-500 {
-            .ant-result-title {
-                font-size: 24px;
-                font-weight: 600;
-            }
-
-            .ant-btn-primary {
-                background-color: #2f54eb;
-            }
-        }
-        @media (max-width: 630px) {
-            .ant-modal-body {
-                display: flex;
-                flex-direction: column;
-            }
-        }
+.wrapper-wrong-module {
+    .ant-result {
+        padding-top: 40px;
     }
-    @media (max-width: 610px) {
-        .ant-modal-content {
-            min-width: 330px;
-        }
+    .ant-result-icon {
+        margin-bottom: 15px;
+    }
+    .ant-result-title {
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        // line-height: 1;
+    }
+    .ant-result-subtitle {
+        color: #8c8c8c;
+        letter-spacing: 0.3px;
+    }
+    .ant-btn {
+        background-color: #2f54eb;
+        height: 40px;
+        width: 74px;
     }
     @media (max-width: 360px) {
-        .ant-result-500 {
-            padding: 21px 18px 5px 18px;
+        .ant-modal-body {
+            padding: 0;
         }
-        @media (max-width: 360px){
-         .ant-result-image {
-            margin: bottom 20px;
+        .ant-result{
+            padding-bottom: 44px;
         }
-    }
+        .ant-result-title{
+            letter-spacing: 0.5px;
         }
-       
-    @media (max-width: 360px) {
-        .ant-result-title {
-            width: 264px;
-            text-align: center;
-            margin: 0 auto;
-        }
-    }
-
-    @media (max-width: 360px) {
         .ant-result-subtitle {
-            text-align: center;
             width: 200px;
             margin: 0 auto;
-            line-height: 1.2;
+            line-height: 1;
         }
     }
 }

@@ -1,13 +1,24 @@
-.ant-result-success{
-   .ant-result-title{
-      font-size: 24px;
-      font-weight: 600;
-     }
-   .success-btn{
-     background-color: #2F54EB;
-     max-width:368px;
-     width: 100%;
-     height: 40px;
-     
-   }
+.wrapper-success-modal {
+    .ant-result-title {
+        font-size: 24px;
+        font-weight: 600;
+    }
+    .success-btn {
+        background-color: #2f54eb;
+        max-width: 368px;
+        width: 100%;
+        height: 40px;
+    }
+    @media (max-width: 360px) {
+        .ant-modal-body {
+            padding: 0;
+        }
+
+        .ant-result {
+            padding: 35px 24px;
+        }
+        .ant-result-title{
+            line-height: 1.2;
+        }
+    }
 }

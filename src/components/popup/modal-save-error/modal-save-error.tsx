@@ -5,6 +5,7 @@ const ModalSaveError = ({ open, onCancel, onOk }: ModalProps) => {
     return (
         <>
             <Modal
+                className='wrapper-error-modal'
                 title={null}
                 footer={null}
                 closable={false}
@@ -18,7 +19,11 @@ const ModalSaveError = ({ open, onCancel, onOk }: ModalProps) => {
                     title='Данные не сохранились'
                     subTitle='Что-то пошло не так. Попробуйте ещё раз.'
                     extra={[
-                        <Button onClick={onCancel} type='primary' key='console' data-test-id='write-review-not-saved-modal'
+                        <Button
+                            onClick={onCancel}
+                            type='primary'
+                            key='console'
+                            data-test-id='write-review-not-saved-modal'
                         >
                             Написать отзыв
                         </Button>,
