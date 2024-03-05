@@ -1,0 +1,101 @@
+.feedbacks-content {
+    header {
+        padding: 16px 24px;
+        background-color: #f0f5ff;
+    }
+    .wrapper-feedbacks-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        min-height: 616px;
+    }
+    .wrapper-commit {
+        height: 616px;
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+    .wrapper-card-commit {
+        display: flex;
+        background-color: #fff;
+        margin: 20px 24px 20px;
+        min-height: 128px;
+        padding: 16px;
+        gap: 10px;
+    }
+    .description-user {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-direction: column;
+        min-width: 174px;
+        height: 75px;
+    }
+
+    .name-user {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .wrapper-rate-text {
+        display: flex;
+        flex-direction: column;
+        .ant-rate {
+            font-size: 14px;
+            color: #faad14;
+            .ant-rate-star-focused {
+                color: red;
+            }
+        }
+        .text {
+            word-break: break-all;
+        }
+        .wrapper-rate-date {
+            display: flex;
+            gap: 15px;
+        }
+        .date-commit {
+            font-size: 10px;
+            color: #bfbfbf;
+        }
+    }
+
+    .wrapper-commit-btn {
+        margin: 108px 0 0 22px;
+    }
+    .write-review-btn {
+        background-color: #2f54eb;
+        color: #fff;
+    }
+    .expand-reviews-btn {
+        color: #2f54eb;
+        font-size: 16px;
+    }
+    @media (max-width: 700px) {
+        .wrapper-card-commit {
+            flex-direction: column;
+        }
+    }
+    @media(max-width:400px){
+        .description-user {
+            flex-direction: row;
+            justify-content: center;
+            gap: 4px;
+        }
+        .wrapper-commit-btn{
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            .write-review-btn{
+                max-width: 328px;
+            }
+        }
+    }
+    @media(max-width:360px){
+        .description-user   {
+          align-items: flex-start; 
+          justify-content:flex-start;
+          gap: 10px;
+        }
+    }
+    
+}

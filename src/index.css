@@ -8,6 +8,7 @@
     max-width: 1440px;
     margin: 0 auto;
    font-family: 'Inter', sans-serif;
+   height: 100vh;
 }
 
 .loader{

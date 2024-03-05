@@ -1,11 +1,12 @@
 import { Form, Input, Button } from 'antd';
 import './change-password.css';
-import { useChangePasswordMutation } from '../../../api/auth-api';
+import { useChangePasswordMutation } from '../../../api/methods-api';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { setIsLoading } from '@redux/loading-slice';
 import { history } from '@redux/configure-store';
 import { setFields } from '@redux/auth-slice';
+import { PATHS } from '@constants/index';
 const ChangePassword = () => {
     const {
         auth: { password },
@@ -24,17 +25,17 @@ const ChangePassword = () => {
         dispatch(setIsLoading(true));
         changePassword(data)
             .unwrap()
-            .then(() => history.push('../../result/success-change-password'))
+            .then(() => history.push(`../..${PATHS.RESULT_SUCCESS_CHANGE_PASSWORD}`))
             .catch(() => {
                 !password &&
                     dispatch(
                         setFields({
                             password: data.password,
                             email: '',
-                            token:''
+                            token: '',
                         }),
                     );
-                history.push('../../result/error-change-password');
+                history.push(`../..${PATHS.RESULT_ERROR_CHANGE_PASSWORD}`);
             })
             .finally(() => dispatch(setIsLoading(false)));
     };
@@ -42,7 +43,7 @@ const ChangePassword = () => {
         if (
             password &&
             router.previousLocations &&
-            router.previousLocations[1].location?.pathname === '/result/error-change-password' &&
+            router.previousLocations[1].location?.pathname === PATHS.RESULT_ERROR_CHANGE_PASSWORD &&
             !isLoading
         ) {
             sendData();

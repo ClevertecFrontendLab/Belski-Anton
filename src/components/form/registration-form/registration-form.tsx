@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
-import { useRegistrationMutation } from '../../../api/auth-api';
+import { useRegistrationMutation } from '../../../api/methods-api';
 import { Button, Form, Input } from 'antd';
 import { useState, useEffect } from 'react';
 import { history } from '@redux/configure-store';
@@ -8,6 +8,7 @@ import { setIsLoading } from '@redux/loading-slice';
 import { IErrorResponse } from '../form';
 import logoGoogle from '/assets/icons/google.svg';
 import registrationForm from './registration-form.module.css';
+import { PATHS } from '@constants/index';
 const RegistrationForm = () => {
     const dispatch = useAppDispatch();
     const {
@@ -25,11 +26,11 @@ const RegistrationForm = () => {
     const handlerError = (e: IErrorResponse) => {
         switch (e.status) {
             case 409:
-                history.push('../../result/error-user-exist');
+                history.push(`../..${PATHS.RESULT_ERROR_USER_EXIST}`);
                 break;
             default:
-                dispatch(setFields({ email: data.email, password: data.password,token:'' }));
-                history.push('../../result/error');
+                dispatch(setFields({ email: data.email, password: data.password, token: '' }));
+                history.push(`../..${PATHS.RESULT_ERROR}`);
         }
     };
 
@@ -41,7 +42,7 @@ const RegistrationForm = () => {
                 if (email) {
                     dispatch(clearAuthState());
                 }
-                history.push('../../result/success');
+                history.push(`../..${PATHS.RESULT_SUCCESS}`);
             })
             .catch((e) => {
                 handlerError(e);
@@ -55,7 +56,7 @@ const RegistrationForm = () => {
             password &&
             router.previousLocations &&
             router.previousLocations.length > 1 &&
-            router.previousLocations[1].location?.pathname === '/result/error'
+            router.previousLocations[1].location?.pathname === PATHS.RESULT_ERROR
         ) {
             registrationUser();
         }

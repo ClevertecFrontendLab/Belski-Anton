@@ -1,0 +1,39 @@
+.wrapper-wrong-module {
+    .ant-result {
+        padding-top: 40px;
+    }
+    .ant-result-icon {
+        margin-bottom: 15px;
+    }
+    .ant-result-title {
+        font-size: 24px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+        // line-height: 1;
+    }
+    .ant-result-subtitle {
+        color: #8c8c8c;
+        letter-spacing: 0.3px;
+    }
+    .ant-btn {
+        background-color: #2f54eb;
+        height: 40px;
+        width: 74px;
+    }
+    @media (max-width: 360px) {
+        .ant-modal-body {
+            padding: 0;
+        }
+        .ant-result{
+            padding-bottom: 44px;
+        }
+        .ant-result-title{
+            letter-spacing: 0.5px;
+        }
+        .ant-result-subtitle {
+            width: 200px;
+            margin: 0 auto;
+            line-height: 1;
+        }
+    }
+}

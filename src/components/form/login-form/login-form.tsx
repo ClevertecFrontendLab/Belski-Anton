@@ -4,10 +4,12 @@ import { setFields, setToken } from '@redux/auth-slice';
 import { history } from '@redux/configure-store';
 import { setIsLoading } from '@redux/loading-slice';
 import { useEffect, useState } from 'react';
-import { useCheckEmailMutation, useLoginMutation } from '../../../api/auth-api';
+import { useCheckEmailMutation, useLoginMutation } from '../../../api/methods-api';
 import { IErrorResponse } from '../form';
 import logoGoogle from '/assets/icons/google.svg';
+import { BASE_API_URL, API_ROUTES, PATHS } from '../../../constants/index';
 import loginForm from './login-form.module.css';
+
 const LoginForm = () => {
     const dispatch = useAppDispatch();
     const {
@@ -28,15 +30,16 @@ const LoginForm = () => {
         checkEmail(data.email)
             .unwrap()
             .then(() => {
-                dispatch(setFields({ email: data.email, password: data.password,token:'' }));
-                history.push('/auth/confirm-email');
+                dispatch(setFields({ email: data.email, password: data.password, token: '' }));
+                history.push(PATHS. AUTH_CONFIRM_EMAIL);
             })
             .catch((e: IErrorResponse) => {
-                !email && dispatch(setFields({ email: data.email, password: data.password,token:'' }));
+                !email &&
+                    dispatch(setFields({ email: data.email, password: data.password, token: '' }));
                 if (e.status === 404 && e.data.message === 'Email не найден') {
-                    history.push('../../result/error-check-email-no-exist');
+                    history.push(`../..${PATHS.RESULT_ERROR_CHECK_EMAIL_NO_EXIST}`);
                 } else {
-                    history.push('../../result/error-check-email');
+                    history.push(`../..${PATHS.RESULT_ERROR_CHECK_EMAIL}`);
                 }
             })
             .finally(() => dispatch(setIsLoading(false)));
@@ -50,28 +53,32 @@ const LoginForm = () => {
                 if (data.isRemember) {
                     localStorage.setItem('token', res.accessToken);
                 } else {
-                    dispatch(setToken(res.accessToken))
+                    dispatch(setToken(res.accessToken));
                 }
-                history.push('../../main');
+                history.push(`../..${PATHS.MAIN}`);
             })
             .catch(() => {
-                history.push('../result/error-login');
+                history.push(`..${PATHS.RESULT_ERROR_LOGIN}`);
             })
             .finally(() => dispatch(setIsLoading(false)));
     };
 
-    
+    const handleGoogleAuth = () => {
+        const googleAuthUrl = `${BASE_API_URL}${API_ROUTES.authGoogle}`;
+        window.location.href = googleAuthUrl;
+    };
 
     useEffect(() => {
         if (
             email &&
             router.previousLocations &&
             router.previousLocations.length > 1 &&
-            router.previousLocations[1].location?.pathname === '/result/error-check-email'
+            router.previousLocations[1].location?.pathname === PATHS.RESULT_ERROR_CHECK_EMAIL
         ) {
             handlerCheckEmail();
         }
     }, [email, router.previousLocations]);
+
     return (
         <div className={loginForm['wrapper-form-login']}>
             <Form
@@ -120,7 +127,7 @@ const LoginForm = () => {
                         onChange={(e) => setData({ ...data, password: e.target.value })}
                         placeholder='Пароль'
                         data-test-id={'login-password'}
-                        style={{padding:'10px',marginBottom:'26px'}}
+                        style={{ padding: '10px', marginBottom: '26px' }}
                     />
                 </Form.Item>
 
@@ -130,7 +137,6 @@ const LoginForm = () => {
                             data-test-id='login-remember'
                             checked={data.isRemember}
                             onChange={(e) => setData({ ...data, isRemember: e.target.checked })}
-                            
                         >
                             Запомнить меня
                         </Checkbox>
@@ -157,14 +163,15 @@ const LoginForm = () => {
 
                 <Form.Item>
                     <Button
-                        disabled
+                        onClick={handleGoogleAuth}
                         type='primary'
                         htmlType='submit'
                         className={loginForm['login-google-btn']}
+                        data-test-id='google-submit-button'
                     >
                         <div className={loginForm['wrapper-button-icon']}>
                             <img src={logoGoogle} alt='logo' className={loginForm['logo-google']} />
-                            <div>Войти через Google</div>
+                            <div className={loginForm['text-google']}>Войти через Google</div>
                         </div>
                     </Button>
                 </Form.Item>
