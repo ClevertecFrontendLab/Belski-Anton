@@ -1,4 +1,5 @@
 import { Button, Modal, ModalProps, Result } from 'antd';
+import { STATUS_CODES } from '../../../constants/index'
 import './modal-save-error.scss';
 
 const ModalSaveError = ({ open, onCancel, onOk }: ModalProps) => {
@@ -15,7 +16,7 @@ const ModalSaveError = ({ open, onCancel, onOk }: ModalProps) => {
                 centered={true}
             >
                 <Result
-                    status='error'
+                    status={STATUS_CODES.ERROR}
                     title='Данные не сохранились'
                     subTitle='Что-то пошло не так. Попробуйте ещё раз.'
                     extra={[

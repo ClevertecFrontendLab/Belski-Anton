@@ -1,6 +1,6 @@
 import { Form, Input, Button } from 'antd';
 import './change-password.css';
-import { useChangePasswordMutation } from '../../../api/auth-api';
+import { useChangePasswordMutation } from '../../../api/methods-api';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { setIsLoading } from '@redux/loading-slice';
@@ -31,7 +31,7 @@ const ChangePassword = () => {
                         setFields({
                             password: data.password,
                             email: '',
-                            token:''
+                            token: '',
                         }),
                     );
                 history.push('../../result/error-change-password');

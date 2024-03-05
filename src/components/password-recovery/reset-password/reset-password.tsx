@@ -6,7 +6,7 @@ import { history } from '@redux/configure-store';
 import { setIsLoading } from '@redux/loading-slice';
 import { useEffect, useState } from 'react';
 import VerificationInput from 'react-verification-input';
-import { useConfirmEmailMutation } from '../../../api/auth-api';
+import { useConfirmEmailMutation } from '../../../api/methods-api';
 import './reset-password.css';
 const CardPasswordReset = () => {
     const [value, setValue] = useState('');
@@ -56,7 +56,10 @@ const CardPasswordReset = () => {
                         <div>{error && 'Неверный код. '}Введите код</div>
                         для восстановления аккауанта
                     </div>
-                    <div className='text-send-email'>Мы отправили вам на e-mail <span>{email}</span> шестизначный код. Введите его в поле ниже.</div>
+                    <div className='text-send-email'>
+                        Мы отправили вам на e-mail <span>{email}</span> шестизначный код. Введите
+                        его в поле ниже.
+                    </div>
                 </div>
                 <VerificationInput
                     validChars='0-9'
@@ -67,7 +70,7 @@ const CardPasswordReset = () => {
                     classNames={{ container: error ? 'error' : '' }}
                     placeholder=' '
                 />
-           
+
                 <div className='text-input-verification'>
                     Не пришло письмо? Проверьте папку Спам.
                 </div>

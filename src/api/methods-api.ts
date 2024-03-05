@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { BASE_API_URL } from '../constants/index';
+import { BASE_API_URL, API_ROUTES } from '../constants/index';
 import { store } from '@redux/configure-store';
 
 interface IPropsRegistration {
@@ -51,28 +51,28 @@ export const authApi = createApi({
     endpoints: (builder) => ({
         registration: builder.mutation<unknown, IPropsRegistration>({
             query: (body) => ({
-                url: '/auth/registration',
+                url: API_ROUTES.registration,
                 method: 'POST',
                 body,
             }),
         }),
         login: builder.mutation<IResponseLogin, IPropsRegistration>({
             query: (body) => ({
-                url: '/auth/login',
+                url: API_ROUTES.login,
                 method: 'POST',
                 body,
             }),
         }),
         checkEmail: builder.mutation<unknown, string>({
             query: (email) => ({
-                url: '/auth/check-email',
+                url: API_ROUTES.checkEmail,
                 method: 'POST',
                 body: { email },
             }),
         }),
         confirmEmail: builder.mutation<unknown, IConfirmEmailProps>({
             query: (body) => ({
-                url: '/auth/confirm-email',
+                url: API_ROUTES.confirmEmail,
                 method: 'POST',
                 body,
                 credentials: 'include',
@@ -80,7 +80,7 @@ export const authApi = createApi({
         }),
         changePassword: builder.mutation<string, IChangePasswordProps>({
             query: (body) => ({
-                url: '/auth/change-password',
+                url: API_ROUTES.changePassword,
                 method: 'POST',
                 body,
                 credentials: 'include',
@@ -88,17 +88,17 @@ export const authApi = createApi({
         }),
         getReviews: builder.query<IReview[], void>({
             query: () => ({
-                url: '/feedback',
+                url: API_ROUTES.getFeedback,
             }),
-            providesTags:['Feedback']
+            providesTags: ['Feedback'],
         }),
         createReview: builder.mutation<unknown, ICreateReview>({
             query: (review) => ({
-                url: '/feedback', 
+                url: API_ROUTES.getFeedback,
                 method: 'POST',
                 body: review,
             }),
-            invalidatesTags:['Feedback']
+            invalidatesTags: ['Feedback'],
         }),
     }),
 });
@@ -110,5 +110,5 @@ export const {
     useCheckEmailMutation,
     useConfirmEmailMutation,
     useGetReviewsQuery,
-    useCreateReviewMutation
+    useCreateReviewMutation,
 } = authApi;

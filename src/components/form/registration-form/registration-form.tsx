@@ -1,5 +1,5 @@
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
-import { useRegistrationMutation } from '../../../api/auth-api';
+import { useRegistrationMutation } from '../../../api/methods-api';
 import { Button, Form, Input } from 'antd';
 import { useState, useEffect } from 'react';
 import { history } from '@redux/configure-store';
@@ -28,7 +28,7 @@ const RegistrationForm = () => {
                 history.push('../../result/error-user-exist');
                 break;
             default:
-                dispatch(setFields({ email: data.email, password: data.password,token:'' }));
+                dispatch(setFields({ email: data.email, password: data.password, token: '' }));
                 history.push('../../result/error');
         }
     };

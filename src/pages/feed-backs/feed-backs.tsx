@@ -13,7 +13,7 @@ import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { clearAuthState } from '@redux/auth-slice';
 import { history } from '@redux/configure-store';
 import { useEffect, useState } from 'react';
-import { useGetReviewsQuery } from '../../api/auth-api';
+import { useGetReviewsQuery } from '../../api/methods-api';
 const routes = [
     {
         path: 'main',
@@ -79,10 +79,8 @@ const FeedBacks = () => {
 
     return (
         <div className='feedbacks-content'>
+            
             <header>
-                <Breadcrumbs items={routes} />
-            </header>
-            {/* <header>
                 <Breadcrumbs items={routes} />
             </header>
 
@@ -152,8 +150,7 @@ const FeedBacks = () => {
                 open={isModalErrorSave}
                 onCancel={handleErrorSave}
                 onOk={() => setModalErrorSave(!isModalErrorSave)}
-            /> */}
-            <NotReviews onAddReview={showModal} />
+            />
         </div>
     );
 };
