@@ -23,6 +23,7 @@ import CardPasswordReset from './components/password-recovery/reset-password/res
 import ChangePassword from '@components/password-recovery/change-password/change-password';
 import FeedBacks from '@pages/feed-backs/feed-backs';
 import BasePage from '@pages/base-page/base-page';
+import CalendarPage from '@pages/calendar-page/calendar-page';
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
 const AuthRedirect = () => {
@@ -39,6 +40,7 @@ root.render(
                     <Route path='/' element={<BasePage />}>
                         <Route path={PATHS.MAIN} element={<MainPage />} />
                         <Route path={PATHS.FEEDBACKS} element={<FeedBacks />} />
+                        <Route path={PATHS.CALENDAR} element={<CalendarPage />} />
                     </Route>
                     <Route
                         path={PATHS.AUTH}

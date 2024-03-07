@@ -26,6 +26,7 @@ export const PATHS = {
   MAIN: '/main',
   AUTH: '/auth',
   FEEDBACKS: '/feedbacks',
+  CALENDAR:'/calendar',
   AUTH_REGISTRATION: '/auth/registration',
   RESULT_SUCCESS: '/result/success',
   RESULT_SUCCESS_CHANGE_PASSWORD: '/result/success-change-password',

@@ -16,7 +16,7 @@ const items = [
     {
         key: '1',
         icon: <CalendarTwoTone twoToneColor='#061178' style={{ fontSize: '12.5px' }} />,
-        label: 'Календарь',
+        label: <span onClick={() => history.push(PATHS.CALENDAR)}>Календарь</span>,
     },
     {
         key: '2',
