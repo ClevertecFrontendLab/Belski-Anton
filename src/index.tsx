@@ -67,7 +67,7 @@ root.render(
                                     title='Регистрация успешна'
                                     subtitle='Регистрация прошла успешно. Зайдите в приложение, используя свои e-mail и пароль.'
                                     btnText='Войти'
-                                    path='/auth'
+                                    path={PATHS.AUTH}
                                     dataTestId='registration-enter-button'
                                 />
                             </AuthPage>
@@ -82,7 +82,7 @@ root.render(
                                     title='Пароль успешно изменен'
                                     subtitle='Теперь можно войти в аккаунт, используя свой логин и новый пароль.'
                                     btnText='Вход'
-                                    path='/auth'
+                                    path={PATHS.AUTH}
                                     dataTestId='change-entry-button'
                                 />
                             </AuthPage>
@@ -112,7 +112,7 @@ root.render(
                                     title='Данные не сохранились'
                                     subtitle='Что-то пошло не так. Попробуйте ещё раз.'
                                     btnText='Повторить'
-                                    path='/auth/change-password'
+                                    path={PATHS.AUTH_CHANGE_PASSWORD}
                                     dataTestId='change-retry-button'
                                 />
                             </AuthPage>
@@ -127,7 +127,7 @@ root.render(
                                     title='Данные не сохранились'
                                     subtitle='Такой e-mail уже записан в системе. Попробуйте зарегистрироваться по другому e-mail.'
                                     btnText='Назад к регистрации'
-                                    path='/auth/registration'
+                                    path={PATHS.AUTH_REGISTRATION}
                                     dataTestId='registration-back-button'
                                 />
                             </AuthPage>
@@ -142,7 +142,7 @@ root.render(
                                     title='Данные не сохранились'
                                     subtitle='Что-то пошло не так и ваша регистрация не завершилась. Попробуйте ещё раз.'
                                     btnText='Повторить'
-                                    path='/auth/registration'
+                                    path={PATHS.AUTH_REGISTRATION}
                                     dataTestId='registration-retry-button'
                                 />
                             </AuthPage>
@@ -158,7 +158,7 @@ root.render(
                                     title='Вход не выполнен'
                                     subtitle='Что-то пошло не так. Попробуйте еще раз'
                                     btnText='Повторить'
-                                    path='/auth'
+                                    path={PATHS.AUTH}
                                     dataTestId='login-retry-button'
                                 />
                             </AuthPage>
@@ -174,7 +174,7 @@ root.render(
                                     title='Такой e-mail не зарегистрирован'
                                     subtitle='Мы не нашли в базе вашего e-mail. Попробуйте войти c другим e-mail.'
                                     btnText='Попробовать снова'
-                                    path='/auth'
+                                    path={PATHS.AUTH}
                                     dataTestId='check-retry-button'
                                     className='error-exist'
                                 />
@@ -190,7 +190,7 @@ root.render(
                                     title='Что-то пошло не так'
                                     subtitle='Произошла ошибка, попробуйте отправить форму ещё раз.'
                                     btnText='Назад'
-                                    path='/auth'
+                                    path={PATHS.AUTH}
                                     dataTestId='check-back-button'
                                     className='error-check'
                                 />
@@ -213,7 +213,7 @@ root.render(
                             </AuthPage>
                         }
                     />
-                    <Route path='/' element={<AuthRedirect />} />
+                    <Route index={true}  element={<Navigate to='/auth' replace />} />
                 </Routes>
             </HistoryRouter>
         </Provider>
