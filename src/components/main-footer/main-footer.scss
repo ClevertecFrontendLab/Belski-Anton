@@ -1,0 +1,70 @@
+.main-footer {
+    background: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-top: 135px;
+    .view-reviews {
+        color: var(--color-Blue);
+        font-size: 16px;
+        padding: 9.5px 15px;
+        cursor: pointer;
+    }
+
+    .wrapper-card {
+        max-width: 240px;
+        min-width: 240px;
+    }
+    .title {
+        display: flex;
+        flex-direction: column;
+        text-align: start;
+        gap: 6px;
+
+        span {
+            color: var(--color-Blue);
+
+            &:last-child {
+                color: #8c8c8c;
+                font-size: 14px;
+            }
+        }
+    }
+    .list-phones {
+        display: flex;
+        justify-content: space-between;
+        > .phone {
+            display: flex;
+            gap: 8px;
+            cursor: pointer;
+        }
+    }
+}
+
+@media (max-width: 780px) {
+    .main-footer {
+        margin-top: 0;
+        padding-top: 0 24px;
+        flex-direction: column;
+    }
+
+    .wrapper-card {
+        max-width: 100%;
+        min-width: 100%;
+    }
+
+    .view-reviews {
+        order: 2;
+        margin-top: 24px;
+        text-align: center;
+        width: 100%;
+    }
+}
+
+@media (max-width: 568px) {
+    .main-footer {
+        .title {
+            text-align: center;
+        }
+    }
+}
