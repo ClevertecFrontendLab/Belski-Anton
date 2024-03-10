@@ -1,6 +1,6 @@
 .wrapper-calendar-page {
+    background-color: #f0f5ff;
     header {
-        background-color: #f0f5ff;
         padding: 16px 0 0 24px;
     }
     .wrapper-setting-calendar {
@@ -38,9 +38,30 @@
                         height: 143px;
                     }
                 }
+
+                td:last-child {
+                    .wrapper-card-create-traine {
+                        right: 0;
+                        left: auto;
+                        box-shadow: -10px 5px 5px #0000001a;
+                    }
+                }
             }
-           
+            .cell-table {
+                display: block;
+                width: auto;
+                height: auto;
+                padding: 4px 8px 0;
+                border: 0;
+                border-top: 2px solid #f0f0f0;
+                border-radius: 0;
+                transition: #1890ff 0.3s;
+                min-width: 24px;
+                line-height: 24px;
+                cursor: pointer;
+                margin: 0;
+                height: 143px;
+            }
         }
-       
     }
 }
