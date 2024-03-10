@@ -1,5 +1,4 @@
 import Breadcrumbs from '@components/breadcrumb/breadcrumb';
-import { Button } from 'antd';
 import ruRu from 'antd/es/calendar/locale/ru_RU';
 
 import moment from 'moment';
@@ -7,6 +6,8 @@ import 'moment/locale/ru';
 import './calendar-page.scss';
 import { useState } from 'react';
 import ModalErrorCalendar from '@components/popup/modal-error-calendar/modal-error-calendar';
+import { Calendar } from 'antd';
+import { SettingOutlined } from '@ant-design/icons';
 moment.locale('ru');
 
 moment.updateLocale('ru', {
@@ -54,18 +55,23 @@ const CalendarPage = () => {
     };
     return (
         <>
-            {/* <div className='wrapper-calendar'>
+            <div className='wrapper-calendar-page'>
                 <header>
                     <Breadcrumbs items={routes} />
                 </header>
                 <div>
-                    <Calendar locale={ruRu} />
+                   <div className='wrapper-setting-calendar'>
+                        <span className='title'>Настройки</span>
+                        <SettingOutlined />
+                   </div>
+                    <Calendar 
+                    locale={ruRu}  
+                    className='wrapper-calendar'
+                    />
                 </div>
-            </div> */}
-            <Button type='primary' onClick={showModal}>
-                Open Modal
-            </Button>
-            <ModalErrorCalendar open={isModalOpen}  />
+            </div>
+
+            <ModalErrorCalendar open={isModalOpen} />
         </>
     );
 };

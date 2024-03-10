@@ -11,8 +11,8 @@ export const CustomHeader = () => {
             </div>
             <div className='header-wrapper'>
                 <div className='header-text'>
-                    Приветствуем тебя в CleverFit — приложении,<br/> которое поможет тебе добиться своей
-                    мечты!
+                    Приветствуем тебя в CleverFit — приложении,
+                    <br /> которое поможет тебе добиться своей мечты!
                 </div>
                 <div className='wrapper-header-settings'>
                     <SettingOutlined />
