@@ -4,6 +4,7 @@ import { CalendarTwoTone, HeartFilled, IdcardOutlined } from '@ant-design/icons'
 import { MainCard } from '@components/main-card';
 import { history } from '@redux/configure-store';
 import { PATHS } from '@constants/index';
+import ModalErrorCalendar from '@components/popup/modal-error-calendar/modal-error-calendar';
 const { Content } = Layout;
 
 const cardsData = [
@@ -30,6 +31,19 @@ const handleHeartClick = () => {
 };
 
 export const MainContent = () => {
+     // const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // const showModal = () => {
+    //     setIsModalOpen(true);
+    // };
+
+    // const handleOk = () => {
+    //     setIsModalOpen(false);
+    // };
+
+    // const handleCancel = () => {
+    //     setIsModalOpen(false);
+    // };
     return (
         <Content className='main-content'>
             <div className='main-text-description'>
@@ -64,6 +78,8 @@ export const MainContent = () => {
                     </MainCard>
                 ))}
             </div>
+            {/* <ModalErrorCalendar open={true} /> */}
+
         </Content>
     );
 };

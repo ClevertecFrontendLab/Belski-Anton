@@ -4,7 +4,6 @@ import moment, { Moment } from 'moment';
 import 'moment/locale/ru';
 import './calendar-page.scss';
 import { useEffect, useState } from 'react';
-import ModalErrorCalendar from '@components/popup/modal-error-calendar/modal-error-calendar';
 import { Calendar } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
 import CardCreateTraine from '@components/card-cretate-traine/card-create-traine';
@@ -44,19 +43,6 @@ const CalendarPage = () => {
     const [value, setValue] = useState(moment());
 
     // const [date, setDate] = useState(moment());
-    // const [isModalOpen, setIsModalOpen] = useState(false);
-
-    // const showModal = () => {
-    //     setIsModalOpen(true);
-    // };
-
-    // const handleOk = () => {
-    //     setIsModalOpen(false);
-    // };
-
-    // const handleCancel = () => {
-    //     setIsModalOpen(false);
-    // };
 
     const clickOnDate = (date: Moment) => {
         setClickDate(moment(date).format('DD.MM.YYYY'));
@@ -121,8 +107,6 @@ const CalendarPage = () => {
                     />
                 </div>
             </div>
-            
-            {/* <ModalErrorCalendar open={true} /> */}
         </>
     );
 };

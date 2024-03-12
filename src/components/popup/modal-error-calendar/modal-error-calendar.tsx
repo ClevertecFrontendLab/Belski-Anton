@@ -14,6 +14,7 @@ const ModalErrorCalendar = ({open}: ModalErrorCalendarProps) => {
             footer={null}
             centered
             open={open}
+            maskStyle={{backgroundColor:'rgba(121, 156, 212, 0.5)',backdropFilter:'blur(3px'}}
         >
             <Result
                 status={STATUS_CODES.INTERNAL_SERVER_ERROR}
