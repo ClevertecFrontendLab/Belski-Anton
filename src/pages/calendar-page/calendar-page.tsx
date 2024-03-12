@@ -3,7 +3,7 @@ import ruRu from 'antd/es/calendar/locale/ru_RU';
 import moment, { Moment } from 'moment';
 import 'moment/locale/ru';
 import './calendar-page.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ModalErrorCalendar from '@components/popup/modal-error-calendar/modal-error-calendar';
 import { Calendar } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
@@ -42,6 +42,8 @@ const routes = [
 const CalendarPage = () => {
     const [clickDate, setClickDate] = useState('');
     const [value, setValue] = useState(moment());
+
+    // const [date, setDate] = useState(moment());
     // const [isModalOpen, setIsModalOpen] = useState(false);
 
     // const showModal = () => {
@@ -56,20 +58,32 @@ const CalendarPage = () => {
     //     setIsModalOpen(false);
     // };
 
-    // console.log(clickDate);
-
     const clickOnDate = (date: Moment) => {
         setClickDate(moment(date).format('DD.MM.YYYY'));
-        
     };
+
+    const resetClickDate = () => setClickDate('');
+
     const renderCard = (date: Moment) => {
-        const currentDate = moment(date).format('DD.MM.YYYY');
+        const currentDate = date.format('DD.MM.YYYY');
         if (currentDate === clickDate) {
-            return <CardCreateTraine clickDate={clickDate} />;
+            return (
+                <CardCreateTraine
+                    onClick={resetClickDate}
+                    clickDate={clickDate}
+                    disabled={date.isBefore(moment(), 'day')}
+                />
+            );
         }
     };
 
-    console.log(value)
+    console.log(clickDate);
+
+    useEffect(() => {
+        if (value.month()) {
+            setClickDate('');
+        }
+    }, [value]);
 
     return (
         <>
@@ -83,29 +97,32 @@ const CalendarPage = () => {
                         <SettingOutlined />
                     </div>
                     <Calendar
-                        defaultValue={value}
-                        value={value}
                         onChange={setValue}
-                        onSelect={clickOnDate}
                         locale={ruRu}
-                        disabledDate={(date) => moment(date).format('MM') !== moment(value).format('MM')}
                         className='wrapper-calendar'
-                        dateCellRender={renderCard}
                         dateFullCellRender={(date) => (
-                            <div className='cell-table' style={{ zIndex: 0 }}>
+                            <div
+                                className='cell-table'
+                                style={{ zIndex: 0 }}
+                                onClick={(e) => {
+                                    e.preventDefault();
+                                    e.stopPropagation();
+                                    clickOnDate(date);
+                                }}
+                            >
                                 <div className='ant-picker-calendar-date-value'>
-                                    {moment(date).format('DD')}
+                                    {date.format('DD')}
                                 </div>
                                 <div className='ant-picker-calendar-date-content'>
-                                    {renderCard(date)}
+                                    {clickDate && renderCard(date)}
                                 </div>
                             </div>
                         )}
                     />
                 </div>
             </div>
-            {/* 
-            <ModalErrorCalendar open={true} /> */}
+            
+            {/* <ModalErrorCalendar open={true} /> */}
         </>
     );
 };

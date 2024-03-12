@@ -35,6 +35,33 @@ interface ICreateReview {
     rating: number;
 }
 
+interface Traning {
+    name: string;
+    date: string;
+    isTemplementation: boolean;
+    parameters?: {
+        repeat: boolean;
+        period: number;
+        joinTraning: boolean;
+        participants: string[];
+    };
+    exercises: Exercise[];
+}
+
+interface Exercise {
+    name: string;
+    replays: number;
+    weight: number;
+    approaches: number;
+    isTemplementation: boolean;
+}
+
+interface TrainingListItem {
+    name: string;
+    key: string;
+}
+
+
 export const authApi = createApi({
     reducerPath: 'authApi',
     baseQuery: fetchBaseQuery({
@@ -100,6 +127,40 @@ export const authApi = createApi({
             }),
             invalidatesTags: ['Feedback'],
         }),
+        getTrainig: builder.query({
+            query: (args) => ({
+                url: API_ROUTES.getTrainig,
+                method: 'GET',
+                params: args,
+            }),
+        }),
+        createTrainig: builder.mutation<unknown, Traning>({
+            query: (training) => ({
+                url: API_ROUTES.createTraning,
+                method: 'POST',
+                body: training,
+            }),
+        }),
+        uptadeTraning: builder.mutation<unknown, Traning>({
+            query: (training) => ({
+                url: API_ROUTES.updateTraining,
+                method: 'PUT',
+                body: training,
+            }),
+        }),
+        deleteTrainig: builder.mutation({
+            query: (training) => ({
+                url: API_ROUTES.deleteTraining,
+                method: 'DELETE',
+                body: training,
+            }),
+        }),
+        getTrainingList: builder.query<TrainingListItem,void>({
+            query: () => ({
+                url: API_ROUTES.getTrainingList,
+                method: 'GET',
+            }),
+        }),
     }),
 });
 
@@ -111,4 +172,9 @@ export const {
     useConfirmEmailMutation,
     useGetReviewsQuery,
     useCreateReviewMutation,
+    useGetTrainigQuery,
+    useCreateTrainigMutation,
+    useUptadeTraningMutation,
+    useDeleteTrainigMutation,
+    useGetTrainingListQuery,
 } = authApi;
