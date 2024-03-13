@@ -1,67 +1,67 @@
-.wrapper-calendar-page {
-    background-color: #f0f5ff;
-    header {
-        padding: 16px 0 0 24px;
-    }
-    .wrapper-setting-calendar {
-        display: flex;
-        flex-direction: row-reverse;
-        gap: 10px;
-        background-color: #f0f5ff;
-        padding: 10px 35px 21px 0;
-    }
-    .wrapper-calendar {
-        padding: 0 21px 93px 25px;
-        background-color: #f0f5ff;
+// .wrapper-calendar-page {
+//     background-color: #f0f5ff;
+//     header {
+//         padding: 16px 0 0 24px;
+//     }
+//     .wrapper-setting-calendar {
+//         display: flex;
+//         flex-direction: row-reverse;
+//         gap: 10px;
+//         background-color: #f0f5ff;
+//         padding: 10px 35px 21px 0;
+//     }
+//     .wrapper-calendar {
+//         padding: 0 21px 93px 25px;
+//         background-color: #f0f5ff;
 
-        .ant-picker-calendar-header {
-            background-color: #f0f5ff;
-        }
+//         .ant-picker-calendar-header {
+//             background-color: #f0f5ff;
+//         }
 
-        .ant-picker-body {
-            padding: 0;
-        }
+//         .ant-picker-body {
+//             padding: 0;
+//         }
 
-        thead {
-            background-color: #f0f5ff;
-        }
+//         thead {
+//             background-color: #f0f5ff;
+//         }
 
-        .ant-picker-content {
-            tr {
-                td:not(:first-child) {
-                    border-left: 10px solid #f0f5ff;
-                }
+//         .ant-picker-content {
+//             tr {
+//                 td:not(:first-child) {
+//                     border-left: 10px solid #f0f5ff;
+//                 }
 
-                td {
-                    .ant-picker-calendar-date {
-                        margin: 0;
-                        height: 143px;
-                    }
-                }
+//                 td {
+//                     .ant-picker-calendar-date {
+//                         margin: 0;
+//                         height: 143px;
+//                     }
+//                 }
 
-                td:last-child {
-                    .wrapper-card-create-traine {
-                        right: 0;
-                        left: auto;
-                        box-shadow: -10px 5px 5px #0000001a;
-                    }
-                }
-            }
-            .cell-table {
-                display: block;
-                width: auto;
-                height: auto;
-                padding: 4px 8px 0;
-                border: 0;
-                border-top: 2px solid #f0f0f0;
-                border-radius: 0;
-                transition: #1890ff 0.3s;
-                min-width: 24px;
-                line-height: 24px;
-                cursor: pointer;
-                margin: 0;
-                height: 143px;
-            }
-        }
-    }
-}
+//                 td:last-child {
+//                     .wrapper-card-create-traine {
+//                         right: 0;
+//                         left: auto;
+//                         box-shadow: -10px 5px 5px #0000001a;
+//                     }
+//                 }
+//             }
+//             .cell-table {
+//                 display: block;
+//                 width: auto;
+//                 height: auto;
+//                 padding: 4px 8px 0;
+//                 border: 0;
+//                 border-top: 2px solid #f0f0f0;
+//                 border-radius: 0;
+//                 transition: #1890ff 0.3s;
+//                 min-width: 24px;
+//                 line-height: 24px;
+//                 cursor: pointer;
+//                 margin: 0;
+//                 height: 143px;
+//             }
+//         }
+//     }
+// }

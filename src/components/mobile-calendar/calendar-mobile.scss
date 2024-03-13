@@ -1,0 +1,35 @@
+.wrapper-mobile-calendar {
+    padding: 16px 24px 24px;
+    background-color: rgba(240, 245, 255, 1);
+    .wrapper-setting-calendar {
+        display: flex;
+        flex-direction: row-reverse;
+        margin: 6px 15px 20px 0;
+    }
+    .mobile-calendar {
+        .ant-picker-calendar-header {
+            display: flex;
+            align-items: flex-end;
+            padding-left: 42px;
+            gap: 8px;
+            .ant-radio-group .ant-radio-group-outline .ant-radio-group-small .ant-picker-calendar-mode-switch{
+                display: flex;
+            }
+             .ant-picker-calendar-month-select{
+                margin-left: 0;
+             }
+         
+             .ant-picker-calendar-year-select{
+               min-width: 70px;
+            }
+             .ant-picker-calendar-mode-switch {
+                margin-bottom: 0;
+                display: flex;
+                width: 102px;
+                >label{
+                    width: 62px;;
+                }
+            }
+        }
+    }
+}
