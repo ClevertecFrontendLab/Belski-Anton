@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import { Calendar } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
 import CardCreateTraine from '@components/card-cretate-traine/card-create-traine';
+import ModalDataOpenErrorCalendar from '@components/popup/modal-data-open-error-calendar/modal-data-open-error-calendar';
 moment.locale('ru');
 
 moment.updateLocale('ru', {
@@ -107,6 +108,7 @@ const CalendarDekstop = () => {
                     />
                 </div>
             </div>
+            {/* <ModalDataOpenErrorCalendar/> */}
         </>
     );
 };
