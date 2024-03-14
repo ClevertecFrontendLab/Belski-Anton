@@ -35,25 +35,51 @@ interface ICreateReview {
     rating: number;
 }
 
-interface Traning {
-    name: string;
-    date: string;
-    isTemplementation: boolean;
-    parameters?: {
-        repeat: boolean;
-        period: number;
-        joinTraning: boolean;
-        participants: string[];
-    };
-    exercises: Exercise[];
-}
+// interface Traning {
+//     name: string;
+//     date: string;
+//     isTemplementation: boolean;
+//     parameters?: {
+//         repeat: boolean;
+//         period: number;
+//         joinTraning: boolean;
+//         participants: string[];
+//     };
+//     exercises: Exercise[];
+// }
 
-interface Exercise {
+// interface Exercise {
+//     name: string;
+//     replays: number;
+//     weight: number;
+//     approaches: number;
+//     isTemplementation: boolean;
+// }
+
+interface TrainingExercise {
+    _id: string;
     name: string;
     replays: number;
     weight: number;
     approaches: number;
-    isTemplementation: boolean;
+    isImplementation: boolean;
+}
+
+interface TrainingParameters {
+    repeat: boolean;
+    period: number;
+    jointTraining: boolean;
+    participants: string[];
+}
+
+interface Training {
+    _id: string;
+    name: string;
+    date: string;
+    isImplementation: boolean;
+    userId: string;
+    parameters: TrainingParameters;
+    exercises: TrainingExercise[];
 }
 
 interface TrainingListItem {
@@ -127,34 +153,33 @@ export const authApi = createApi({
             }),
             invalidatesTags: ['Feedback'],
         }),
-        getTrainig: builder.query({
-            query: (args) => ({
-                url: API_ROUTES.getTrainig,
+        getTraining: builder.query<Training[], void>({
+            query: () => ({
+                url: API_ROUTES.getTraining,
                 method: 'GET',
-                params: args,
             }),
         }),
-        createTrainig: builder.mutation<unknown, Traning>({
-            query: (training) => ({
-                url: API_ROUTES.createTraning,
-                method: 'POST',
-                body: training,
-            }),
-        }),
-        uptadeTraning: builder.mutation<unknown, Traning>({
-            query: (training) => ({
-                url: API_ROUTES.updateTraining,
-                method: 'PUT',
-                body: training,
-            }),
-        }),
-        deleteTrainig: builder.mutation({
-            query: (training) => ({
-                url: API_ROUTES.deleteTraining,
-                method: 'DELETE',
-                body: training,
-            }),
-        }),
+        // createTrainig: builder.mutation<unknown, Traning>({
+        //     query: (training) => ({
+        //         url: API_ROUTES.createTraning,
+        //         method: 'POST',
+        //         body: training,
+        //     }),
+        // }),
+        // uptadeTraning: builder.mutation<unknown, Traning>({
+        //     query: (training) => ({
+        //         url: API_ROUTES.updateTraining,
+        //         method: 'PUT',
+        //         body: training,
+        //     }),
+        // }),
+        // deleteTrainig: builder.mutation({
+        //     query: (training) => ({
+        //         url: API_ROUTES.deleteTraining,
+        //         method: 'DELETE',
+        //         body: training,
+        //     }),
+        // }),
         getTrainingList: builder.query<TrainingListItem,void>({
             query: () => ({
                 url: API_ROUTES.getTrainingList,
@@ -172,9 +197,9 @@ export const {
     useConfirmEmailMutation,
     useGetReviewsQuery,
     useCreateReviewMutation,
-    useGetTrainigQuery,
-    useCreateTrainigMutation,
-    useUptadeTraningMutation,
-    useDeleteTrainigMutation,
+    useGetTrainingQuery,
+    // useCreateTrainigMutation,
+    // useUptadeTraningMutation,
+    // useDeleteTrainigMutation,
     useGetTrainingListQuery,
 } = authApi;

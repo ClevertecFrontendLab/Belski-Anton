@@ -1,14 +1,14 @@
-import { Modal } from 'antd';
+import { Modal, ModalProps } from 'antd';
 import { CloseCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd/lib/radio';
 import './modal-data-open-error-calendar.scss';
 
-const ModalDataOpenErrorCalendar = () => {
+const ModalDataOpenErrorCalendar = ({ open }: ModalProps) => {
     return (
         <div className='wrapper-modal-data-open-error-calendar'>
             <Modal
+                open={open}
                 className='modal-data-open-error-calendar'
-                open={true}
                 maskStyle={{
                     backgroundColor: 'rgba(121, 156, 212, 0.5)',
                     backdropFilter: 'blur(3px',

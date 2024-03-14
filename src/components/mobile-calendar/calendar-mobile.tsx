@@ -48,7 +48,7 @@ const CalendarMobile = () => {
             fullscreen={false}
             className='mobile-calendar'
             dateFullCellRender={(date)=>
-                <div className='ant-picker-calendar-date-value'> {date.date()}</div>
+                <div className='ant-picker-calendar-date-value'> {date.format('D')}</div>
             }
              />
         </div>

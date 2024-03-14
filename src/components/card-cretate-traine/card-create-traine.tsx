@@ -1,4 +1,4 @@
-import { Button,Divider } from 'antd';
+import { Button, Divider } from 'antd';
 import './card-create-traine.scss';
 import { CloseOutlined } from '@ant-design/icons';
 import iconCreateCard from '../../../public/assets/icons/empty-image.svg';
@@ -6,8 +6,14 @@ interface CardCreateTraineProps {
     clickDate: string;
     disabled: boolean;
     onClick: () => void;
+    onCloseClick: () => void;
 }
-const CardCreateTraine = ({ clickDate, disabled, onClick }: CardCreateTraineProps) => {
+const CardCreateTraine = ({
+    clickDate,
+    disabled,
+    onClick,
+    onCloseClick,
+}: CardCreateTraineProps) => {
     return (
         <div className='wrapper-card-create-traine'>
             <div className='header-card-create-traine'>
@@ -29,7 +35,15 @@ const CardCreateTraine = ({ clickDate, disabled, onClick }: CardCreateTraineProp
             </div>
             <Divider style={{ margin: '0' }} />
             <div className='wrapper-btn-create-traine'>
-                <Button className='btn-create-traine' disabled={disabled}>
+                <Button
+                    className='btn-create-traine'
+                    disabled={disabled}
+                    onClick={(e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        onCloseClick();
+                    }}
+                >
                     Создать тренировку
                 </Button>
             </div>

@@ -14,8 +14,8 @@ export const API_ROUTES = {
     changePassword: '/auth/change-password',
     getFeedback: '/feedback',
     authGoogle: '/auth/google',
-    getTrainig: '/training',
-    createTraning: '/traning',
+    getTraining: '/training',
+    createTraining: '/training',
     updateTraining: '/training/{trainingId}',
     deleteTraining: '/training/{trainingId}',
     getTrainingList:'/catalogs/training-list'

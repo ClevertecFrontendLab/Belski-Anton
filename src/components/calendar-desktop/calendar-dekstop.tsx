@@ -8,6 +8,8 @@ import { Calendar } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
 import CardCreateTraine from '@components/card-cretate-traine/card-create-traine';
 import ModalDataOpenErrorCalendar from '@components/popup/modal-data-open-error-calendar/modal-data-open-error-calendar';
+import { useGetTrainingListQuery, useGetTrainingQuery } from '../../api/methods-api';
+import CardTraining from '@components/card-training/card-training';
 moment.locale('ru');
 
 moment.updateLocale('ru', {
@@ -42,8 +44,21 @@ const routes = [
 const CalendarDekstop = () => {
     const [clickDate, setClickDate] = useState('');
     const [value, setValue] = useState(moment());
-
+    const [isModalOpenDateError, setisModalOpenDateError] = useState(false);
+    const [isContentVisible, setContentVisible] = useState(false);
+    const { data: trainingData, isError, error } = useGetTrainingQuery();
+    const { data: trainingListData } = useGetTrainingListQuery();
     // const [date, setDate] = useState(moment());
+    console.log(trainingListData);
+
+    // const showModal = () => {
+    //     setisModalOpenDateError(true);
+    //   };
+
+    const toggleContentVisibility = () => {
+        setContentVisible(!isContentVisible);
+        console.log(isContentVisible);
+    };
 
     const clickOnDate = (date: Moment) => {
         setClickDate(moment(date).format('DD.MM.YYYY'));
@@ -54,24 +69,25 @@ const CalendarDekstop = () => {
     const renderCard = (date: Moment) => {
         const currentDate = date.format('DD.MM.YYYY');
         if (currentDate === clickDate) {
-            return (
+            return isContentVisible ? (
+                <CardTraining />
+            ) : (
                 <CardCreateTraine
                     onClick={resetClickDate}
                     clickDate={clickDate}
                     disabled={date.isBefore(moment(), 'day')}
+                    onCloseClick={toggleContentVisibility}
                 />
             );
         }
     };
-
-    console.log(clickDate);
 
     useEffect(() => {
         if (value.month()) {
             setClickDate('');
         }
     }, [value]);
-     
+
     return (
         <>
             <div className='wrapper-calendar-dekstop'>
@@ -95,6 +111,8 @@ const CalendarDekstop = () => {
                                     e.preventDefault();
                                     e.stopPropagation();
                                     clickOnDate(date);
+                                    setContentVisible(false)
+                                    
                                 }}
                             >
                                 <div className='ant-picker-calendar-date-value'>
@@ -108,7 +126,7 @@ const CalendarDekstop = () => {
                     />
                 </div>
             </div>
-            {/* <ModalDataOpenErrorCalendar/> */}
+            <ModalDataOpenErrorCalendar open={isModalOpenDateError} />
         </>
     );
 };
