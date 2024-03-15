@@ -10,8 +10,10 @@ const options = [
     { value: 'back', label: 'Спина' },
     { value: 'chest', label: 'Грудь' },
 ];
-
-const CardTraining = () => {
+interface ICardTrainingProps {
+    openSidebar: () => void;
+}
+const CardTraining = ({ openSidebar }: ICardTrainingProps) => {
     const handleClick = (e: React.MouseEvent<HTMLDivElement>) => {
         e.stopPropagation();
     };
@@ -32,7 +34,7 @@ const CardTraining = () => {
             </div>
             <Divider className='divider-down' />
             <div className='wrapper-btn-training'>
-                <Button className='btn-add-training'>Добавить упражнения</Button>
+                <Button className='btn-add-training'  onClick={openSidebar}>Добавить упражнения</Button>
                 <Button disabled className='btn-save-training'>
                     Сохранить
                 </Button>

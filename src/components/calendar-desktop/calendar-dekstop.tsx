@@ -10,6 +10,7 @@ import CardCreateTraine from '@components/card-cretate-traine/card-create-traine
 import ModalDataOpenErrorCalendar from '@components/popup/modal-data-open-error-calendar/modal-data-open-error-calendar';
 import { useGetTrainingListQuery, useGetTrainingQuery } from '../../api/methods-api';
 import CardTraining from '@components/card-training/card-training';
+import SideBarAddTraining from '@components/sider-add-training/sidebar-add-training';
 moment.locale('ru');
 
 moment.updateLocale('ru', {
@@ -46,6 +47,7 @@ const CalendarDekstop = () => {
     const [value, setValue] = useState(moment());
     const [isModalOpenDateError, setisModalOpenDateError] = useState(false);
     const [isContentVisible, setContentVisible] = useState(false);
+    const [isAddTraining, setAddTraining] = useState(false);
     const { data: trainingData, isError, error } = useGetTrainingQuery();
     const { data: trainingListData } = useGetTrainingListQuery();
     // const [date, setDate] = useState(moment());
@@ -55,9 +57,21 @@ const CalendarDekstop = () => {
     //     setisModalOpenDateError(true);
     //   };
 
+    const openSidebar = () => {
+        setAddTraining(!isAddTraining);
+        console.log(isAddTraining);
+    };
+
+    // const showDrawer = () => {
+    //     setAddTraining(true);
+    // };
+
+    const onClose = () => {
+        setAddTraining(false);
+    };
+
     const toggleContentVisibility = () => {
         setContentVisible(!isContentVisible);
-        console.log(isContentVisible);
     };
 
     const clickOnDate = (date: Moment) => {
@@ -70,7 +84,7 @@ const CalendarDekstop = () => {
         const currentDate = date.format('DD.MM.YYYY');
         if (currentDate === clickDate) {
             return isContentVisible ? (
-                <CardTraining />
+                <CardTraining openSidebar={openSidebar} setClickDate={setClickDate}/>
             ) : (
                 <CardCreateTraine
                     onClick={resetClickDate}
@@ -111,8 +125,7 @@ const CalendarDekstop = () => {
                                     e.preventDefault();
                                     e.stopPropagation();
                                     clickOnDate(date);
-                                    setContentVisible(false)
-                                    
+                                    setContentVisible(false);
                                 }}
                             >
                                 <div className='ant-picker-calendar-date-value'>
@@ -126,6 +139,7 @@ const CalendarDekstop = () => {
                     />
                 </div>
             </div>
+            {isAddTraining && <SideBarAddTraining open={isAddTraining} onClose={onClose} clickDate={clickDate}  />}
             <ModalDataOpenErrorCalendar open={isModalOpenDateError} />
         </>
     );

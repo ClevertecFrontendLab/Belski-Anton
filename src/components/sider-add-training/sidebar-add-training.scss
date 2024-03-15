@@ -1,0 +1,103 @@
+.sidebar-add-training {
+    .ant-drawer-content-wrapper {
+        .ant-drawer-header {
+            padding: 0;
+            border-bottom:none;
+            .ant-drawer-header-title {
+                padding-right: 15px;
+
+                flex-direction: row-reverse;
+                .ant-drawer-close {
+                    align-self: end;
+                    font-size: 14px;
+                }
+                .ant-drawer-title {
+                    .wrapper-title {
+                        padding-right: 32px;
+                        padding-top: 21px;
+
+                        display: flex;
+                        font-size: 20px;
+                        justify-content: center;
+                        letter-spacing: 0.2px;
+                        gap: 11px;
+                    }
+                }
+            }
+        }
+        .ant-drawer-body {
+            padding: 24px 28px;
+        }
+
+        .wrapper-date-add-training {
+            display: flex;
+            flex-direction: row-reverse;
+            margin-bottom: 25px;
+        }
+        .input-training {
+            padding: 3px 0 3px 8px;
+            max-width: 344px;
+            margin-bottom: 8px;
+        }
+        .wrapper-training-details {
+            display: flex;
+            justify-content: space-between;
+            gap: 32px;
+            max-width: 344px;
+            margin-bottom: 24px;
+
+            .repeat-training {
+                max-width: 120px;
+                > div:first-child {
+                    padding-left: 8px;
+                    background-color: #f0f0f0;
+                    font-size: 12px;
+                    height: 24px;
+                }
+            }
+            .wrapper-weight-amount-training {
+                max-width: 192px;
+                display: flex;
+                .weight-training {
+                    > div:first-child {
+                        background-color: #f0f0f0;
+                        font-size: 12px;
+                        height: 24px;
+                        padding-left: 8px;
+                    }
+                }
+                .amount-training {
+                    > div:first-child {
+                        padding-left: 8px;
+                        background-color: #f0f0f0;
+                        font-size: 12px;
+                        height: 24px;
+                    }
+                }
+            }
+        }
+        .wrapper-icon-closed {
+            display: flex;
+            align-items: flex-end;
+            font-size:10px;
+            margin-bottom: 4px;
+        }
+        .wrapper-date-add-training {
+            margin-right: 8px;
+            letter-spacing: 1px;
+            color: #8c8c8c;
+        }
+    }
+    .btn-repeat {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 7px 12px;
+        width: 344px;
+        height: 40px;
+        background-color: #f0f0f0;
+        > div:nth-child(2n) {
+            color: #2f54eb;
+        }
+    }
+}
