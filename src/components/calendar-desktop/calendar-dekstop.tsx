@@ -48,7 +48,7 @@ const CalendarDekstop = () => {
     const [clickDate, setClickDate] = useState('');
     const [value, setValue] = useState(moment());
     const [isModalOpenDateError, setisModalOpenDateError] = useState(false);
-    const [isModalDataSaveError, setisModalDataSaveError] = useState(true);
+    const [isModalDataSaveError, setisModalDataSaveError] = useState(false);
     const [isContentVisible, setContentVisible] = useState(false);
     const [isAddTraining, setAddTraining] = useState(false);
     const { data: trainingData, isError, error } = useGetTrainingQuery();

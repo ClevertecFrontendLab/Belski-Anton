@@ -27,8 +27,8 @@
                     color: #262626;
                     font-weight: 600;
                 }
-                .sub-title{
-                  margin-bottom: 24px;
+                .sub-title {
+                    margin-bottom: 24px;
                 }
             }
             .wrapper-btn-close-data-save-error {
@@ -41,6 +41,11 @@
                     height: 40px;
                 }
             }
+        }
+    }
+    @media (max-width: 450px) {
+        .ant-modal-content {
+            width: 328px;
         }
     }
 }

@@ -24,5 +24,17 @@
          width: 74px;
       }
     }
+    @media(max-width:360px){
+        .ant-modal-content{
+            width: 328px;
+            .ant-modal-body{
+                padding: 0;
+                .ant-result-subtitle{
+                   width: 210px; 
+                   margin: 0 auto;
+                }
+            }
+        }
+    }
 }
 

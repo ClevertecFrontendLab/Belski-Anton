@@ -35,3 +35,9 @@
         }
     }
 }
+
+@media(max-width:400px){
+    .modal-data-open-error-calendar{
+        max-width: 340px;
+    }
+}

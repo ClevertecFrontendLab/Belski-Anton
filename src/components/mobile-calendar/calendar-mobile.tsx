@@ -5,6 +5,9 @@ import 'moment/locale/ru';
 import { Calendar } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
 import './calendar-mobile.scss'
+import ModalDataOpenErrorCalendar from '@components/popup/modal-data-open-error-calendar/modal-data-open-error-calendar';
+import { useState } from 'react';
+import ModelDataSaveErrorCalendar from '@components/popup/model-data-save-error-calendar/model-data-save-error-calendar';
 moment.locale('ru');
 moment.updateLocale('ru', {
     weekdaysMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
@@ -35,7 +38,12 @@ const routes = [
     },
 ];
 const CalendarMobile = () => {
+    const [isModalOpenDateError, setisModalOpenDateError] = useState(false);
+    const [isModalDataSaveError, setisModalDataSaveError] = useState(true);
+
+
     return (
+        <>
         <div className='wrapper-mobile-calendar'>
             <header>
                 <Breadcrumbs items={routes} />
@@ -52,6 +60,10 @@ const CalendarMobile = () => {
             }
              />
         </div>
+        {/* <ModalDataOpenErrorCalendar open={isModalOpenDateError} /> */}
+           {/* < ModelDataSaveErrorCalendar open={isModalDataSaveError}/> */}
+
+        </>
     );
 };
 
