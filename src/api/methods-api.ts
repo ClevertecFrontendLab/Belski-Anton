@@ -198,6 +198,7 @@ export const {
     useGetReviewsQuery,
     useCreateReviewMutation,
     useGetTrainingQuery,
+    useLazyGetTrainingQuery,
     // useCreateTrainigMutation,
     // useUptadeTraningMutation,
     // useDeleteTrainigMutation,

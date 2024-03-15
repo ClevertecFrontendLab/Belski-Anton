@@ -4,7 +4,10 @@ import { CalendarTwoTone, HeartFilled, IdcardOutlined } from '@ant-design/icons'
 import { MainCard } from '@components/main-card';
 import { history } from '@redux/configure-store';
 import { PATHS } from '@constants/index';
-import ModalErrorCalendar from '@components/popup/modal-error-calendar/modal-error-calendar';
+import { useLazyGetTrainingQuery } from '../../api/methods-api';
+import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
+import { setIsLoading } from '@redux/loading-slice';
+import { setIsError } from '@redux/error-training-slice';
 const { Content } = Layout;
 
 const cardsData = [
@@ -24,26 +27,19 @@ const cardsData = [
         subtitle: 'Профиль',
     },
 ];
-const handleHeartClick = () => {
-    history.push(PATHS.CALENDAR);
-    console.log(123);
-    
-};
 
 export const MainContent = () => {
-     // const [isModalOpen, setIsModalOpen] = useState(false);
+    const [getTraining] = useLazyGetTrainingQuery();
+    const dispatch = useAppDispatch();
 
-    // const showModal = () => {
-    //     setIsModalOpen(true);
-    // };
-
-    // const handleOk = () => {
-    //     setIsModalOpen(false);
-    // };
-
-    // const handleCancel = () => {
-    //     setIsModalOpen(false);
-    // };
+    const hanleGetTraining = () => {
+        dispatch(setIsLoading(true));
+        getTraining()
+            .unwrap()
+            .then(() => history.push(PATHS.CALENDAR))
+            .catch(() => dispatch(setIsError(true)))
+            .finally(() => dispatch(setIsLoading(false)));
+    };
     return (
         <Content className='main-content'>
             <div className='main-text-description'>
@@ -71,15 +67,16 @@ export const MainContent = () => {
             <div className='wrapper-list-cards'>
                 {cardsData.map((card, index) => (
                     <MainCard key={`card-${index}`} title={card.title}>
-                        <div className='content' onClick={index === 1 ? handleHeartClick : undefined}>
+                        <div
+                            className='content'
+                            onClick={index === 1 ? hanleGetTraining : undefined}
+                        >
                             <span>{card.icon}</span>
                             <span>{card.subtitle}</span>
                         </div>
                     </MainCard>
                 ))}
             </div>
-            {/* <ModalErrorCalendar open={true} /> */}
-
         </Content>
     );
 };

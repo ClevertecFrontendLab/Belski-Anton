@@ -1,11 +1,14 @@
 import { Button, Modal, Result } from "antd";
 import { STATUS_CODES } from '../../../constants/index';
 import './modal-error-calendar.scss'
+import { useAppDispatch } from "@hooks/typed-react-redux-hooks";
+import { setIsError } from "@redux/error-training-slice";
 interface ModalErrorCalendarProps{
    open:boolean;
 }
 
 const ModalErrorCalendar = ({open}: ModalErrorCalendarProps) => {
+    const dispatch = useAppDispatch()
     return (
         <Modal
            className='wrapper-error-calendar'
@@ -20,7 +23,7 @@ const ModalErrorCalendar = ({open}: ModalErrorCalendarProps) => {
                 status={STATUS_CODES.INTERNAL_SERVER_ERROR}
                 title='Что-то пошло не так'
                 subTitle='Произошла ошибка, попробуйте ещё раз..'
-                extra={<Button type='primary'>Назад</Button>}
+                extra={<Button type='primary' onClick={()=>dispatch(setIsError(false))}>Назад</Button>}
             />
         </Modal>
     );
