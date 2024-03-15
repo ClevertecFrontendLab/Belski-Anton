@@ -51,7 +51,7 @@ const CalendarDekstop = () => {
     const [isModalDataSaveError, setIsModalDataSaveError] = useState(false);
     const [isContentVisible, setContentVisible] = useState(false);
     const [isAddTraining, setAddTraining] = useState(false);
-    const { data: trainingData, isError,refetch } = useGetTrainingQuery();
+    const { data: trainingData, isError, refetch } = useGetTrainingQuery();
     const { data: trainingListData } = useGetTrainingListQuery();
     // const [date, setDate] = useState(moment());
     console.log(trainingListData);
@@ -64,8 +64,6 @@ const CalendarDekstop = () => {
     // const showDrawer = () => {
     //     setAddTraining(true);
     // };
-
-   
 
     const onClose = () => {
         setAddTraining(false);
@@ -85,12 +83,12 @@ const CalendarDekstop = () => {
         const currentDate = date.format('DD.MM.YYYY');
         if (currentDate === clickDate) {
             return isContentVisible ? (
-                <CardTraining openSidebar={openSidebar}  />
+                <CardTraining openSidebar={openSidebar} />
             ) : (
                 <CardCreateTraine
                     onClick={resetClickDate}
                     clickDate={clickDate}
-                    disabled={date.isBefore(moment(), 'day')}
+                    disabled={date.isBefore(moment().add(1, 'day'), 'day')}
                     onCloseClick={toggleContentVisibility}
                 />
             );
@@ -106,8 +104,8 @@ const CalendarDekstop = () => {
     useEffect(() => {
         if (isError) {
             setIsModalOpenDateError(true);
-        }else{
-            setIsModalOpenDateError(false) 
+        } else {
+            setIsModalOpenDateError(false);
         }
     }, [isError]);
 
