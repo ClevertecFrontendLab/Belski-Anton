@@ -47,19 +47,14 @@ const routes = [
 const CalendarDekstop = () => {
     const [clickDate, setClickDate] = useState('');
     const [value, setValue] = useState(moment());
-    const [isModalOpenDateError, setisModalOpenDateError] = useState(false);
-    const [isModalDataSaveError, setisModalDataSaveError] = useState(false);
+    const [isModalOpenDateError, setIsModalOpenDateError] = useState(false);
+    const [isModalDataSaveError, setIsModalDataSaveError] = useState(false);
     const [isContentVisible, setContentVisible] = useState(false);
     const [isAddTraining, setAddTraining] = useState(false);
-    const { data: trainingData, isError, error } = useGetTrainingQuery();
+    const { data: trainingData, isError,refetch } = useGetTrainingQuery();
     const { data: trainingListData } = useGetTrainingListQuery();
     // const [date, setDate] = useState(moment());
     console.log(trainingListData);
-
-    const showModal = () => {
-        setisModalOpenDateError(true);
-        // isModalDataSaveError(true)
-      };
 
     const openSidebar = () => {
         setAddTraining(!isAddTraining);
@@ -69,6 +64,8 @@ const CalendarDekstop = () => {
     // const showDrawer = () => {
     //     setAddTraining(true);
     // };
+
+   
 
     const onClose = () => {
         setAddTraining(false);
@@ -88,7 +85,7 @@ const CalendarDekstop = () => {
         const currentDate = date.format('DD.MM.YYYY');
         if (currentDate === clickDate) {
             return isContentVisible ? (
-                <CardTraining openSidebar={openSidebar} setClickDate={setClickDate}/>
+                <CardTraining openSidebar={openSidebar}  />
             ) : (
                 <CardCreateTraine
                     onClick={resetClickDate}
@@ -105,6 +102,14 @@ const CalendarDekstop = () => {
             setClickDate('');
         }
     }, [value]);
+
+    useEffect(() => {
+        if (isError) {
+            setIsModalOpenDateError(true);
+        }else{
+            setIsModalOpenDateError(false) 
+        }
+    }, [isError]);
 
     return (
         <>
@@ -143,9 +148,15 @@ const CalendarDekstop = () => {
                     />
                 </div>
             </div>
-            {isAddTraining && <SideBarAddTraining open={isAddTraining} onClose={onClose} clickDate={clickDate}  />}
-            <ModalDataOpenErrorCalendar open={isModalOpenDateError} />
-           {/* < ModelDataSaveErrorCalendar open={isModalDataSaveError}/> */}
+            {isAddTraining && (
+                <SideBarAddTraining open={isAddTraining} onClose={onClose} clickDate={clickDate} />
+            )}
+            <ModalDataOpenErrorCalendar
+                onOk={refetch}
+                open={isModalOpenDateError}
+                onCancel={() => setIsModalOpenDateError(false)}
+            />
+            {/* < ModelDataSaveErrorCalendar open={isModalDataSaveError}/> */}
         </>
     );
 };

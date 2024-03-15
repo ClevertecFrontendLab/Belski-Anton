@@ -3,7 +3,7 @@ import { CloseCircleOutlined } from '@ant-design/icons';
 import { Button } from 'antd/lib/radio';
 import './modal-data-open-error-calendar.scss';
 
-const ModalDataOpenErrorCalendar = ({ open }: ModalProps) => {
+const ModalDataOpenErrorCalendar = ({ open,onCancel,onOk }: ModalProps) => {
     return (
         <div className='wrapper-modal-data-open-error-calendar'>
             <Modal
@@ -13,6 +13,7 @@ const ModalDataOpenErrorCalendar = ({ open }: ModalProps) => {
                     backgroundColor: 'rgba(121, 156, 212, 0.5)',
                     backdropFilter: 'blur(3px',
                 }}
+                onCancel={onCancel}
                 centered
                 footer={null}
             >
@@ -28,7 +29,7 @@ const ModalDataOpenErrorCalendar = ({ open }: ModalProps) => {
                 </div>
 
                 <div className='wrapper-btn-open-data-error-calendar'>
-                    <Button className='btn-open-data-error-calendar'>Обновить</Button>
+                    <Button className='btn-open-data-error-calendar' onClick={onOk}>Обновить</Button>
                 </div>
             </Modal>
         </div>
