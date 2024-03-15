@@ -1,0 +1,46 @@
+.modal-data-save-error {
+    .ant-modal-content {
+        width: 416px;
+        height: 188px;
+        .ant-modal-body {
+            line-height: 1;
+            padding: 32px 32px 0 32px;
+
+            height: 100%;
+            .wrapper-error-title {
+                display: flex;
+                gap: 16px;
+                .anticon {
+                    align-items: flex-start;
+                    > svg {
+                        align-items: flex-start;
+                        font-size: 22px;
+                    }
+                }
+                .text-description {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                }
+                .title {
+                    font-size: 16px;
+                    color: #262626;
+                    font-weight: 600;
+                }
+                .sub-title{
+                  margin-bottom: 24px;
+                }
+            }
+            .wrapper-btn-close-data-save-error {
+                display: flex;
+                flex-direction: row-reverse;
+                .btn-close-data-save-error {
+                    padding: 11px 17px;
+                    background-color: #2f54eb;
+                    color: #fff;
+                    height: 40px;
+                }
+            }
+        }
+    }
+}

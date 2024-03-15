@@ -6,11 +6,13 @@ import './calendar-dekstop.scss';
 import { useEffect, useState } from 'react';
 import { Calendar } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
-import CardCreateTraine from '@components/card-cretate-traine/card-create-traine';
+import CardCreateTraine from '@components/card-creatate-traine/card-create-traine';
 import ModalDataOpenErrorCalendar from '@components/popup/modal-data-open-error-calendar/modal-data-open-error-calendar';
 import { useGetTrainingListQuery, useGetTrainingQuery } from '../../api/methods-api';
 import CardTraining from '@components/card-training/card-training';
-import SideBarAddTraining from '@components/sider-add-training/sidebar-add-training';
+
+import ModelDataSaveErrorCalendar from '@components/popup/model-data-save-error-calendar/model-data-save-error-calendar';
+import SideBarAddTraining from '@components/sidebar-add-training/sidebar-add-training';
 moment.locale('ru');
 
 moment.updateLocale('ru', {
@@ -46,6 +48,7 @@ const CalendarDekstop = () => {
     const [clickDate, setClickDate] = useState('');
     const [value, setValue] = useState(moment());
     const [isModalOpenDateError, setisModalOpenDateError] = useState(false);
+    const [isModalDataSaveError, setisModalDataSaveError] = useState(true);
     const [isContentVisible, setContentVisible] = useState(false);
     const [isAddTraining, setAddTraining] = useState(false);
     const { data: trainingData, isError, error } = useGetTrainingQuery();
@@ -53,9 +56,10 @@ const CalendarDekstop = () => {
     // const [date, setDate] = useState(moment());
     console.log(trainingListData);
 
-    // const showModal = () => {
-    //     setisModalOpenDateError(true);
-    //   };
+    const showModal = () => {
+        setisModalOpenDateError(true);
+        // isModalDataSaveError(true)
+      };
 
     const openSidebar = () => {
         setAddTraining(!isAddTraining);
@@ -141,6 +145,7 @@ const CalendarDekstop = () => {
             </div>
             {isAddTraining && <SideBarAddTraining open={isAddTraining} onClose={onClose} clickDate={clickDate}  />}
             <ModalDataOpenErrorCalendar open={isModalOpenDateError} />
+           {/* < ModelDataSaveErrorCalendar open={isModalDataSaveError}/> */}
         </>
     );
 };
