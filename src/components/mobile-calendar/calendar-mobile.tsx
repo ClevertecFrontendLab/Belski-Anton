@@ -4,10 +4,11 @@ import moment from 'moment';
 import 'moment/locale/ru';
 import { Calendar } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
-import './calendar-mobile.scss'
+import './calendar-mobile.scss';
 import ModalDataOpenErrorCalendar from '@components/popup/modal-data-open-error-calendar/modal-data-open-error-calendar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import ModelDataSaveErrorCalendar from '@components/popup/model-data-save-error-calendar/model-data-save-error-calendar';
+import { useGetTrainingListQuery, useGetTrainingQuery } from '../../api/methods-api';
 moment.locale('ru');
 moment.updateLocale('ru', {
     weekdaysMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
@@ -38,31 +39,38 @@ const routes = [
     },
 ];
 const CalendarMobile = () => {
-    const [isModalOpenDateError, setisModalOpenDateError] = useState(false);
-    const [isModalDataSaveError, setisModalDataSaveError] = useState(true);
-
-
+    const [isModalOpenDateError, setIsModalOpenDateError] = useState(false);
+    const { data: trainingData } = useGetTrainingQuery();
+    const { data: trainingListData, isError } = useGetTrainingListQuery();
+    useEffect(() => {
+        if (isError) {
+            setIsModalOpenDateError(true);
+        } else {
+            setIsModalOpenDateError(false);
+        }
+    }, [isError]);
     return (
         <>
-        <div className='wrapper-mobile-calendar'>
-            <header>
-                <Breadcrumbs items={routes} />
-            </header>
-            <div className='wrapper-setting-calendar'>
-                <SettingOutlined />
+            <div className='wrapper-mobile-calendar'>
+                <header>
+                    <Breadcrumbs items={routes} />
+                </header>
+                <div className='wrapper-setting-calendar'>
+                    <SettingOutlined />
+                </div>
+                <Calendar
+                    locale={ruRu}
+                    fullscreen={false}
+                    className='mobile-calendar'
+                    dateFullCellRender={(date) => (
+                        <div className='ant-picker-calendar-date-value'> {date.format('D')}</div>
+                    )}
+                />
             </div>
-            <Calendar 
-            locale={ruRu} 
-            fullscreen={false}
-            className='mobile-calendar'
-            dateFullCellRender={(date)=>
-                <div className='ant-picker-calendar-date-value'> {date.format('D')}</div>
-            }
-             />
-        </div>
-        {/* <ModalDataOpenErrorCalendar open={isModalOpenDateError} /> */}
-           {/* < ModelDataSaveErrorCalendar open={isModalDataSaveError}/> */}
-
+            <ModalDataOpenErrorCalendar
+                open={isModalOpenDateError}
+                onCancel={() => setIsModalOpenDateError(false)}
+            />
         </>
     );
 };

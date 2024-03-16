@@ -1,9 +1,8 @@
-import { Modal, ModalProps } from 'antd';
-import { CloseCircleOutlined } from '@ant-design/icons';
-import { Button } from 'antd/lib/radio';
+import { Modal, ModalProps, Button } from 'antd';
+import { CloseCircleOutlined, CloseOutlined } from '@ant-design/icons';
 import './modal-data-open-error-calendar.scss';
 
-const ModalDataOpenErrorCalendar = ({ open,onCancel,onOk }: ModalProps) => {
+const ModalDataOpenErrorCalendar = ({ open, onCancel, onOk }: ModalProps) => {
     return (
         <div className='wrapper-modal-data-open-error-calendar'>
             <Modal
@@ -16,20 +15,38 @@ const ModalDataOpenErrorCalendar = ({ open,onCancel,onOk }: ModalProps) => {
                 onCancel={onCancel}
                 centered
                 footer={null}
+                closeIcon={
+                    <CloseOutlined
+                        data-test-id='modal-error-user-training-button-close'
+                        onClick={onCancel}
+                    />
+                }
             >
                 <div className='wrapper-icon-title'>
                     <CloseCircleOutlined style={{ color: '#2F54EB' }} className='icon' />
                     <div className='title-modal-data-open-error-calendar'>
-                        <span>При открытии данных</span>
-                        <span>произошла ошибка</span>
-                        <div className='subtitle-modal-data-open-error-calendar'>
+                        <span data-test-id='modal-error-user-training-title'>
+                            При открытии данных
+                            <br />
+                            произошла ошибка
+                        </span>
+                        <div
+                            className='subtitle-modal-data-open-error-calendar'
+                            data-test-id='modal-error-user-training-subtitle'
+                        >
                             Попробуйте ещё раз.
                         </div>
                     </div>
                 </div>
 
                 <div className='wrapper-btn-open-data-error-calendar'>
-                    <Button className='btn-open-data-error-calendar' onClick={onOk}>Обновить</Button>
+                    <Button
+                        className='btn-open-data-error-calendar'
+                        data-test-id='modal-error-user-training-button'
+                        onClick={onOk}
+                    >
+                        Обновить
+                    </Button>
                 </div>
             </Modal>
         </div>
