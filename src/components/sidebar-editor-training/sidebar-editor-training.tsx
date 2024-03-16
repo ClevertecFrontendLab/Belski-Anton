@@ -1,10 +1,11 @@
-import { Drawer } from 'antd';
+import { Badge, Drawer } from 'antd';
 import { useState } from 'react';
-import './sidebar-add-training.scss';
 import { PlusOutlined } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { Exercise, setExercises } from '@redux/traninig-slice';
 import ItemExercise from '@components/item-exercise/item-exercise';
+import './sidebar-editor-training.scss';
+import { color } from '@constants/index';
 
 interface DrawerControls {
     onClose: () => void;
@@ -19,7 +20,7 @@ const initialItemState: Exercise = {
     isImplementation: false,
 };
 
-const SideBarAddTraining = ({ onClose, open }: DrawerControls) => {
+const SidebarEditorTraining = ({ onClose, open }: DrawerControls) => {
     const dispatch = useAppDispatch();
     const { date, name, exercises } = useAppSelector((store) => store.training);
     const [allExercises, setAllExercises] = useState(
@@ -37,6 +38,10 @@ const SideBarAddTraining = ({ onClose, open }: DrawerControls) => {
         const fillArray = allExercises.filter((el) => el.name);
         dispatch(setExercises(fillArray));
     };
+    const getColorByName = (trainingName: string) => {
+        const foundColor = color.find((item) => item.name === trainingName);
+        return foundColor ? foundColor.color : '';
+    };
     return (
         <div className='wrapper-drawer'>
             <Drawer
@@ -46,7 +51,7 @@ const SideBarAddTraining = ({ onClose, open }: DrawerControls) => {
                         <div className='wrapper-icon-plus'>
                             <PlusOutlined />
                         </div>
-                        <div> Добавление упражнений</div>
+                        <div>Редактирование</div>
                     </div>
                 }
                 placement='right'
@@ -58,7 +63,14 @@ const SideBarAddTraining = ({ onClose, open }: DrawerControls) => {
                 maskStyle={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}
                 width={408}
             >
-                <div className='wrapper-date-add-training'>{date}</div>
+                <div className='wrapper-date-add-training'>
+                {name && (
+                        <Badge count={1} color={getColorByName(name)}>
+                            {name}
+                        </Badge>
+                    )}
+                    {date}
+                </div>
 
                 {allExercises.map((el, idx) => (
                     <ItemExercise item={el} key={idx} idx={idx} onChange={onChangeExercise} />
@@ -76,4 +88,4 @@ const SideBarAddTraining = ({ onClose, open }: DrawerControls) => {
     );
 };
 
-export default SideBarAddTraining;
+export default SidebarEditorTraining;

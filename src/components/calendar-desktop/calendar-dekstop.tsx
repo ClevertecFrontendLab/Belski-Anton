@@ -15,6 +15,7 @@ import SideBarAddTraining from '@components/sidebar-add-training/sidebar-add-tra
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { setDate } from '@redux/traninig-slice';
 import { color } from '@constants/index';
+import SidebarEditorTraining from '@components/sidebar-editor-training/sidebar-editor-training';
 moment.locale('ru');
 
 moment.updateLocale('ru', {
@@ -51,6 +52,7 @@ const CalendarDekstop = () => {
     const [isModalOpenDateError, setIsModalOpenDateError] = useState(false);
     const [isContentVisible, setContentVisible] = useState(false);
     const [isAddTraining, setAddTraining] = useState(false);
+    const [isEditorTraining, setIsEditTraining] = useState(false);
     const { data: trainingData } = useGetTrainingQuery();
     const { data: trainingListData, isError, refetch } = useGetTrainingListQuery();
     const dispatch = useAppDispatch();
@@ -63,6 +65,9 @@ const CalendarDekstop = () => {
     const onClose = () => {
         setAddTraining(false);
     };
+    const onCloseEdit = () => {
+        setIsEditTraining(false);
+    };
 
     const toggleContentVisibility = () => {
         setContentVisible(!isContentVisible);
@@ -73,7 +78,9 @@ const CalendarDekstop = () => {
     };
 
     const resetClickDate = () => dispatch(setDate(''));
-
+    const handleEditClick = () => {
+       setIsEditTraining(true)
+    };
     const renderTrainig = (d: Moment, isEdit = false) => {
         if (trainingData?.length && trainingListData) {
             const data = trainingData.filter((el) => moment(el.date).isSame(d, 'day'));
@@ -86,7 +93,12 @@ const CalendarDekstop = () => {
                                 color={color.find((item) => item.name === el.name)?.color}
                                 text={el.name}
                             />
-                            {isEdit && <EditOutlined style={{ color: '#2F54EB' }}/>}
+                            {isEdit && (
+                                <EditOutlined
+                                    onClick={handleEditClick}
+                                    style={{ color: '#2F54EB' }}
+                                />
+                            )}
                         </div>
                     ))}
                 </div>
@@ -170,6 +182,7 @@ const CalendarDekstop = () => {
                 open={isModalOpenDateError}
                 onCancel={() => setIsModalOpenDateError(false)}
             />
+            <SidebarEditorTraining open={isEditorTraining} onClose={onCloseEdit} />
         </>
     );
 };
