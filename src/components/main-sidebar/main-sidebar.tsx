@@ -18,7 +18,7 @@ import { setIsError } from '@redux/error-training-slice';
 export const SideBar = () => {
     const [collapsed, setCollapsed] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
-    const { token } = useAppSelector((state) => state.auth);
+    const { token} = useAppSelector((state) => state.auth);
     const [getTraining] = useLazyGetTrainingQuery();
     const dispatch = useAppDispatch();
 

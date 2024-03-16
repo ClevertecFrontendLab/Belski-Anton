@@ -11,8 +11,9 @@ import ModalDataOpenErrorCalendar from '@components/popup/modal-data-open-error-
 import { useGetTrainingListQuery, useGetTrainingQuery } from '../../api/methods-api';
 import CardTraining from '@components/card-training/card-training';
 
-import ModelDataSaveErrorCalendar from '@components/popup/model-data-save-error-calendar/model-data-save-error-calendar';
 import SideBarAddTraining from '@components/sidebar-add-training/sidebar-add-training';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { setDate } from '@redux/traninig-slice';
 moment.locale('ru');
 
 moment.updateLocale('ru', {
@@ -45,25 +46,18 @@ const routes = [
 ];
 
 const CalendarDekstop = () => {
-    const [clickDate, setClickDate] = useState('');
     const [value, setValue] = useState(moment());
     const [isModalOpenDateError, setIsModalOpenDateError] = useState(false);
-    const [isModalDataSaveError, setIsModalDataSaveError] = useState(false);
     const [isContentVisible, setContentVisible] = useState(false);
     const [isAddTraining, setAddTraining] = useState(false);
-    const { data: trainingData, isError, refetch } = useGetTrainingQuery();
-    const { data: trainingListData } = useGetTrainingListQuery();
-    // const [date, setDate] = useState(moment());
-    console.log(trainingListData);
-
+    const { data: trainingData } = useGetTrainingQuery();
+    const { data: trainingListData, isError, refetch } = useGetTrainingListQuery();
+    const dispatch = useAppDispatch();
+    const { date } = useAppSelector((store) => store.training);
     const openSidebar = () => {
         setAddTraining(!isAddTraining);
         console.log(isAddTraining);
     };
-
-    // const showDrawer = () => {
-    //     setAddTraining(true);
-    // };
 
     const onClose = () => {
         setAddTraining(false);
@@ -74,21 +68,21 @@ const CalendarDekstop = () => {
     };
 
     const clickOnDate = (date: Moment) => {
-        setClickDate(moment(date).format('DD.MM.YYYY'));
+        dispatch(setDate(moment(date).format('DD.MM.YYYY')));
     };
 
-    const resetClickDate = () => setClickDate('');
+    const resetClickDate = () => dispatch(setDate(''));
 
-    const renderCard = (date: Moment) => {
-        const currentDate = date.format('DD.MM.YYYY');
-        if (currentDate === clickDate) {
+    const renderCard = (d: Moment) => {
+        const currentDate = d.format('DD.MM.YYYY');
+        if (currentDate === date) {
             return isContentVisible ? (
-                <CardTraining openSidebar={openSidebar} />
+                <CardTraining openSidebar={openSidebar} close={() => setContentVisible(false)}/>
             ) : (
                 <CardCreateTraine
                     onClick={resetClickDate}
-                    clickDate={clickDate}
-                    disabled={date.isBefore(moment().add(1, 'day'), 'day')}
+                    clickDate={date}
+                    disabled={d.isBefore(moment().add(1, 'day'), 'day')}
                     onCloseClick={toggleContentVisibility}
                 />
             );
@@ -97,9 +91,9 @@ const CalendarDekstop = () => {
 
     useEffect(() => {
         if (value.month()) {
-            setClickDate('');
+            dispatch(setDate(''));
         }
-    }, [value]);
+    }, [value, dispatch]);
 
     useEffect(() => {
         if (isError) {
@@ -124,37 +118,34 @@ const CalendarDekstop = () => {
                         onChange={setValue}
                         locale={ruRu}
                         className='wrapper-calendar'
-                        dateFullCellRender={(date) => (
+                        dateFullCellRender={(d) => (
                             <div
                                 className='cell-table'
                                 style={{ zIndex: 0 }}
                                 onClick={(e) => {
                                     e.preventDefault();
                                     e.stopPropagation();
-                                    clickOnDate(date);
+                                    clickOnDate(d);
                                     setContentVisible(false);
                                 }}
                             >
                                 <div className='ant-picker-calendar-date-value'>
-                                    {date.format('DD')}
+                                    {d.format('DD')}
                                 </div>
                                 <div className='ant-picker-calendar-date-content'>
-                                    {clickDate && renderCard(date)}
+                                    {date && renderCard(d)}
                                 </div>
                             </div>
                         )}
                     />
                 </div>
             </div>
-            {isAddTraining && (
-                <SideBarAddTraining open={isAddTraining} onClose={onClose} clickDate={clickDate} />
-            )}
+            {isAddTraining && <SideBarAddTraining open={isAddTraining} onClose={onClose} />}
             <ModalDataOpenErrorCalendar
                 onOk={refetch}
                 open={isModalOpenDateError}
                 onCancel={() => setIsModalOpenDateError(false)}
             />
-            {/* < ModelDataSaveErrorCalendar open={isModalDataSaveError}/> */}
         </>
     );
 };

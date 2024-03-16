@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface Exercise {
+export interface Exercise {
     name: string;
     replays: number;
     weight: number;

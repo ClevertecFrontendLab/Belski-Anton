@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_API_URL, API_ROUTES } from '../constants/index';
 import { store } from '@redux/configure-store';
+import { Exercise } from '@redux/traninig-slice';
 
 interface IPropsRegistration {
     email: string;
@@ -35,18 +36,11 @@ interface ICreateReview {
     rating: number;
 }
 
-// interface Traning {
-//     name: string;
-//     date: string;
-//     isTemplementation: boolean;
-//     parameters?: {
-//         repeat: boolean;
-//         period: number;
-//         joinTraning: boolean;
-//         participants: string[];
-//     };
-//     exercises: Exercise[];
-// }
+interface Traning {
+    name: string;
+    date: string;
+    exercises: Exercise[];
+}
 
 // interface Exercise {
 //     name: string;
@@ -87,7 +81,6 @@ interface TrainingListItem {
     key: string;
 }
 
-
 export const authApi = createApi({
     reducerPath: 'authApi',
     baseQuery: fetchBaseQuery({
@@ -100,7 +93,7 @@ export const authApi = createApi({
             return headers;
         },
     }),
-    tagTypes: ['Feedback'],
+    tagTypes: ['Feedback','Training'],
     endpoints: (builder) => ({
         registration: builder.mutation<unknown, IPropsRegistration>({
             query: (body) => ({
@@ -158,14 +151,16 @@ export const authApi = createApi({
                 url: API_ROUTES.getTraining,
                 method: 'GET',
             }),
+            providesTags: ['Training'],
         }),
-        // createTrainig: builder.mutation<unknown, Traning>({
-        //     query: (training) => ({
-        //         url: API_ROUTES.createTraning,
-        //         method: 'POST',
-        //         body: training,
-        //     }),
-        // }),
+        createTrainig: builder.mutation<unknown, Traning>({
+            query: (training) => ({
+                url: API_ROUTES.createTraining,
+                method: 'POST',
+                body: training,
+            }),
+            invalidatesTags: ['Training'],
+        }),
         // uptadeTraning: builder.mutation<unknown, Traning>({
         //     query: (training) => ({
         //         url: API_ROUTES.updateTraining,
@@ -180,7 +175,7 @@ export const authApi = createApi({
         //         body: training,
         //     }),
         // }),
-        getTrainingList: builder.query<TrainingListItem,void>({
+        getTrainingList: builder.query<TrainingListItem[], void>({
             query: () => ({
                 url: API_ROUTES.getTrainingList,
                 method: 'GET',
@@ -199,7 +194,7 @@ export const {
     useCreateReviewMutation,
     useGetTrainingQuery,
     useLazyGetTrainingQuery,
-    // useCreateTrainigMutation,
+    useCreateTrainigMutation,
     // useUptadeTraningMutation,
     // useDeleteTrainigMutation,
     useGetTrainingListQuery,
