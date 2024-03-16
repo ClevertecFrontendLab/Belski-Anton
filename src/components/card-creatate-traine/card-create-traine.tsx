@@ -7,19 +7,21 @@ interface CardCreateTraineProps {
     disabled: boolean;
     onClick: () => void;
     onCloseClick: () => void;
+    child?: JSX.Element;
 }
 const CardCreateTraine = ({
     clickDate,
     disabled,
     onClick,
     onCloseClick,
+    child,
 }: CardCreateTraineProps) => {
     return (
         <div className='wrapper-card-create-traine'>
             <div className='header-card-create-traine'>
                 <div className='title-card-create-traine'>
                     <div className='text-data-create-card'>{`Тренировки на ${clickDate}`}</div>
-                    <span>Нет активных тренировок</span>
+                    {!child && <span>Нет активных тренировок</span>}
                 </div>
                 <CloseOutlined
                     className='close-card-create-traine'
@@ -30,9 +32,13 @@ const CardCreateTraine = ({
                     }}
                 />
             </div>
-            <div className='wrapper-img'>
-                <img src={iconCreateCard} alt='' />
-            </div>
+            {child ? (
+                child
+            ) : (
+                <div className='wrapper-img'>
+                    <img src={iconCreateCard} alt='' />
+                </div>
+            )}
             <Divider style={{ margin: '0' }} />
             <div className='wrapper-btn-create-traine'>
                 <Button

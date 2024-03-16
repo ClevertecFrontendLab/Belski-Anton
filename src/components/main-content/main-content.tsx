@@ -70,6 +70,7 @@ export const MainContent = () => {
                         <div
                             className='content'
                             onClick={index === 1 ? hanleGetTraining : undefined}
+                            data-test-id={index === 1 ? 'menu-button-calendar' : undefined}
                         >
                             <span>{card.icon}</span>
                             <span>{card.subtitle}</span>

@@ -1,6 +1,5 @@
 .wrapper-card-create-traine {
     width: 264px;
-    height: 200px;
     position: absolute;
     left: 0;
     top: 2px;
@@ -25,6 +24,16 @@
 
         .close-card-create-traine {
             font-size: 12px;
+        }
+
+        & + .wrapper-badge-training {
+            padding: 0 12px;
+            min-height: 64px;
+
+            .item-badge {
+                display: flex;
+                justify-content: space-between;
+            }
         }
     }
 

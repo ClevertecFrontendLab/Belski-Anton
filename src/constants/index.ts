@@ -18,7 +18,7 @@ export const API_ROUTES = {
     createTraining: '/training',
     updateTraining: '/training/{trainingId}',
     deleteTraining: '/training/{trainingId}',
-    getTrainingList:'/catalogs/training-list'
+    getTrainingList: '/catalogs/training-list',
 };
 
 export const STATUS_CODES: { [key: string]: ResultStatusType } = {
@@ -44,3 +44,26 @@ export const PATHS = {
     AUTH_CONFIRM_EMAIL: '/auth/confirm-email',
     AUTH_CHANGE_PASSWORD: '/auth/change-password',
 };
+
+export const color = [
+    {
+        name: 'Ноги',
+        color: '#FF4D4F',
+    },
+    {
+        name: 'Руки',
+        color: '#13C2C2',
+    },
+    {
+        name: 'Силовая',
+        color: '#FADB14',
+    },
+    {
+        name: 'Спина',
+        color: '#FA8C16',
+    },
+    {
+        name: 'Грудь',
+        color: '#52C41A',
+    },
+];

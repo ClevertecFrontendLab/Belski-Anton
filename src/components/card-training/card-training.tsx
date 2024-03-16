@@ -56,7 +56,7 @@ const CardTraining = ({ openSidebar, close }: ICardTrainingProps) => {
                 </div>
                 <Divider className='divider-up' />
                 {exercises.length ? (
-                    <div>
+                    <div className='wrapper-save-training'>
                         {exercises.map((el, idx) => (
                             <div key={idx}>{el.name}</div>
                         ))}

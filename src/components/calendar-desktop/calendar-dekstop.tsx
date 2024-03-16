@@ -4,8 +4,8 @@ import moment, { Moment } from 'moment';
 import 'moment/locale/ru';
 import './calendar-dekstop.scss';
 import { useEffect, useState } from 'react';
-import { Calendar } from 'antd';
-import { SettingOutlined } from '@ant-design/icons';
+import { Badge, Calendar } from 'antd';
+import { EditOutlined, SettingOutlined } from '@ant-design/icons';
 import CardCreateTraine from '@components/card-creatate-traine/card-create-traine';
 import ModalDataOpenErrorCalendar from '@components/popup/modal-data-open-error-calendar/modal-data-open-error-calendar';
 import { useGetTrainingListQuery, useGetTrainingQuery } from '../../api/methods-api';
@@ -14,6 +14,7 @@ import CardTraining from '@components/card-training/card-training';
 import SideBarAddTraining from '@components/sidebar-add-training/sidebar-add-training';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { setDate } from '@redux/traninig-slice';
+import { color } from '@constants/index';
 moment.locale('ru');
 
 moment.updateLocale('ru', {
@@ -73,17 +74,38 @@ const CalendarDekstop = () => {
 
     const resetClickDate = () => dispatch(setDate(''));
 
+    const renderTrainig = (d: Moment, isEdit = false) => {
+        if (trainingData?.length && trainingListData) {
+            const data = trainingData.filter((el) => moment(el.date).isSame(d, 'day'));
+            return data.length ? (
+                <div className='wrapper-badge-training'>
+                    {data.map((el, idx) => (
+                        <div className='item-badge'>
+                            <Badge
+                                key={`color-${idx}`}
+                                color={color.find((item) => item.name === el.name)?.color}
+                                text={el.name}
+                            />
+                            {isEdit && <EditOutlined style={{ color: '#2F54EB' }}/>}
+                        </div>
+                    ))}
+                </div>
+            ) : undefined;
+        }
+    };
+
     const renderCard = (d: Moment) => {
         const currentDate = d.format('DD.MM.YYYY');
         if (currentDate === date) {
             return isContentVisible ? (
-                <CardTraining openSidebar={openSidebar} close={() => setContentVisible(false)}/>
+                <CardTraining openSidebar={openSidebar} close={() => setContentVisible(false)} />
             ) : (
                 <CardCreateTraine
                     onClick={resetClickDate}
                     clickDate={date}
                     disabled={d.isBefore(moment().add(1, 'day'), 'day')}
                     onCloseClick={toggleContentVisibility}
+                    child={renderTrainig(d, true)}
                 />
             );
         }
@@ -133,7 +155,9 @@ const CalendarDekstop = () => {
                                     {d.format('DD')}
                                 </div>
                                 <div className='ant-picker-calendar-date-content'>
-                                    {date && renderCard(d)}
+                                    {date && moment(date, 'DD.MM.YYYY').isSame(d, 'day')
+                                        ? renderCard(d)
+                                        : renderTrainig(d)}
                                 </div>
                             </div>
                         )}
