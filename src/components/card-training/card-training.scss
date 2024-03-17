@@ -10,9 +10,17 @@
 
     .header-select {
         display: flex;
-        justify-content: center;
         gap: 5px;
         padding: 12.5px 12px;
+
+        .ant-select {
+            width: 100%;
+            .ant-select-selector {
+                text-align: start;
+
+            }
+        }
+
 
         .ant-select:not(.ant-select-customize-input) .ant-select-selector {
             border: none;
@@ -34,8 +42,8 @@
             justify-content: space-between;
             align-items: center;
             gap: 5px;
+            color: #8C8C8C;
         }
-
     }
 
     .divider-down {
@@ -52,10 +60,11 @@
     .wrapper-btn-training {
         display: flex;
         flex-direction: column;
+        padding: 0 12px;
 
         .btn-add-training {
             font-size: 14px;
-            width: 240px;
+            width: 100%;
             margin: 11px auto 0;
         }
 
@@ -72,6 +81,15 @@
         .btn-save-training:disabled {
             background-color: #fff;
         }
+    }
+
+    @media(max-width: 640px) {
+        width: 312px;
+        position: fixed;
+        top: 230px;
+        left: 50%;
+        transform: translate(-50%);
+        box-shadow: 0 0 10px 0 #0000001a;
     }
 }
 

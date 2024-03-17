@@ -11,6 +11,7 @@ import moment from 'moment';
 interface DrawerControls {
     onClose: () => void;
     open: boolean;
+    isMob?: boolean;
 }
 
 const initialItemState: Exercise = {
@@ -21,7 +22,7 @@ const initialItemState: Exercise = {
     isImplementation: false,
 };
 
-const SidebarEditorTraining = ({ onClose, open }: DrawerControls) => {
+const SidebarEditorTraining = ({ onClose, open, isMob = false }: DrawerControls) => {
     const dispatch = useAppDispatch();
     const [deleteItems, setDeleteItems] = useState<number[]>([]);
     const { date, name, exercises } = useAppSelector((store) => store.training);
@@ -70,7 +71,8 @@ const SidebarEditorTraining = ({ onClose, open }: DrawerControls) => {
                         <div>Редактирование</div>
                     </div>
                 }
-                placement='right'
+                height={isMob ? `87vh` : `100%`}
+                placement={isMob ? 'bottom' : 'right'}
                 onClose={() => {
                     saveExercises();
                     onClose();

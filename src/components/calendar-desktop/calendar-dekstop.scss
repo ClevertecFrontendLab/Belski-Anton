@@ -84,12 +84,31 @@
                 cursor: pointer;
                 margin: 0;
                 height: 143px;
+
+                .ant-picker-calendar-date-content {
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+
+                    &:-webkit-scrollbar-track {
+                        display: none;
+                    }
+                }
             }
         }
 
         .wrapper-badge-training {
             display: flex;
             flex-direction: column;
+
+            .item-badge {
+                display: flex;
+                justify-content: space-between;
+
+                &.disabled {
+                    color: #000000D9;
+                }
+            }
         }
 
         @media (max-width: 1000px) {

@@ -10,8 +10,9 @@ import { useUptadeTraningMutation } from '../../api/methods-api';
 interface ICardTrainingProps {
     openSidebar: () => void;
     close: () => void;
+    setError?: () => void
 }
-const CardTrainingEdit = ({ openSidebar, close }: ICardTrainingProps) => {
+const CardTrainingEdit = ({ openSidebar, close, setError }: ICardTrainingProps) => {
     const [isModalDataSaveError, setIsModalDataSaveError] = useState(false);
     const [updateTraining] = useUptadeTraningMutation();
     const dispatch = useAppDispatch();
@@ -20,30 +21,33 @@ const CardTrainingEdit = ({ openSidebar, close }: ICardTrainingProps) => {
         e.stopPropagation();
     };
 
+
     const onClickUpdate = () => {
         dispatch(setIsLoading(true));
         updateTraining({
             training: {
                 name,
                 exercises,
-                date: moment.utc(date, 'DD.MM.YYYY').format(),
+                date: moment.utc(date, 'DD.MM.YYYY').format()
             },
             id: _id,
             isImplementation: moment(date, 'DD.MM.YYYY').isBefore(moment(), 'day'),
         })
             .unwrap()
             .then(() => close())
-            .catch(() => setIsModalDataSaveError(true))
+            .catch(() => {
+                if (setError) {
+                    setError()
+                } else {
+                    setIsModalDataSaveError(true)
+                }
+            })
             .finally(() => dispatch(setIsLoading(false)));
     };
 
     return (
         <>
-            <div
-                className='wrapper-card-training'
-                data-test-id='modal-create-exercise'
-                onClick={handleClick}
-            >
+            <div className='wrapper-card-training' data-test-id='modal-create-exercise' onClick={handleClick}>
                 <div className='header-select'>
                     <ArrowLeftOutlined onClick={close} />
                     <Select
@@ -54,17 +58,15 @@ const CardTrainingEdit = ({ openSidebar, close }: ICardTrainingProps) => {
                 </div>
                 <Divider className='divider-up' />
                 <div className='wrapper-save-training'>
-                    {!!exercises.length &&
-                        exercises.map((el, idx) => (
-                            <div key={idx} className='item-save-training'>
-                                <div>{el.name}</div>
-                                <EditOutlined
-                                    data-test-id={`modal-update-training-edit-button${idx}`}
-                                    onClick={openSidebar}
-                                    style={{ color: '#2F54EB' }}
-                                />
-                            </div>
-                        ))}
+                    {!!exercises.length && exercises.map((el, idx) => (
+                        <div key={idx} className='item-save-training'>
+                            <div>{el.name}</div>
+                            <EditOutlined
+                                data-test-id={`modal-update-training-edit-button${idx}`}
+                                onClick={openSidebar}
+                                style={{ color: '#2F54EB' }}
+                            /></div>
+                    ))}
                 </div>
                 <Divider className='divider-down' />
                 <div className='wrapper-btn-training'>

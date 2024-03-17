@@ -10,6 +10,7 @@ import { color } from '@constants/index';
 interface DrawerControls {
     onClose: () => void;
     open: boolean;
+    isMob?: boolean;
 }
 
 const initialItemState: Exercise = {
@@ -20,7 +21,7 @@ const initialItemState: Exercise = {
     isImplementation: false,
 };
 
-const SideBarAddTraining = ({ onClose, open }: DrawerControls) => {
+const SideBarAddTraining = ({ onClose, open, isMob = false }: DrawerControls) => {
     const dispatch = useAppDispatch();
     const { date, exercises, name } = useAppSelector((store) => store.training);
     const [allExercises, setAllExercises] = useState(
@@ -43,6 +44,8 @@ const SideBarAddTraining = ({ onClose, open }: DrawerControls) => {
             <Drawer
                 data-test-id='modal-drawer-right'
                 className='sidebar-add-training'
+                placement={isMob ? 'bottom' : 'right'}
+                height={isMob ? `87vh` : `100%`}
                 title={
                     <div className='wrapper-title'>
                         <div className='wrapper-icon-plus'>
@@ -51,7 +54,6 @@ const SideBarAddTraining = ({ onClose, open }: DrawerControls) => {
                         <div> Добавление упражнений</div>
                     </div>
                 }
-                placement='right'
                 onClose={() => {
                     saveExercises();
                     onClose();
