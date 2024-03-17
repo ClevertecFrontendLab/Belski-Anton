@@ -17,13 +17,14 @@ const CardCreateTraine = ({
     child,
 }: CardCreateTraineProps) => {
     return (
-        <div className='wrapper-card-create-traine'>
+        <div className='wrapper-card-create-traine' data-test-id='modal-create-training'>
             <div className='header-card-create-traine'>
                 <div className='title-card-create-traine'>
                     <div className='text-data-create-card'>{`Тренировки на ${clickDate}`}</div>
                     {!child && <span>Нет активных тренировок</span>}
                 </div>
                 <CloseOutlined
+                    data-test-id='modal-create-training-button-close'
                     className='close-card-create-traine'
                     onClick={(e) => {
                         e.preventDefault();

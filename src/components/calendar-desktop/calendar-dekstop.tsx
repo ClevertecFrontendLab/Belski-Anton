@@ -13,9 +13,10 @@ import CardTraining from '@components/card-training/card-training';
 
 import SideBarAddTraining from '@components/sidebar-add-training/sidebar-add-training';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
-import { setDate } from '@redux/traninig-slice';
+import { TrainingState, setDate, setExercises, setName, setTraining } from '@redux/traninig-slice';
 import { color } from '@constants/index';
 import SidebarEditorTraining from '@components/sidebar-editor-training/sidebar-editor-training';
+import CardTrainingEdit from '@components/card-training-edit/card-training-edit';
 moment.locale('ru');
 
 moment.updateLocale('ru', {
@@ -52,6 +53,7 @@ const CalendarDekstop = () => {
     const [isModalOpenDateError, setIsModalOpenDateError] = useState(false);
     const [isContentVisible, setContentVisible] = useState(false);
     const [isAddTraining, setAddTraining] = useState(false);
+    const [isEditCard, setIsEditCard] = useState(false);
     const [isEditorTraining, setIsEditTraining] = useState(false);
     const { data: trainingData } = useGetTrainingQuery();
     const { data: trainingListData, isError, refetch } = useGetTrainingListQuery();
@@ -59,7 +61,6 @@ const CalendarDekstop = () => {
     const { date } = useAppSelector((store) => store.training);
     const openSidebar = () => {
         setAddTraining(!isAddTraining);
-        console.log(isAddTraining);
     };
 
     const onClose = () => {
@@ -71,31 +72,40 @@ const CalendarDekstop = () => {
 
     const toggleContentVisibility = () => {
         setContentVisible(!isContentVisible);
+        dispatch(setName(''))
+        dispatch(setExercises([]))
     };
 
     const clickOnDate = (date: Moment) => {
         dispatch(setDate(moment(date).format('DD.MM.YYYY')));
     };
 
+    const onClickEdit = (training: TrainingState) => {
+        setContentVisible(true)
+        dispatch(setTraining({ ...training, date }))
+        setIsEditCard(true)
+    }
+
     const resetClickDate = () => dispatch(setDate(''));
-    const handleEditClick = () => {
-       setIsEditTraining(true)
-    };
     const renderTrainig = (d: Moment, isEdit = false) => {
         if (trainingData?.length && trainingListData) {
             const data = trainingData.filter((el) => moment(el.date).isSame(d, 'day'));
             return data.length ? (
                 <div className='wrapper-badge-training'>
                     {data.map((el, idx) => (
-                        <div className='item-badge'>
+                        <div className='item-badge' key={`color-${idx}`}>
                             <Badge
-                                key={`color-${idx}`}
                                 color={color.find((item) => item.name === el.name)?.color}
                                 text={el.name}
                             />
                             {isEdit && (
                                 <EditOutlined
-                                    onClick={handleEditClick}
+                                    data-test-id={`modal-update-training-edit-button${idx}`}
+                                    onClick={(e) => {
+                                        e.preventDefault()
+                                        e.stopPropagation()
+                                        onClickEdit(el)
+                                    }}
                                     style={{ color: '#2F54EB' }}
                                 />
                             )}
@@ -105,17 +115,19 @@ const CalendarDekstop = () => {
             ) : undefined;
         }
     };
-
     const renderCard = (d: Moment) => {
         const currentDate = d.format('DD.MM.YYYY');
         if (currentDate === date) {
             return isContentVisible ? (
-                <CardTraining openSidebar={openSidebar} close={() => setContentVisible(false)} />
+                isEditCard ? <CardTrainingEdit openSidebar={() => setIsEditTraining(true)} close={() => {
+                    setContentVisible(false)
+                    setIsEditCard(false)
+                }} /> : <CardTraining openSidebar={openSidebar} close={() => setContentVisible(false)} />
             ) : (
                 <CardCreateTraine
                     onClick={resetClickDate}
                     clickDate={date}
-                    disabled={d.isBefore(moment().add(1, 'day'), 'day')}
+                    disabled={d.isBefore(moment().add(1, 'day'), 'day') || trainingData?.filter((el) => moment(el.date).isSame(d, 'day')).length === trainingListData?.length}
                     onCloseClick={toggleContentVisibility}
                     child={renderTrainig(d, true)}
                 />

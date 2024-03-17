@@ -24,12 +24,25 @@ const ModelDataSaveErrorCalendar = ({ open, setIsOpen }: ModelDataSaveErrorCalen
                 <div className='wrapper-error-title'>
                     <CloseCircleFilled style={{ color: 'red' }} />
                     <div className='text-description'>
-                        <div className='title'>При сохранении данных произошла ошибка </div>
-                        <div className='sub-title'>Придётся попробовать ещё раз</div>
+                        <div className='title' data-test-id='modal-error-user-training-title'>
+                            При сохранении данных произошла ошибка{' '}
+                        </div>
+                        <div
+                            className='sub-title'
+                            data-test-id='modal-error-user-training-subtitle'
+                        >
+                            Придётся попробовать ещё раз
+                        </div>
                     </div>
                 </div>
                 <div className='wrapper-btn-close-data-save-error'>
-                    <Button className='btn-close-data-save-error' onClick={setIsOpen}>Закрыть</Button>
+                    <Button
+                        className='btn-close-data-save-error'
+                        data-test-id='modal-error-user-training-button'
+                        onClick={setIsOpen}
+                    >
+                        Закрыть
+                    </Button>
                 </div>
             </Modal>
         </div>

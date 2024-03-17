@@ -13,11 +13,13 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
+
         .title-card-create-traine {
             .text-data-create-card {
                 font-weight: bold;
             }
-            > span {
+
+            >span {
                 color: #8c8c8c;
             }
         }
@@ -26,8 +28,8 @@
             font-size: 12px;
         }
 
-        & + .wrapper-badge-training {
-            padding: 0 12px;
+        &+.wrapper-badge-training {
+            padding: 0 12px 12px;
             min-height: 64px;
 
             .item-badge {
@@ -53,12 +55,19 @@
         padding: 12px;
         display: flex;
         justify-content: center;
+
         .btn-create-traine {
             width: 240px;
             margin: 0 auto;
             height: 40px;
             background-color: #2f54eb;
             color: #fff;
+
+            &:disabled {
+                background-color: #F5F5F5;
+                color: #D9D9D9;
+                border: 1px solid #D9D9D9;
+            }
         }
     }
 }

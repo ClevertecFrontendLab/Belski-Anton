@@ -1,11 +1,12 @@
-import { Badge, Drawer } from 'antd';
-import { useState } from 'react';
-import { PlusOutlined } from '@ant-design/icons';
+import { Badge, Button, Drawer } from 'antd';
+import { useEffect, useState } from 'react';
+import { CloseOutlined, EditOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { Exercise, setExercises } from '@redux/traninig-slice';
 import ItemExercise from '@components/item-exercise/item-exercise';
 import './sidebar-editor-training.scss';
 import { color } from '@constants/index';
+import moment from 'moment';
 
 interface DrawerControls {
     onClose: () => void;
@@ -22,10 +23,15 @@ const initialItemState: Exercise = {
 
 const SidebarEditorTraining = ({ onClose, open }: DrawerControls) => {
     const dispatch = useAppDispatch();
+    const [deleteItems, setDeleteItems] = useState<number[]>([]);
     const { date, name, exercises } = useAppSelector((store) => store.training);
-    const [allExercises, setAllExercises] = useState(
-        exercises.length ? exercises : [initialItemState],
-    );
+    const [allExercises, setAllExercises] = useState(exercises);
+
+    useEffect(() => {
+        if (exercises) {
+            setAllExercises(exercises);
+        }
+    }, [exercises]);
 
     const onChangeExercise = (idx: number, newItem: Exercise) => {
         setAllExercises((prevExercises) => {
@@ -38,19 +44,29 @@ const SidebarEditorTraining = ({ onClose, open }: DrawerControls) => {
         const fillArray = allExercises.filter((el) => el.name);
         dispatch(setExercises(fillArray));
     };
-    const getColorByName = (trainingName: string) => {
-        const foundColor = color.find((item) => item.name === trainingName);
-        return foundColor ? foundColor.color : '';
+
+    const onDeleteItems = () => {
+        const actualItems = allExercises.filter((_, idx) => !deleteItems.includes(idx));
+        setAllExercises(actualItems);
+        setDeleteItems([]);
     };
+
+    const onClickCheckbox = (idx: number) => {
+        if (deleteItems.includes(idx)) {
+            setDeleteItems(deleteItems.filter((el) => el !== idx));
+        } else {
+            setDeleteItems([...deleteItems, idx]);
+        }
+    };
+
     return (
         <div className='wrapper-drawer'>
             <Drawer
-                className='sidebar-add-training'
+                data-test-id='modal-drawer-right'
+                className='sidebar-add-training edit'
                 title={
                     <div className='wrapper-title'>
-                        <div className='wrapper-icon-plus'>
-                            <PlusOutlined />
-                        </div>
+                        <EditOutlined />
                         <div>Редактирование</div>
                     </div>
                 }
@@ -62,27 +78,61 @@ const SidebarEditorTraining = ({ onClose, open }: DrawerControls) => {
                 open={open}
                 maskStyle={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}
                 width={408}
+                closeIcon={
+                    <CloseOutlined
+                        data-test-id='modal-drawer-right-button-close'
+                        onClick={() => {
+                            saveExercises();
+                            onClose();
+                        }}
+                    />
+                }
             >
                 <div className='wrapper-date-add-training'>
-                {name && (
-                        <Badge count={1} color={getColorByName(name)}>
-                            {name}
-                        </Badge>
+                    {name && (
+                        <Badge
+                            color={color.find((item) => item.name === name)?.color}
+                            text={name}
+                        />
                     )}
-                    {date}
+                    <div className='date'>{date}</div>
                 </div>
 
                 {allExercises.map((el, idx) => (
-                    <ItemExercise item={el} key={idx} idx={idx} onChange={onChangeExercise} />
+                    <ItemExercise
+                        edit={true}
+                        item={el}
+                        key={idx}
+                        idx={idx}
+                        onChange={onChangeExercise}
+                        onClickCheckbox={onClickCheckbox}
+                        isChecked={!!(deleteItems.length && deleteItems.includes(idx))}
+                    />
                 ))}
 
-                <div
-                    className='btn-repeat'
-                    onClick={() => setAllExercises([...allExercises, initialItemState])}
-                >
-                    <PlusOutlined style={{ color: '#2F54EB' }} />
-                    <div>Добавить ещё</div>
+                <div className='wrapper-action'>
+                    <div
+                        className='btn-repeat'
+                        onClick={() => setAllExercises([...allExercises, initialItemState])}
+                    >
+                        <PlusOutlined style={{ color: '#2F54EB' }} />
+                        <div>Добавить ещё</div>
+                    </div>
+                    <Button
+                        onClick={onDeleteItems}
+                        className='btn-delete'
+                        disabled={!deleteItems.length}
+                    >
+                        <MinusOutlined />
+                        Удалить
+                    </Button>
                 </div>
+                {!!moment(date, 'DD.MM.YYYY').isBefore(moment(), 'day') && (
+                    <div className='notification'>
+                        После сохранения внесенных изменений отредактировать проведенную тренировку
+                        будет невозможно
+                    </div>
+                )}
             </Drawer>
         </div>
     );

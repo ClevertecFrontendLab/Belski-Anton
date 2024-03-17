@@ -1,8 +1,21 @@
 .wrapper-calendar-dekstop {
+    max-height: 100vh;
+    min-height: 100vh;
+    overflow-y: scroll;
     background-color: #f0f5ff;
+
+    &::-webkit-scrollbar {
+        display: none;
+    }
+
+    &:-webkit-scrollbar-track {
+        display: none;
+    }
+
     header {
         padding: 16px 0 0 24px;
     }
+
     .wrapper-setting-calendar {
         display: flex;
         flex-direction: row-reverse;
@@ -10,6 +23,7 @@
         background-color: #f0f5ff;
         padding: 10px 35px 21px 0;
     }
+
     .wrapper-calendar {
         padding: 0 21px 93px 25px;
         background-color: #f0f5ff;
@@ -46,6 +60,7 @@
                         box-shadow: -10px 5px 5px #0000001a;
                     }
                 }
+
                 td:last-child {
                     .wrapper-card-training {
                         right: 0;
@@ -54,6 +69,7 @@
                     }
                 }
             }
+
             .cell-table {
                 display: block;
                 width: auto;
@@ -70,20 +86,24 @@
                 height: 143px;
             }
         }
+
         .wrapper-badge-training {
             display: flex;
             flex-direction: column;
         }
+
         @media (max-width: 1000px) {
             .ant-picker-content tr td:not(:first-child) {
                 border-left: 6px solid #f0f5ff;
             }
+
             .wrapper-badge-training {
                 .ant-badge.ant-badge-status.ant-badge-not-a-wrapper {
                     display: flex;
                     align-items: center;
                     gap: 5px;
                 }
+
                 .ant-badge-status-text {
                     font-size: 12px;
                     margin-left: 0;

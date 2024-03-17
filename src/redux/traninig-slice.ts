@@ -8,13 +8,15 @@ export interface Exercise {
     isImplementation: boolean;
 }
 
-interface TrainingState {
+export interface TrainingState {
+    _id: string;
     name: string;
     date: string;
     exercises: Exercise[];
 }
 
 const initialState: TrainingState = {
+    _id: '',
     name: '',
     date: '',
     exercises: [],
@@ -33,12 +35,15 @@ const trainingSlice = createSlice({
         setExercises: (state, { payload }: PayloadAction<Exercise[]>) => {
             state.exercises = payload;
         },
+        setTraining: (state, { payload }: PayloadAction<TrainingState>) => {
+            Object.assign(state, payload);
+        },
         clearTraining: (state) => {
             Object.assign(state, initialState);
         },
     },
 });
 
-export const {setName,setDate,setExercises,clearTraining } = trainingSlice.actions;
+export const { setName, setDate, setExercises, clearTraining, setTraining } = trainingSlice.actions;
 
 export default trainingSlice.reducer;

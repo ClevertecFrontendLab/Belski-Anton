@@ -42,13 +42,11 @@ interface Traning {
     exercises: Exercise[];
 }
 
-// interface Exercise {
-//     name: string;
-//     replays: number;
-//     weight: number;
-//     approaches: number;
-//     isTemplementation: boolean;
-// }
+interface IUpdateTraining {
+    training: Traning;
+    id: string;
+    isImplementation: boolean;
+}
 
 interface TrainingExercise {
     _id: string;
@@ -93,7 +91,7 @@ export const authApi = createApi({
             return headers;
         },
     }),
-    tagTypes: ['Feedback','Training'],
+    tagTypes: ['Feedback', 'Training', 'TrainingList'],
     endpoints: (builder) => ({
         registration: builder.mutation<unknown, IPropsRegistration>({
             query: (body) => ({
@@ -161,25 +159,21 @@ export const authApi = createApi({
             }),
             invalidatesTags: ['Training'],
         }),
-        // uptadeTraning: builder.mutation<unknown, Traning>({
-        //     query: (training) => ({
-        //         url: API_ROUTES.updateTraining,
-        //         method: 'PUT',
-        //         body: training,
-        //     }),
-        // }),
-        // deleteTrainig: builder.mutation({
-        //     query: (training) => ({
-        //         url: API_ROUTES.deleteTraining,
-        //         method: 'DELETE',
-        //         body: training,
-        //     }),
-        // }),
+        uptadeTraning: builder.mutation<unknown, IUpdateTraining>({
+            query: ({ training, id, isImplementation }) => ({
+                url: `${API_ROUTES.updateTraining}/${id}`,
+                method: 'PUT',
+                body: { ...training, isImplementation },
+            }),
+            invalidatesTags: ['Training', 'TrainingList'],
+        }),
+
         getTrainingList: builder.query<TrainingListItem[], void>({
             query: () => ({
                 url: API_ROUTES.getTrainingList,
                 method: 'GET',
             }),
+            providesTags: ['TrainingList'],
         }),
     }),
 });
@@ -195,7 +189,6 @@ export const {
     useGetTrainingQuery,
     useLazyGetTrainingQuery,
     useCreateTrainigMutation,
-    // useUptadeTraningMutation,
-    // useDeleteTrainigMutation,
+    useUptadeTraningMutation,
     useGetTrainingListQuery,
 } = authApi;
