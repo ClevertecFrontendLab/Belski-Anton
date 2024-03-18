@@ -1,5 +1,5 @@
 import { Card as AntdCard } from 'antd';
-import './main-card.css'
+import './main-card.scss'
 interface MainCardProps {
     title: string| React.ReactNode;
     children: React.ReactNode

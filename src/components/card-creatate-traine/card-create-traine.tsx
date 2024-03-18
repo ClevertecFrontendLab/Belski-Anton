@@ -9,6 +9,13 @@ interface CardCreateTraineProps {
     onCloseClick: () => void;
     child?: JSX.Element;
 }
+
+const handleCloseButtonClick = (onClick: () => void) => (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    e.stopPropagation();
+    onClick();
+};
+
 const CardCreateTraine = ({
     clickDate,
     disabled,
@@ -26,11 +33,7 @@ const CardCreateTraine = ({
                 <CloseOutlined
                     data-test-id='modal-create-training-button-close'
                     className='close-card-create-traine'
-                    onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        onClick();
-                    }}
+                    onClick={handleCloseButtonClick(onClick)}
                 />
             </div>
             {child ? (
@@ -45,11 +48,7 @@ const CardCreateTraine = ({
                 <Button
                     className='btn-create-traine'
                     disabled={disabled}
-                    onClick={(e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        onCloseClick();
-                    }}
+                    onClick={handleCloseButtonClick(onCloseClick)}
                 >
                     Создать тренировку
                 </Button>

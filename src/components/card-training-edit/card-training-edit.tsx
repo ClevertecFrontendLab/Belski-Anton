@@ -6,6 +6,7 @@ import { Button, Divider, Select } from 'antd';
 import moment from 'moment';
 import { useState } from 'react';
 import { useUptadeTraningMutation } from '../../api/methods-api';
+import { DATE_FORMATS } from '@constants/index';
 
 interface ICardTrainingProps {
     openSidebar: () => void;
@@ -28,10 +29,10 @@ const CardTrainingEdit = ({ openSidebar, close, setError }: ICardTrainingProps) 
             training: {
                 name,
                 exercises,
-                date: moment.utc(date, 'DD.MM.YYYY').format()
+                date: moment.utc(date, DATE_FORMATS.FULL).format()
             },
             id: _id,
-            isImplementation: moment(date, 'DD.MM.YYYY').isBefore(moment(), 'day'),
+            isImplementation: moment(date, DATE_FORMATS.FULL).isBefore(moment(), 'day'),
         })
             .unwrap()
             .then(() => close())

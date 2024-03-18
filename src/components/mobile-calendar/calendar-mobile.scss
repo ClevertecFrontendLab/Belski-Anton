@@ -1,6 +1,7 @@
+ @import '../../constants/variables.scss';
 .wrapper-mobile-calendar {
     padding: 16px 24px 24px;
-    background-color: rgba(240, 245, 255, 1);
+    background-color:$geekblue-1;
     .wrapper-setting-calendar {
         display: flex;
         flex-direction: row-reverse;

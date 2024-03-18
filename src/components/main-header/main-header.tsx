@@ -1,7 +1,7 @@
 import { Layout } from 'antd';
-import './main-header.css';
 import { SettingOutlined } from '@ant-design/icons';
 const { Header } = Layout;
+import './main-header.scss';
 
 export const CustomHeader = () => {
     return (

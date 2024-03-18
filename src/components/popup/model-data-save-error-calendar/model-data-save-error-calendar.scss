@@ -1,3 +1,4 @@
+@import '../../../constants/variables.scss';
 .modal-data-save-error {
     .ant-modal-content {
         width: 416px;
@@ -14,7 +15,7 @@
                     align-items: flex-start;
                     > svg {
                         align-items: flex-start;
-                        font-size: 22px;
+                        font-size: $font-size-extra-small;
                     }
                 }
                 .text-description {
@@ -23,9 +24,9 @@
                     gap: 20px;
                 }
                 .title {
-                    font-size: 16px;
-                    color: #262626;
-                    font-weight: 600;
+                    font-size: $font-size-normal;
+                    color: $gray-10;
+                    font-weight: $font-weight-600;
                 }
                 .sub-title {
                     margin-bottom: 24px;
@@ -35,9 +36,9 @@
                 display: flex;
                 flex-direction: row-reverse;
                 .btn-close-data-save-error {
-                    background-color: #2f54eb;
-                    color: #fff;
-                    height: 40px;
+                    background-color: $primary-blue-color;
+                    color: $white-color;
+                    height: $button-height;
                 }
             }
         }

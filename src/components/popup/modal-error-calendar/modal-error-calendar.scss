@@ -1,40 +1,40 @@
+@import '../../../constants/variables.scss';
 .wrapper-error-calendar {
     .ant-result-icon {
         margin-bottom: 18px;
     }
     .ant-result-title {
-        font-weight: 500;
+        font-weight: $font-weight-500;
         letter-spacing: 0.9px;
     }
     .ant-result-subtitle {
-        color: #8c8c8c;
+        color: $gray-color;
     }
-    .ant-result-extra{
-      margin-top: 10px;
+    .ant-result-extra {
+        margin-top: 10px;
     }
     .ant-btn {
-        background-color: #2f54eb;
-        height: 40px;
+        background-color: $primary-blue-color;
+        height: $button-height;
     }
-    @media(max-width:360px){
-      .ant-result-title{
-         width: 264px;
-      }
-      .ant-btn{
-         width: 74px;
-      }
+    @media (max-width: 360px) {
+        .ant-result-title {
+            width: 264px;
+        }
+        .ant-btn {
+            width: 74px;
+        }
     }
-    @media(max-width:360px){
-        .ant-modal-content{
+    @media (max-width: 360px) {
+        .ant-modal-content {
             width: 328px;
-            .ant-modal-body{
+            .ant-modal-body {
                 padding: 0;
-                .ant-result-subtitle{
-                   width: 210px; 
-                   margin: 0 auto;
+                .ant-result-subtitle {
+                    width: 210px;
+                    margin: $margin-center;
                 }
             }
         }
     }
 }
-

@@ -1,0 +1,56 @@
+@import '../../constants/variables.scss';
+.main-content {
+    padding: 24px;
+}
+
+.main-text-description span {
+    display: block;
+}
+
+.main-text-description,
+.main-info-message {
+    max-width: 752px;
+    padding: 24px;
+}
+
+.main-text-description {
+    color: $geekblue-9;
+    font-size: $font-size-normal;
+    line-height: 130%;
+    background: $white-color;
+}
+
+.main-info-message {
+    margin-top: 24px;
+    background: $white-color;
+    font-weight: $font-weight-500;
+    line-height: 130%;
+    color: $gray-10;
+    font-size: $font-size-extra-small;
+}
+
+.wrapper-list-cards {
+    max-width: 752px;
+    margin-top: 16px;
+    display: flex;
+    gap: 16px;
+}
+
+@media (max-width: 834px) {
+    .ant-layout-content.main-content {
+        margin-bottom: 82px;
+    }
+}
+
+@media (max-width: 780px) {
+    .wrapper-list-cards {
+        flex-wrap: wrap;
+    }
+}
+
+@media (max-width: 568px) {
+    .main-text-description,
+    .main-info-message {
+        padding: 16px;
+    }
+}

@@ -5,9 +5,9 @@ import { useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { PATHS } from '@constants/index';
 import Loader from '@components/loader/loader';
-import './base-page.css';
 import { useAppSelector } from '@hooks/typed-react-redux-hooks';
 import ModalErrorCalendar from '@components/popup/modal-error-calendar/modal-error-calendar';
+import './base-page.scss';
 const BasePage = () => {
     const navigate = useNavigate();
     const location = useLocation();

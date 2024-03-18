@@ -1,10 +1,11 @@
+@import '../../../constants/variables.scss';
 .wrapper-error-modal {
     .ant-result-icon {
         margin-bottom: 18px;
     }
     .ant-result-title {
-        font-size: 24px;
-        font-weight: 600;
+        font-size: $font-size-large;
+        font-weight: $font-weight-600;
     }
     .ant-result-extra {
         display: flex;
@@ -14,10 +15,10 @@
 
     .ant-btn {
         width: 180px;
-        height: 40px;
+        height: $button-height;
     }
     .ant-btn-primary {
-        background-color: #2f54eb;
+        background-color: $primary-blue-color;
     }
     @media (max-width: 410px) {
         .ant-result {

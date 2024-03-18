@@ -1,26 +1,27 @@
+@import '../../../constants/variables.scss';
 .modal-data-open-error-calendar {
     max-width: 384px;
     .ant-modal-close-x {
-      width: 66px;
-      line-height: 66px;
-      font-size: 14px;
+        width: 66px;
+        line-height: 66px;
+        font-size: $font-size-medium;
     }
     .wrapper-icon-title {
         display: flex;
         align-items: flex-start;
         gap: 16px;
         .icon {
-            font-size: 24px;
+            font-size: $font-size-large;
         }
         .title-modal-data-open-error-calendar {
-            span{
-               line-height: 130%;
-               display: inline-block;
-               font-size: 16px;
-               font-family:Inter;
+            span {
+                line-height: 130%;
+                display: inline-block;
+                font-size: $font-size-normal;
+                font-family: Inter;
             }
             .subtitle-modal-data-open-error-calendar {
-                color: #8c8c8c;
+                color: $gray-color;
                 margin-bottom: 14px;
             }
         }
@@ -30,14 +31,14 @@
         display: flex;
         flex-direction: row-reverse;
         .btn-open-data-error-calendar {
-            background-color: #2f54eb;
-            color: #fff;
+            background-color: $primary-blue-color;
+            color: $white-color;
         }
     }
 }
 
-@media(max-width:400px){
-    .modal-data-open-error-calendar{
+@media (max-width: 400px) {
+    .modal-data-open-error-calendar {
         max-width: 340px;
     }
 }

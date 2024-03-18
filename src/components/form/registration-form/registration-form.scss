@@ -1,0 +1,105 @@
+@import '../../../constants/variables.scss';
+.wrapper-form-registration {
+    width: 100%;
+    margin-top: 15px;
+    justify-content: flex-start;
+    .ant-form-item-explain {
+        font-size: $font-size-small;
+        text-align: left;
+    }
+
+    .ant-form-item-explain-error {
+        color: red;
+        text-align: left;
+    }
+
+    .registration-button {
+        width: 100%;
+        background: $primary-blue-color;
+        font-size: $font-size-normal;
+        line-height: 130%;
+        height: $button-height;
+        margin: 36px 0 0;
+    }
+
+    .registration-google-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: $button-height;
+        gap: 5px;
+        width: 100%;
+        background: $white-color;
+        font-size: $font-size-normal;
+    }
+
+    .wrapper-button-icon {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    @media (max-width: 840) {
+        .registration-button {
+            margin-top: 38px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .registration-button {
+            font-size: $font-size-medium;
+        }
+
+        .registration-google-btn {
+            font-size: $font-size-medium;
+        }
+    }
+
+    @media (max-width: 430px) {
+        .registration-button {
+            font-size: $font-size-small;
+        }
+
+        .registration-google-btn {
+            font-size: $font-size-small;
+        }
+
+        :global(.ant-form-item-explain) {
+            font-size: $font-size-xxsmall;
+            text-align: left;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .ant-tabs > .ant-tabs-nav {
+            margin-bottom: 0;
+        }
+
+        .ant-input-affix-wrapper .ant-input-password {
+            margin-top: 0;
+        }
+
+        .ant-form-item.ant-form-item-with-help {
+            margin-bottom: 0;
+        }
+
+        .ant-form-item-explain {
+            font-size: $font-size-small;
+        }
+
+        .registration-button {
+            font-size: $font-size-medium;
+        }
+
+        .registration-google-btn {
+            font-size: $font-size-medium;
+        }
+
+        .logo-google {
+            display: none;
+        }
+        .registration-button {
+            margin: 47px 0 0;
+        }
+    }
+}

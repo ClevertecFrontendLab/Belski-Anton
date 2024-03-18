@@ -1,0 +1,80 @@
+@import '../../constants/variables.scss';
+.ant-layout.site-layout > .ant-layout-header {
+    background: $geekblue-1;
+}
+
+.breadcrumbs {
+    color: $gray-10;
+    cursor: pointer;
+}
+
+.header-wrapper {
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.header-wrapper .header-text {
+    font-size: $font-size-extra-large;
+    font-weight: $font-weight-700;
+    line-height: 130%;
+    color: $gray-10;
+    max-width: 1020px;
+    letter-spacing: 0.2px;
+}
+
+.wrapper-header-settings {
+    display: flex;
+    gap: 10px;
+    padding: 4px 0;
+    cursor: pointer;
+}
+
+@media (max-width: 1040px) {
+    .header-wrapper .header-text {
+        font-size: $font-size-large;
+        font-weight: medium;
+    }
+}
+
+@media (max-width: 834px) {
+    .header-wrapper .header-text {
+        font-size: $font-size-large;
+        font-weight: $font-weight-500;
+        letter-spacing: 0;
+    }
+
+    .wrapper-header-settings > .anticon {
+        width: 0;
+    }
+}
+
+@media (max-width: 780px) {
+    .header-wrapper {
+        margin-top: 0;
+    }
+    .header-wrapper .header-text {
+        font-size: $font-size-extra-small;
+        margin-top: 10px;
+    }
+
+    .wrapper-header-settings {
+        min-width: 32px;
+        height: 32px;
+        background-color: $white-color;
+        border: 1px solid $gray-5;
+        border-radius: 50%;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .wrapper-header-settings > .anticon {
+        width: inherit;
+    }
+
+    .wrapper-header-settings > .title {
+        display: none;
+    }
+}

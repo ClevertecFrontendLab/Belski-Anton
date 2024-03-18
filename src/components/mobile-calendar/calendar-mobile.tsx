@@ -20,7 +20,7 @@ import 'moment/locale/ru';
 import { useEffect, useState } from 'react';
 import { useGetTrainingListQuery, useGetTrainingQuery } from '../../api/methods-api';
 import './calendar-mobile.scss';
-import { color } from '@constants/index';
+import { DATE_FORMATS, color } from '@constants/index';
 import SideBarAddTraining from '@components/sidebar-add-training/sidebar-add-training';
 import SidebarEditorTraining from '@components/sidebar-editor-training/sidebar-editor-training';
 import ModelDataSaveErrorCalendar from '@components/popup/model-data-save-error-calendar/model-data-save-error-calendar';
@@ -141,7 +141,7 @@ const CalendarMobile = () => {
         setIsModalDataSaveError(true);
     };
     const renderCard = (d: Moment) => {
-        const currentDate = d.format('DD.MM.YYYY');
+        const currentDate = d.format(DATE_FORMATS.FULL);
         if (currentDate === date) {
             return isContentVisible ? (
                 isEditCard ? (
@@ -205,10 +205,10 @@ const CalendarMobile = () => {
                                 className='ant-picker-calendar-date-value'
                             >
                                 {' '}
-                                {d.format('D')}
+                                {d.format(DATE_FORMATS.DAY_SHORT)}
                             </div>
                             <div className='ant-picker-calendar-date-content'>
-                                {!!(date && moment(date, 'DD.MM.YYYY').isSame(d, 'day')) &&
+                                {!!(date && moment(date, DATE_FORMATS.FULL).isSame(d, 'day')) &&
                                     renderCard(d)}
                             </div>
                         </>

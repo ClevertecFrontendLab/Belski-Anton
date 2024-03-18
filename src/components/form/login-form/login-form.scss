@@ -1,0 +1,130 @@
+@import '../../../constants/variables.scss';
+.wrapper-form-login {
+    width: 100%;
+    margin-top: 6px;
+    .login-form-forgot {
+        font-size: $font-size-normal;
+        border: none;
+        color: $primary-blue-color;
+        padding: 0;
+    }
+
+    .ant-row {
+        justify-content: center;
+    }
+
+    .ant-form-item-control-input-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .ant-input {
+        padding: 11px;
+    }
+
+    .ant-tabs-tab {
+        margin-left: 0;
+    }
+
+    .ant-form.ant-form-horizontal > .ant-form-item:nth-last-child(2) {
+        margin-bottom: 12px;
+    }
+
+    .ant-form-item-explain-error {
+        color: $primary-blue-color;
+        text-align: center;
+    }
+
+    .login-button {
+        width: 100%;
+        background: $primary-blue-color;
+        font-size: $font-size-normal;
+        line-height: 130%;
+        height:$button-height;
+        margin-bottom: 0;
+    }
+
+    .login-google-btn {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: $button-height;
+        gap: 5px;
+        width: 100%;
+        background: $white-color;
+        font-size: $font-size-normal;
+    }
+
+    .wrapper-button-icon {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .text-google {
+        color: $gray-10;
+    }
+
+    @media (max-width: 480px) {
+        .login-form-forgot {
+            font-size: $font-size-medium;
+        }
+
+        .login-button {
+            font-size: $font-size-medium;
+        }
+
+        .login-google-btn {
+            font-size: $font-size-medium;
+        }
+    }
+
+    @media (max-width: 430px) {
+        .ant-form label {
+            font-size: $font-size-small;
+        }
+
+        .login-form-forgot {
+            font-size: $font-size-small;
+        }
+
+        .login-button {
+            font-size: $font-size-small;
+        }
+
+        .login-google-btn {
+            font-size: $font-size-small;
+        }
+    }
+
+    @media (max-width: 360px) {
+        .ant-form-item-control-input-content {
+            justify-content: space-between;
+        }
+
+        .ant-form label {
+            font-size: $font-size-medium;
+        }
+
+        .login-form-forgot {
+            font-size: $font-size-medium;
+        }
+
+        .login-button {
+            font-size: $font-size-medium;
+        }
+
+        .ant-tabs-content-holder {
+            margin-top: 10px;
+        }
+
+        .ant-form.ant-form-horizontal > .ant-form-item:nth-child(3) {
+            margin-bottom: 16px;
+        }
+
+        .logo-google {
+            display: none;
+        }
+    }
+}

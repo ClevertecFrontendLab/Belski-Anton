@@ -1,7 +1,5 @@
 import Breadcrumbs from '@components/breadcrumb/breadcrumb';
 import { Avatar, Button, Rate } from 'antd';
-import './feed-backs.scss';
-
 import { UserOutlined } from '@ant-design/icons';
 import { IErrorResponse } from '@components/form/form';
 import NotReviews from '@components/not-reviews/not-reviews';
@@ -15,6 +13,8 @@ import { history } from '@redux/configure-store';
 import { useEffect, useState } from 'react';
 import { useGetReviewsQuery } from '../../api/methods-api';
 import { PATHS } from '@constants/index';
+import './feed-backs.scss';
+
 const routes = [
     {
         path: 'main',

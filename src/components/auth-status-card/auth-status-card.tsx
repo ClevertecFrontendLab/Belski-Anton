@@ -1,6 +1,6 @@
-import cardStyle from './auth-status-card.module.css';
-import { Button } from 'antd';
 import { history } from '@redux/configure-store';
+import { Button } from 'antd';
+import  './auth-status-card.scss';
 
 interface IPropsCard {
     icon: string;
@@ -22,20 +22,20 @@ export const AuthStatusCard = ({
     className = '',
 }: IPropsCard) => {
     return (
-        <div className={`${cardStyle['wrapper-auth-status']} ${cardStyle[`${className}`]}`}>
-            <div className={cardStyle['card-status']}>
+        <div className={`wrapper-auth-status ${className}`}>
+            <div className='card-status'>
                 <div>
-                    <img className={cardStyle['icon']} src={icon} alt='error' />
+                    <img className='icon' src={icon} alt='error' />
                 </div>
-                <div className={cardStyle['wrapper-title-subtitle']}>
-                    <h3 className={cardStyle['status-description']}>{title}</h3>
-                    <div className={cardStyle['text-subtitle']}>{subtitle}</div>
+                <div className='wrapper-title-subtitle'>
+                    <h3 className='status-description'>{title}</h3>
+                    <div className='text-subtitle'>{subtitle}</div>
                 </div>
                 <Button
                     type='primary'
                     data-test-id={dataTestId}
                     onClick={() => history.push(path)}
-                    className={cardStyle['btn-status-card']}
+                    className='btn-status-card'
                 >
                     {btnText}
                 </Button>

@@ -1,8 +1,9 @@
+@import '../../constants/variables.scss';
 .wrapper-calendar-dekstop {
     max-height: 100vh;
     min-height: 100vh;
     overflow-y: scroll;
-    background-color: #f0f5ff;
+    background-color: $geekblue-1;
 
     &::-webkit-scrollbar {
         display: none;
@@ -20,16 +21,16 @@
         display: flex;
         flex-direction: row-reverse;
         gap: 10px;
-        background-color: #f0f5ff;
+        background-color: $geekblue-1;
         padding: 10px 35px 21px 0;
     }
 
     .wrapper-calendar {
         padding: 0 21px 93px 25px;
-        background-color: #f0f5ff;
+        background-color: $geekblue-1;
 
         .ant-picker-calendar-header {
-            background-color: #f0f5ff;
+            background-color: $geekblue-1;
         }
 
         .ant-picker-body {
@@ -37,13 +38,13 @@
         }
 
         thead {
-            background-color: #f0f5ff;
+            background-color: $geekblue-1;
         }
 
         .ant-picker-content {
             tr {
                 td:not(:first-child) {
-                    border-left: 10px solid #f0f5ff;
+                    border-left: 10px solid $geekblue-1;
                 }
 
                 td {
@@ -54,18 +55,11 @@
                 }
 
                 td:last-child {
-                    .wrapper-card-create-traine {
-                        right: 0;
-                        left: auto;
-                        box-shadow: -10px 5px 5px #0000001a;
-                    }
-                }
-
-                td:last-child {
+                    .wrapper-card-create-traine,
                     .wrapper-card-training {
                         right: 0;
                         left: auto;
-                        box-shadow: -10px 5px 5px #0000001a;
+                        box-shadow: -10px 5px 5px $black-opacity-10;
                     }
                 }
             }
@@ -76,9 +70,9 @@
                 height: auto;
                 padding: 4px 8px 0;
                 border: 0;
-                border-top: 2px solid #f0f0f0;
+                border-top: 2px solid $gray-4;
                 border-radius: 0;
-                transition: #1890ff 0.3s;
+                transition: $color-6 0.3s;
                 min-width: 24px;
                 line-height: 24px;
                 cursor: pointer;
@@ -106,14 +100,14 @@
                 justify-content: space-between;
 
                 &.disabled {
-                    color: #000000D9;
+                    color: $black-opacity-30;
                 }
             }
         }
 
         @media (max-width: 1000px) {
             .ant-picker-content tr td:not(:first-child) {
-                border-left: 6px solid #f0f5ff;
+                border-left: 6px solid $geekblue-1;
             }
 
             .wrapper-badge-training {
@@ -124,7 +118,7 @@
                 }
 
                 .ant-badge-status-text {
-                    font-size: 12px;
+                    font-size: $font-size-small;
                     margin-left: 0;
                 }
             }

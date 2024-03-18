@@ -1,11 +1,12 @@
+@import '../../constants/variables.scss';
 .wrapper-card-create-traine {
     width: 264px;
     position: absolute;
     left: 0;
     top: 2px;
     z-index: 99999 !important;
-    box-shadow: 10px 5px 5px #0000001a;
-    background-color: #fff;
+    box-shadow: 10px 5px 5px $black-opacity-10;
+    background-color: $white-color;
 
     .header-card-create-traine {
         padding: 16px 12px;
@@ -16,16 +17,16 @@
 
         .title-card-create-traine {
             .text-data-create-card {
-                font-weight: bold;
+                font-weight: $font-weight-700;
             }
 
             > span {
-                color: #8c8c8c;
+                color: $gray-color;
             }
         }
 
         .close-card-create-traine {
-            font-size: 12px;
+            font-size: $font-size-small;
         }
 
         & + .wrapper-badge-training {
@@ -39,7 +40,7 @@
                 &.disabled {
                     .ant-badge {
                         .ant-badge-status-text {
-                            color: #bfbfbf;
+                            color: $gray-6;
                         }
                     }
                 }
@@ -67,14 +68,14 @@
         .btn-create-traine {
             width: 100%;
             margin: 0 auto;
-            height: 40px;
-            background-color: #2f54eb;
-            color: #fff;
+            height: $button-height;
+            background-color: $primary-blue-color;
+            color: $white-color;
 
             &:disabled {
-                background-color: #f5f5f5;
-                color: #d9d9d9;
-                border: 1px solid #d9d9d9;
+                background-color: $gray-3;
+                color: $gray-5;
+                border: 1px solid $gray-5;
             }
         }
     }
@@ -85,6 +86,6 @@
         top: 230px;
         left: 50%;
         transform: translate(-50%);
-        box-shadow: 0 0 10px 0 #0000001a;
+        box-shadow: 0 0 10px 0 $black-opacity-10;
     }
 }

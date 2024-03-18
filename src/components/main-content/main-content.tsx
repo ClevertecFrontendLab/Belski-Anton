@@ -1,5 +1,4 @@
 import { Layout } from 'antd';
-import './main-content.css';
 import { CalendarTwoTone, HeartFilled, IdcardOutlined } from '@ant-design/icons';
 import { MainCard } from '@components/main-card';
 import { history } from '@redux/configure-store';
@@ -9,6 +8,7 @@ import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { setIsLoading } from '@redux/loading-slice';
 import { setIsError } from '@redux/error-training-slice';
 const { Content } = Layout;
+import './main-content.scss';
 
 const cardsData = [
     {

@@ -1,7 +1,11 @@
 import { ArrowLeftOutlined, EditOutlined } from '@ant-design/icons';
 import { Button, Divider, Select } from 'antd';
 import iconCreateCard from '../../../public/assets/icons/empty-image.svg';
-import { useCreateTrainigMutation, useGetTrainingListQuery, useGetTrainingQuery } from '../../api/methods-api';
+import {
+    useCreateTrainigMutation,
+    useGetTrainingListQuery,
+    useGetTrainingQuery,
+} from '../../api/methods-api';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { setExercises, setName } from '@redux/traninig-slice';
 import { useState } from 'react';
@@ -9,6 +13,7 @@ import './card-training.scss';
 import ModelDataSaveErrorCalendar from '@components/popup/model-data-save-error-calendar/model-data-save-error-calendar';
 import { setIsLoading } from '@redux/loading-slice';
 import moment from 'moment';
+import { DATE_FORMATS } from '@constants/index';
 
 interface ICardTrainingProps {
     openSidebar: () => void;
@@ -31,7 +36,7 @@ const CardTraining = ({ openSidebar, close }: ICardTrainingProps) => {
         createTraining({
             name,
             exercises,
-            date: moment.utc(date, 'DD.MM.YYYY').format(),
+            date: moment.utc(date, DATE_FORMATS.FULL).format(),
         })
             .unwrap()
             .then(() => close())
@@ -41,23 +46,32 @@ const CardTraining = ({ openSidebar, close }: ICardTrainingProps) => {
 
     const getActualList = () => {
         if (trainingData?.length && trainingListData?.length) {
-            const currentList = trainingData.filter((el) => moment(date, 'DD.MM.YYYY').isSame(moment.utc(el.date), 'day')).map((el) => el.name)
+            const currentList = trainingData
+                .filter((el) => moment(date, 'DD.MM.YYYY').isSame(moment.utc(el.date), 'day'))
+                .map((el) => el.name);
 
-            return trainingListData.filter((el) => !currentList.includes(el.name))
+            return trainingListData.filter((el) => !currentList.includes(el.name));
         }
 
-        return trainingListData || []
-    }
+        return trainingListData || [];
+    };
 
-    const onChangeSelect = (val:string) => {
-        dispatch(setName(val))
-        dispatch(setExercises([]))
-    }
+    const onChangeSelect = (val: string) => {
+        dispatch(setName(val));
+        dispatch(setExercises([]));
+    };
     return (
         <>
-            <div className='wrapper-card-training' onClick={handleClick} data-test-id='modal-create-exercise'>
+            <div
+                className='wrapper-card-training'
+                onClick={handleClick}
+                data-test-id='modal-create-exercise'
+            >
                 <div className='header-select'>
-                    <ArrowLeftOutlined onClick={close} data-test-id='modal-exercise-training-button-close' />
+                    <ArrowLeftOutlined
+                        onClick={close}
+                        data-test-id='modal-exercise-training-button-close'
+                    />
                     <Select
                         placeholder='Выбор типа тренировки'
                         options={getActualList()}
@@ -76,10 +90,8 @@ const CardTraining = ({ openSidebar, close }: ICardTrainingProps) => {
                         {exercises.map((el, idx) => (
                             <div key={idx} className='item-save-training'>
                                 <div>{el.name}</div>
-                                <EditOutlined
-                                    onClick={openSidebar}
-                                    style={{ color: '#2F54EB' }}
-                                /></div>
+                                <EditOutlined onClick={openSidebar} style={{ color: '#2F54EB' }} />
+                            </div>
                         ))}
                     </div>
                 ) : (

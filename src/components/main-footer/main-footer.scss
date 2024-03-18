@@ -1,3 +1,4 @@
+@import '../../constants/variables.scss';
 .main-footer {
     background: transparent;
     display: flex;
@@ -5,8 +6,8 @@
     align-items: flex-end;
     margin-top: 135px;
     .view-reviews {
-        color: var(--color-Blue);
-        font-size: 16px;
+        color: $primary-blue-color;
+        font-size: $font-size-normal;
         padding: 9.5px 15px;
         cursor: pointer;
     }
@@ -22,11 +23,11 @@
         gap: 6px;
 
         span {
-            color: var(--color-Blue);
+            color: $primary-blue-color;
 
             &:last-child {
-                color: #8c8c8c;
-                font-size: 14px;
+                color: $gray-color;
+                font-size: $font-size-medium;
             }
         }
     }

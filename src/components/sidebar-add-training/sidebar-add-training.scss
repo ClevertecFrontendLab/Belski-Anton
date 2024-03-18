@@ -1,3 +1,5 @@
+@import '../../constants/variables.scss';
+
 .sidebar-add-training {
     z-index: 200000;
 
@@ -13,14 +15,14 @@
 
                 .ant-drawer-close {
                     align-self: end;
-                    font-size: 14px;
+                    font-size: $font-size-medium;
                 }
 
                 .ant-drawer-title {
                     .wrapper-title {
                         padding: 21px 0 0 32px;
                         display: flex;
-                        font-size: 20px;
+                        font-size: $font-size-extra-small;
                         letter-spacing: 0.2px;
                         gap: 11px;
                     }
@@ -60,8 +62,8 @@
 
                 > div:first-child {
                     padding-left: 8px;
-                    background-color: #f0f0f0;
-                    font-size: 12px;
+                    background-color: $gray-4;
+                    font-size: $font-size-small;
                     height: 24px;
                 }
             }
@@ -72,8 +74,8 @@
 
                 .weight-training {
                     > div:first-child {
-                        background-color: #f0f0f0;
-                        font-size: 12px;
+                        background-color: $gray-4;
+                        font-size: $font-size-small;
                         height: 24px;
                         padding-left: 8px;
                     }
@@ -82,8 +84,8 @@
                 .amount-training {
                     > div:first-child {
                         padding-left: 8px;
-                        background-color: #f0f0f0;
-                        font-size: 12px;
+                        background-color: $gray-4;
+                        font-size: $font-size-small;
                         height: 24px;
                     }
                 }
@@ -93,14 +95,14 @@
         .wrapper-icon-closed {
             display: flex;
             align-items: flex-end;
-            font-size: 10px;
+            font-size: $font-size-xsmall;
             margin-bottom: 4px;
         }
 
         .wrapper-date-add-training {
             margin-right: 8px;
             letter-spacing: 1px;
-            color: #8c8c8c;
+            color: $gray-color;
         }
     }
 
@@ -110,12 +112,12 @@
         gap: 8px;
         padding: 7px 12px;
         width: 344px;
-        height: 40px;
-        background-color: #f0f0f0;
+        height: $button-height;
+        background-color: $gray-4;
         cursor: pointer;
 
         > div:nth-child(2n) {
-            color: #2f54eb;
+            color: $primary-blue-color;
         }
     }
 

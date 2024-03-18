@@ -14,7 +14,7 @@ import CardTraining from '@components/card-training/card-training';
 import SideBarAddTraining from '@components/sidebar-add-training/sidebar-add-training';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { TrainingState, setDate, setExercises, setName, setTraining } from '@redux/traninig-slice';
-import { color } from '@constants/index';
+import { DATE_FORMATS, color } from '@constants/index';
 import SidebarEditorTraining from '@components/sidebar-editor-training/sidebar-editor-training';
 import CardTrainingEdit from '@components/card-training-edit/card-training-edit';
 moment.locale('ru');
@@ -72,19 +72,19 @@ const CalendarDekstop = () => {
 
     const toggleContentVisibility = () => {
         setContentVisible(!isContentVisible);
-        dispatch(setName(''))
-        dispatch(setExercises([]))
+        dispatch(setName(''));
+        dispatch(setExercises([]));
     };
 
     const clickOnDate = (date: Moment) => {
-        dispatch(setDate(moment(date).format('DD.MM.YYYY')));
+        dispatch(setDate(moment(date).format(DATE_FORMATS.FULL)));
     };
 
     const onClickEdit = (training: TrainingState) => {
-        setContentVisible(true)
-        dispatch(setTraining({ ...training, date }))
-        setIsEditCard(true)
-    }
+        setContentVisible(true);
+        dispatch(setTraining({ ...training, date }));
+        setIsEditCard(true);
+    };
 
     const resetClickDate = () => dispatch(setDate(''));
     const renderTrainig = (d: Moment, isEdit = false) => {
@@ -102,9 +102,9 @@ const CalendarDekstop = () => {
                                 <EditOutlined
                                     data-test-id={`modal-update-training-edit-button${idx}`}
                                     onClick={(e) => {
-                                        e.preventDefault()
-                                        e.stopPropagation()
-                                        onClickEdit(el)
+                                        e.preventDefault();
+                                        e.stopPropagation();
+                                        onClickEdit(el);
                                     }}
                                     style={{ color: '#2F54EB' }}
                                 />
@@ -116,18 +116,32 @@ const CalendarDekstop = () => {
         }
     };
     const renderCard = (d: Moment) => {
-        const currentDate = d.format('DD.MM.YYYY');
+        const currentDate = d.format(DATE_FORMATS.FULL);
         if (currentDate === date) {
             return isContentVisible ? (
-                isEditCard ? <CardTrainingEdit openSidebar={() => setIsEditTraining(true)} close={() => {
-                    setContentVisible(false)
-                    setIsEditCard(false)
-                }} /> : <CardTraining openSidebar={openSidebar} close={() => setContentVisible(false)} />
+                isEditCard ? (
+                    <CardTrainingEdit
+                        openSidebar={() => setIsEditTraining(true)}
+                        close={() => {
+                            setContentVisible(false);
+                            setIsEditCard(false);
+                        }}
+                    />
+                ) : (
+                    <CardTraining
+                        openSidebar={openSidebar}
+                        close={() => setContentVisible(false)}
+                    />
+                )
             ) : (
                 <CardCreateTraine
                     onClick={resetClickDate}
                     clickDate={date}
-                    disabled={d.isBefore(moment().add(1, 'day'), 'day') || trainingData?.filter((el) => moment(el.date).isSame(d, 'day')).length === trainingListData?.length}
+                    disabled={
+                        d.isBefore(moment().add(1, 'day'), 'day') ||
+                        trainingData?.filter((el) => moment(el.date).isSame(d, 'day')).length ===
+                            trainingListData?.length
+                    }
                     onCloseClick={toggleContentVisibility}
                     child={renderTrainig(d, true)}
                 />
@@ -142,12 +156,17 @@ const CalendarDekstop = () => {
     }, [value, dispatch]);
 
     useEffect(() => {
-        if (isError) {
-            setIsModalOpenDateError(true);
-        } else {
-            setIsModalOpenDateError(false);
-        }
+        setIsModalOpenDateError(isError);
     }, [isError]);
+
+    const handleCellClick = (e: React.MouseEvent<HTMLDivElement, MouseEvent>, d: Moment) => {
+        e.preventDefault();
+        e.stopPropagation();
+        clickOnDate(d);
+        setContentVisible(false);
+    };
+
+   
 
     return (
         <>
@@ -169,14 +188,11 @@ const CalendarDekstop = () => {
                                 className='cell-table'
                                 style={{ zIndex: 0 }}
                                 onClick={(e) => {
-                                    e.preventDefault();
-                                    e.stopPropagation();
-                                    clickOnDate(d);
-                                    setContentVisible(false);
+                                    handleCellClick(e, d);
                                 }}
                             >
                                 <div className='ant-picker-calendar-date-value'>
-                                    {d.format('DD')}
+                                    {d.format(DATE_FORMATS.DAY)}
                                 </div>
                                 <div className='ant-picker-calendar-date-content'>
                                     {date && moment(date, 'DD.MM.YYYY').isSame(d, 'day')

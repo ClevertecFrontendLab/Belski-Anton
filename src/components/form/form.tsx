@@ -3,11 +3,11 @@ import { history } from '@redux/configure-store.ts';
 import { Tabs } from 'antd';
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import form from './form.module.css';
 import LoginForm from './login-form/login-form.tsx';
 import RegistrationForm from './registration-form/registration-form.tsx';
 import logo from '/assets/icons/logo.svg';
 import { PATHS } from '@constants/index.ts';
+import './form.scss';
 
 export interface IErrorResponse {
     data: { statusCode: number; error: string; message: string };
@@ -29,11 +29,11 @@ export const AuthForm = () => {
     return (
         <>
             <div
-                className={`${form['wrapper-form-auth']} ${
-                    pathname.includes('registration') ? form['registration'] : ''
+                className={`wrapper-form-auth ${
+                    pathname.includes('registration') ? 'registration' : ''
                 }`}
             >
-                <img src={logo} className={form['logo-form']} alt='logo' />
+                <img src={logo} className='logo-form' alt='logo' />
                 <Tabs
                     defaultActiveKey={checkedTab}
                     onChange={onChange}

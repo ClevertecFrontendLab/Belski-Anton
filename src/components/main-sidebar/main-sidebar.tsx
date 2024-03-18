@@ -7,13 +7,13 @@ const { Sider } = Layout;
 import close from '/assets/icons/close.svg';
 import open from '/assets/icons/icon-switcher.svg';
 import { useEffect, useState } from 'react';
-import './main-sidebar.css';
 import { MAX_WIDTH_SIDEBAR, MIN_WIDTH_SIDEBAR, MOB_WIDTH_SIDEBAR, PATHS } from '@constants/index';
 import { history } from '@redux/configure-store';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { useLazyGetTrainingQuery } from '../../api/methods-api';
 import { setIsLoading } from '@redux/loading-slice';
 import { setIsError } from '@redux/error-training-slice';
+import './main-sidebar.scss';
 
 export const SideBar = () => {
     const [collapsed, setCollapsed] = useState(false);

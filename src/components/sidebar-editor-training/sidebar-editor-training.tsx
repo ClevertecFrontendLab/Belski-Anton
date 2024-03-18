@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { Exercise, setExercises } from '@redux/traninig-slice';
 import ItemExercise from '@components/item-exercise/item-exercise';
 import './sidebar-editor-training.scss';
-import { color } from '@constants/index';
+import { WIDTH_TRAINING_SIDEBAR, color } from '@constants/index';
 import moment from 'moment';
 
 interface DrawerControls {
@@ -79,7 +79,7 @@ const SidebarEditorTraining = ({ onClose, open, isMob = false }: DrawerControls)
                 }}
                 open={open}
                 maskStyle={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}
-                width={408}
+                width={WIDTH_TRAINING_SIDEBAR}
                 closeIcon={
                     <CloseOutlined
                         data-test-id='modal-drawer-right-button-close'
