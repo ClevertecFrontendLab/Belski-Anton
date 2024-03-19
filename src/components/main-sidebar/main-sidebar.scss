@@ -1,3 +1,4 @@
+ @import '../../constants/variables.scss';
 .ant-layout-sider-children {
    display: flex;
    flex-direction: column;
@@ -30,11 +31,11 @@
 
 .ant-menu-title-content,
 .exit {
-   color: var(--color-Gray);
+   color:$gray-10;
 }
 
 .exit {
-   border-top: 1px solid #f0f0f0;
+   border-top: 1px solid $gray-4;
    margin-top: auto;
    padding: 10px 16px;
    display: flex;

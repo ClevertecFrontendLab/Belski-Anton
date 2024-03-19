@@ -7,38 +7,54 @@ const { Sider } = Layout;
 import close from '/assets/icons/close.svg';
 import open from '/assets/icons/icon-switcher.svg';
 import { useEffect, useState } from 'react';
-import './main-sidebar.css';
 import { MAX_WIDTH_SIDEBAR, MIN_WIDTH_SIDEBAR, MOB_WIDTH_SIDEBAR, PATHS } from '@constants/index';
 import { history } from '@redux/configure-store';
-import { useAppSelector } from '@hooks/typed-react-redux-hooks';
-
-const items = [
-    {
-        key: '1',
-        icon: <CalendarTwoTone twoToneColor='#061178' style={{ fontSize: '12.5px' }} />,
-        label: 'Календарь',
-    },
-    {
-        key: '2',
-        icon: <HeartFilled style={{ fontSize: '12.5px', color: '#061178' }} />,
-        label: 'Тренировки',
-    },
-    {
-        key: '3',
-        icon: <TrophyFilled style={{ fontSize: '12.5px', color: '#061178' }} />,
-        label: 'Достижения',
-    },
-    {
-        key: '4',
-        icon: <IdcardOutlined style={{ fontSize: '12.5px', color: '#061178' }} />,
-        label: 'Профиль',
-    },
-];
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { useLazyGetTrainingQuery } from '../../api/methods-api';
+import { setIsLoading } from '@redux/loading-slice';
+import { setIsError } from '@redux/error-training-slice';
+import './main-sidebar.scss';
 
 export const SideBar = () => {
     const [collapsed, setCollapsed] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
-    const { token } = useAppSelector((state) => state.auth);
+    const { token} = useAppSelector((state) => state.auth);
+    const [getTraining] = useLazyGetTrainingQuery();
+    const dispatch = useAppDispatch();
+
+    
+    const hanleGetTraining = () => {
+        dispatch(setIsLoading(true));
+        getTraining()
+            .unwrap()
+            .then(() => history.push(PATHS.CALENDAR))
+            .catch(() => dispatch(setIsError(true)))
+            .finally(() => dispatch(setIsLoading(false)));
+    };
+
+    const items = [
+        {
+            key: '1',
+            icon: <CalendarTwoTone twoToneColor='#061178' style={{ fontSize: '12.5px' }} />,
+            label: <span onClick={hanleGetTraining}>Календарь</span>,
+        },
+        {
+            key: '2',
+            icon: <HeartFilled style={{ fontSize: '12.5px', color: '#061178' }} />,
+            label: 'Тренировки',
+        },
+        {
+            key: '3',
+            icon: <TrophyFilled style={{ fontSize: '12.5px', color: '#061178' }} />,
+            label: 'Достижения',
+        },
+        {
+            key: '4',
+            icon: <IdcardOutlined style={{ fontSize: '12.5px', color: '#061178' }} />,
+            label: 'Профиль',
+        },
+    ];
+
     const logOut = () => {
         localStorage.clear();
         history.push(PATHS.AUTH);

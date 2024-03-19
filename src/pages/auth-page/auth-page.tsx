@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
-import './auth-page.css';
 import { useAppSelector } from '@hooks/typed-react-redux-hooks';
 import Loader from '@components/loader/loader';
+import './auth-page.scss';
 interface AuthPageProps {
     children: ReactNode;
 }

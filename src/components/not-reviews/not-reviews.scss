@@ -1,3 +1,4 @@
+@import '../../constants/variables.scss';
 .container-not-review {
     height: calc(100vh - 60px);
     display: flex;
@@ -11,22 +12,22 @@
         display: flex;
         flex-direction: column;
         justify-content: center;
-        margin: 0 auto;
-        background-color: #fff;
+        margin: $margin-center;
+        background-color: $white-color;
         height: 245px;
     }
     .title-not-reviews {
-        color: #061178;
-        font-weight: 600;
-        font-size: 24px;
+        color: $geekblue-9;
+        font-weight: $font-weight-600;
+        font-size: $font-size-large;
         text-align: center;
         padding: 56px 0 48px;
     }
     .subtitle-not-reviews {
-        margin: 0 auto;
+        margin: $margin-center;
         text-align: center;
         width: 521px;
-        color: #8c8c8c;
+        color: $gray-color;
         line-height: 130%;
     }
 
@@ -34,10 +35,10 @@
         text-align: center;
         margin-top: 43px;
         .btn-write-commit {
-            background-color: #2f54eb;
-            font-size: 14px;
-            color: #fff;
-            height: 40px;
+            background-color: $primary-blue-color;
+            font-size: $font-size-medium;
+            color: $white-color;
+            height: $button-height;
             border: none;
         }
     }

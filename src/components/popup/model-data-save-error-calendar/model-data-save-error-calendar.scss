@@ -1,0 +1,51 @@
+@import '../../../constants/variables.scss';
+.modal-data-save-error {
+    .ant-modal-content {
+        width: 416px;
+        height: 188px;
+        .ant-modal-body {
+            line-height: 1;
+            padding: 32px 32px 0 32px;
+
+            height: 100%;
+            .wrapper-error-title {
+                display: flex;
+                gap: 16px;
+                .anticon {
+                    align-items: flex-start;
+                    > svg {
+                        align-items: flex-start;
+                        font-size: $font-size-extra-small;
+                    }
+                }
+                .text-description {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                }
+                .title {
+                    font-size: $font-size-normal;
+                    color: $gray-10;
+                    font-weight: $font-weight-600;
+                }
+                .sub-title {
+                    margin-bottom: 24px;
+                }
+            }
+            .wrapper-btn-close-data-save-error {
+                display: flex;
+                flex-direction: row-reverse;
+                .btn-close-data-save-error {
+                    background-color: $primary-blue-color;
+                    color: $white-color;
+                    height: $button-height;
+                }
+            }
+        }
+    }
+    @media (max-width: 450px) {
+        .ant-modal-content {
+            width: 328px;
+        }
+    }
+}

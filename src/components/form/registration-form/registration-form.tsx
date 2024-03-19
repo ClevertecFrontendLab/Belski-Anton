@@ -7,8 +7,8 @@ import { clearAuthState, setFields } from '@redux/auth-slice';
 import { setIsLoading } from '@redux/loading-slice';
 import { IErrorResponse } from '../form';
 import logoGoogle from '/assets/icons/google.svg';
-import registrationForm from './registration-form.module.css';
 import { PATHS } from '@constants/index';
+import './registration-form.scss';
 const RegistrationForm = () => {
     const dispatch = useAppDispatch();
     const {
@@ -63,7 +63,7 @@ const RegistrationForm = () => {
     }, [email, password, router.previousLocations]);
 
     return (
-        <div className={registrationForm['wrapper-form-registration']}>
+        <div className='wrapper-form-registration'>
             <Form
                 onFinish={registrationUser}
                 name='basic'
@@ -136,7 +136,7 @@ const RegistrationForm = () => {
                         onChange={(e) => setData({ ...data, confirmPassword: e.target.value })}
                         placeholder='Повторите пароль'
                         data-test-id='registration-confirm-password'
-                        className={registrationForm['confirm-password']}
+                        className='confirm-password'
                         style={{ padding: '10px', marginTop: '20px' }}
                     />
                 </Form.Item>
@@ -146,7 +146,7 @@ const RegistrationForm = () => {
                         data-test-id={'registration-submit-button'}
                         type='primary'
                         htmlType='submit'
-                        className={registrationForm['registration-button']}
+                        className='registration-button'
                     >
                         Войти
                     </Button>
@@ -157,13 +157,13 @@ const RegistrationForm = () => {
                         disabled
                         type='primary'
                         htmlType='submit'
-                        className={registrationForm['registration-google-btn']}
+                        className='registration-google-btn'
                     >
-                        <div className={registrationForm['wrapper-button-icon']}>
+                        <div className='wrapper-button-icon'>
                             <img
                                 src={logoGoogle}
                                 alt='logo'
-                                className={registrationForm['logo-google']}
+                                className='logo-google'
                             />
                             <div> Регистрация через Google</div>
                         </div>

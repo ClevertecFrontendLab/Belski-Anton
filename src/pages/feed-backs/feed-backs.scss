@@ -1,7 +1,8 @@
+@import '../../constants//variables.scss';
 .feedbacks-content {
     header {
         padding: 16px 24px;
-        background-color: #f0f5ff;
+        background-color: $geekblue-1;
     }
     .wrapper-feedbacks-content {
         display: flex;
@@ -16,7 +17,7 @@
     }
     .wrapper-card-commit {
         display: flex;
-        background-color: #fff;
+        background-color: $white-color;
         margin: 20px 24px 20px;
         min-height: 128px;
         padding: 16px;
@@ -40,7 +41,7 @@
         display: flex;
         flex-direction: column;
         .ant-rate {
-            font-size: 14px;
+            font-size: $font-size-medium;
             color: #faad14;
             .ant-rate-star-focused {
                 color: red;
@@ -54,8 +55,8 @@
             gap: 15px;
         }
         .date-commit {
-            font-size: 10px;
-            color: #bfbfbf;
+            font-size: $font-size-xsmall;
+            color: $gray-6;
         }
     }
 
@@ -63,39 +64,38 @@
         margin: 108px 0 0 22px;
     }
     .write-review-btn {
-        background-color: #2f54eb;
-        color: #fff;
+        background-color: $primary-blue-color;
+        color: $white-color;
     }
     .expand-reviews-btn {
-        color: #2f54eb;
-        font-size: 16px;
+        color: $primary-blue-color;
+        font-size: $font-size-normal;
     }
     @media (max-width: 700px) {
         .wrapper-card-commit {
             flex-direction: column;
         }
     }
-    @media(max-width:400px){
+    @media (max-width: 400px) {
         .description-user {
             flex-direction: row;
             justify-content: center;
             gap: 4px;
         }
-        .wrapper-commit-btn{
+        .wrapper-commit-btn {
             display: flex;
             flex-direction: column;
             gap: 16px;
-            .write-review-btn{
+            .write-review-btn {
                 max-width: 328px;
             }
         }
     }
-    @media(max-width:360px){
-        .description-user   {
-          align-items: flex-start; 
-          justify-content:flex-start;
-          gap: 10px;
+    @media (max-width: 360px) {
+        .description-user {
+            align-items: flex-start;
+            justify-content: flex-start;
+            gap: 10px;
         }
     }
-    
 }

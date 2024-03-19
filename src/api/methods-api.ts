@@ -1,6 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { BASE_API_URL, API_ROUTES } from '../constants/index';
 import { store } from '@redux/configure-store';
+import { Exercise } from '@redux/traninig-slice';
 
 interface IPropsRegistration {
     email: string;
@@ -35,6 +36,49 @@ interface ICreateReview {
     rating: number;
 }
 
+interface Traning {
+    name: string;
+    date: string;
+    exercises: Exercise[];
+}
+
+interface IUpdateTraining {
+    training: Traning;
+    id: string;
+    isImplementation: boolean;
+}
+
+interface TrainingExercise {
+    _id: string;
+    name: string;
+    replays: number;
+    weight: number;
+    approaches: number;
+    isImplementation: boolean;
+}
+
+interface TrainingParameters {
+    repeat: boolean;
+    period: number;
+    jointTraining: boolean;
+    participants: string[];
+}
+
+interface Training {
+    _id: string;
+    name: string;
+    date: string;
+    isImplementation: boolean;
+    userId: string;
+    parameters: TrainingParameters;
+    exercises: TrainingExercise[];
+}
+
+interface TrainingListItem {
+    name: string;
+    key: string;
+}
+
 export const authApi = createApi({
     reducerPath: 'authApi',
     baseQuery: fetchBaseQuery({
@@ -47,7 +91,7 @@ export const authApi = createApi({
             return headers;
         },
     }),
-    tagTypes: ['Feedback'],
+    tagTypes: ['Feedback', 'Training', 'TrainingList'],
     endpoints: (builder) => ({
         registration: builder.mutation<unknown, IPropsRegistration>({
             query: (body) => ({
@@ -100,6 +144,37 @@ export const authApi = createApi({
             }),
             invalidatesTags: ['Feedback'],
         }),
+        getTraining: builder.query<Training[], void>({
+            query: () => ({
+                url: API_ROUTES.getTraining,
+                method: 'GET',
+            }),
+            providesTags: ['Training'],
+        }),
+        createTrainig: builder.mutation<unknown, Traning>({
+            query: (training) => ({
+                url: API_ROUTES.createTraining,
+                method: 'POST',
+                body: training,
+            }),
+            invalidatesTags: ['Training'],
+        }),
+        uptadeTraning: builder.mutation<unknown, IUpdateTraining>({
+            query: ({ training, id, isImplementation }) => ({
+                url: `${API_ROUTES.updateTraining}/${id}`,
+                method: 'PUT',
+                body: { ...training, isImplementation },
+            }),
+            invalidatesTags: ['Training', 'TrainingList'],
+        }),
+
+        getTrainingList: builder.query<TrainingListItem[], void>({
+            query: () => ({
+                url: API_ROUTES.getTrainingList,
+                method: 'GET',
+            }),
+            providesTags: ['TrainingList'],
+        }),
     }),
 });
 
@@ -111,4 +186,9 @@ export const {
     useConfirmEmailMutation,
     useGetReviewsQuery,
     useCreateReviewMutation,
+    useGetTrainingQuery,
+    useLazyGetTrainingQuery,
+    useCreateTrainigMutation,
+    useUptadeTraningMutation,
+    useGetTrainingListQuery,
 } = authApi;

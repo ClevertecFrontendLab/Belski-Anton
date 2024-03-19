@@ -2,7 +2,7 @@ import { AndroidFilled, AppleFilled } from '@ant-design/icons';
 import { MainCard } from '@components/main-card';
 import { history } from '@redux/configure-store';
 import { Layout } from 'antd';
-import './main-footer.css';
+import './main-footer.scss';
 import { PATHS } from '@constants/index';
 const { Footer } = Layout;
 

@@ -8,7 +8,7 @@ import { useCheckEmailMutation, useLoginMutation } from '../../../api/methods-ap
 import { IErrorResponse } from '../form';
 import logoGoogle from '/assets/icons/google.svg';
 import { BASE_API_URL, API_ROUTES, PATHS } from '../../../constants/index';
-import loginForm from './login-form.module.css';
+import './login-form.scss';
 
 const LoginForm = () => {
     const dispatch = useAppDispatch();
@@ -80,7 +80,7 @@ const LoginForm = () => {
     }, [email, router.previousLocations]);
 
     return (
-        <div className={loginForm['wrapper-form-login']}>
+        <div className='wrapper-form-login'>
             <Form
                 onFinish={loginUser}
                 name='basic'
@@ -143,7 +143,7 @@ const LoginForm = () => {
                     </Form.Item>
                     <Button
                         data-test-id='login-forgot-button'
-                        className={loginForm['login-form-forgot']}
+                        className='login-form-forgot'
                         onClick={() => (isEmailValid ? handlerCheckEmail() : undefined)}
                     >
                         Забыли пароль?
@@ -155,7 +155,7 @@ const LoginForm = () => {
                         data-test-id={'login-submit-button'}
                         type='primary'
                         htmlType='submit'
-                        className={loginForm['login-button']}
+                        className='login-button'
                     >
                         Войти
                     </Button>
@@ -166,12 +166,12 @@ const LoginForm = () => {
                         onClick={handleGoogleAuth}
                         type='primary'
                         htmlType='submit'
-                        className={loginForm['login-google-btn']}
+                        className='login-google-btn'
                         data-test-id='google-submit-button'
                     >
-                        <div className={loginForm['wrapper-button-icon']}>
-                            <img src={logoGoogle} alt='logo' className={loginForm['logo-google']} />
-                            <div className={loginForm['text-google']}>Войти через Google</div>
+                        <div className='wrapper-button-icon'>
+                            <img src={logoGoogle} alt='logo' className='logo-google' />
+                            <div className='text-google'>Войти через Google</div>
                         </div>
                     </Button>
                 </Form.Item>

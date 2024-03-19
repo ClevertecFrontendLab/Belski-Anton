@@ -7,8 +7,8 @@ import { setIsLoading } from '@redux/loading-slice';
 import { useEffect, useState } from 'react';
 import VerificationInput from 'react-verification-input';
 import { useConfirmEmailMutation } from '../../../api/methods-api';
-import './reset-password.css';
 import { PATHS } from '@constants/index';
+import './reset-password.scss';
 const CardPasswordReset = () => {
     const [value, setValue] = useState('');
     const [error, setError] = useState(false);

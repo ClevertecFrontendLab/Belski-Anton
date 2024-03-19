@@ -1,5 +1,4 @@
 import { Form, Input, Button } from 'antd';
-import './change-password.css';
 import { useChangePasswordMutation } from '../../../api/methods-api';
 import { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
@@ -7,6 +6,7 @@ import { setIsLoading } from '@redux/loading-slice';
 import { history } from '@redux/configure-store';
 import { setFields } from '@redux/auth-slice';
 import { PATHS } from '@constants/index';
+import './change-password.scss';
 const ChangePassword = () => {
     const {
         auth: { password },

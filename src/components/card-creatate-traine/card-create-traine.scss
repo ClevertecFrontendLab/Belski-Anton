@@ -1,0 +1,91 @@
+@import '../../constants/variables.scss';
+.wrapper-card-create-traine {
+    width: 264px;
+    position: absolute;
+    left: 0;
+    top: 2px;
+    z-index: 99999 !important;
+    box-shadow: 10px 5px 5px $black-opacity-10;
+    background-color: $white-color;
+
+    .header-card-create-traine {
+        padding: 16px 12px;
+        height: 70px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .title-card-create-traine {
+            .text-data-create-card {
+                font-weight: $font-weight-700;
+            }
+
+            > span {
+                color: $gray-color;
+            }
+        }
+
+        .close-card-create-traine {
+            font-size: $font-size-small;
+        }
+
+        & + .wrapper-badge-training {
+            padding: 0 12px 12px;
+            min-height: 64px;
+
+            .item-badge {
+                display: flex;
+                justify-content: space-between;
+
+                &.disabled {
+                    .ant-badge {
+                        .ant-badge-status-text {
+                            color: $gray-6;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .wrapper-img {
+        height: 72px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        img {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    .wrapper-btn-create-traine {
+        padding: 12px;
+        display: flex;
+        justify-content: center;
+
+        .btn-create-traine {
+            width: 100%;
+            margin: 0 auto;
+            height: $button-height;
+            background-color: $primary-blue-color;
+            color: $white-color;
+
+            &:disabled {
+                background-color: $gray-3;
+                color: $gray-5;
+                border: 1px solid $gray-5;
+            }
+        }
+    }
+
+    @media (max-width: 640px) {
+        width: 312px;
+        position: fixed;
+        top: 230px;
+        left: 50%;
+        transform: translate(-50%);
+        box-shadow: 0 0 10px 0 $black-opacity-10;
+    }
+}

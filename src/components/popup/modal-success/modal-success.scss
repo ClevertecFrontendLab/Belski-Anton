@@ -1,10 +1,11 @@
-.wrapper-success-modal {
+@import '../../../constants/variables.scss';
+wrapper-success-modal {
     .ant-result-title {
-        font-size: 24px;
-        font-weight: 600;
+        font-size: $font-size-large;
+        font-weight: $font-weight-600;
     }
     .success-btn {
-        background-color: #2f54eb;
+        background-color: $primary-blue-color;
         max-width: 368px;
         width: 100%;
         height: 40px;
@@ -17,7 +18,7 @@
         .ant-result {
             padding: 35px 24px;
         }
-        .ant-result-title{
+        .ant-result-title {
             line-height: 1.2;
         }
     }
