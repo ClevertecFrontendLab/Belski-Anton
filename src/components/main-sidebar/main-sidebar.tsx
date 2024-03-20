@@ -51,7 +51,7 @@ export const SideBar = () => {
         {
             key: '4',
             icon: <IdcardOutlined style={{ fontSize: '12.5px', color: '#061178' }} />,
-            label: 'Профиль',
+            label: <span onClick={()=>history.push(PATHS.PROFILE)}>Профиль</span>,
         },
     ];
 

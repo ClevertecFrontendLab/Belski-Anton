@@ -1,0 +1,24 @@
+@import '../../constants/variables.scss';
+.wrapper-profile-details {
+    .header-profile-details {
+        background-color: $geekblue-1;
+        .inner-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            .header-setting {
+                display: flex;
+                align-items: center;
+                gap: 20px;
+            }
+        }
+    }
+    .main-profile-details{
+      background-color:$white-color;
+      max-width: 1184px;
+      height:calc(100vh - 140px ); 
+      margin: 24px 24px 42px;
+
+    }
+}

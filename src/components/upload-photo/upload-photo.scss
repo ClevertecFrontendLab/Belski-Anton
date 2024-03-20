@@ -1,0 +1,6 @@
+@import '../../constants/variables.scss';
+.upload-photo-wrapper {
+    .ant-upload-list-item.ant-upload-list-item-error.ant-upload-list-item-list-type-picture-card {
+        border: 1px solid  $gray-5;
+    }
+}

@@ -24,6 +24,7 @@ import ChangePassword from '@components/password-recovery/change-password/change
 import FeedBacks from '@pages/feed-backs/feed-backs';
 import BasePage from '@pages/base-page/base-page';
 import CalendarPage from '@pages/calendar-page/calendar-page';
+import ProfilePage from '@pages/profile-page/profile-page';
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
 const AuthRedirect = () => {
@@ -41,6 +42,7 @@ root.render(
                         <Route path={PATHS.MAIN} element={<MainPage />} />
                         <Route path={PATHS.FEEDBACKS} element={<FeedBacks />} />
                         <Route path={PATHS.CALENDAR} element={<CalendarPage />} />
+                        <Route path={PATHS.PROFILE} element={<ProfilePage />} />
                     </Route>
                     <Route
                         path={PATHS.AUTH}

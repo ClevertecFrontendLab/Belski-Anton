@@ -24,7 +24,7 @@ const cardsData = [
     {
         title: 'Заполнить профиль',
         icon: <IdcardOutlined style={{ fontSize: '12px' }} twoToneColor='var(--color-Blue)' />,
-        subtitle: 'Профиль',
+        subtitle: <span onClick={() => history.push(PATHS.PROFILE)}>Профиль</span>,
     },
 ];
 
