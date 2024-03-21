@@ -10,7 +10,7 @@ import wrongIcon from '/assets/icons/wrong-icon.svg';
 
 import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
 import { MainPage } from './pages';
 import { AuthPage } from './pages/auth-page';
@@ -27,18 +27,14 @@ import CalendarPage from '@pages/calendar-page/calendar-page';
 import ProfilePage from '@pages/profile-page/profile-page';
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
-const AuthRedirect = () => {
-    const isAuthenticated = localStorage.getItem('token');
-    return isAuthenticated ? <Navigate to='/main' replace /> : <Navigate to='/auth' replace />;
-};
 
-export default AuthRedirect;
 root.render(
     <React.StrictMode>
         <Provider store={store}>
             <HistoryRouter history={history}>
                 <Routes>
                     <Route path='/' element={<BasePage />}>
+                        <Route index element={<MainPage />} />
                         <Route path={PATHS.MAIN} element={<MainPage />} />
                         <Route path={PATHS.FEEDBACKS} element={<FeedBacks />} />
                         <Route path={PATHS.CALENDAR} element={<CalendarPage />} />
@@ -215,7 +211,6 @@ root.render(
                             </AuthPage>
                         }
                     />
-                    <Route index={true}  element={<Navigate to='/auth' replace />} />
                 </Routes>
             </HistoryRouter>
         </Provider>
