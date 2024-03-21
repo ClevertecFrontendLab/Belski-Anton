@@ -1,8 +1,8 @@
 import Lottie from 'lottie-react';
+
 import animationLoader from './animation.json';
 
-const Loader = () => {
-    return (
+const Loader = () => (
         <Lottie
             animationData={animationLoader}
             loop={true}
@@ -10,6 +10,5 @@ const Loader = () => {
             className='loader'
         />
     );
-};
 
 export default Loader;

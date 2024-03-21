@@ -1,14 +1,20 @@
+/* eslint-disable react/jsx-curly-brace-presence */
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
+import { useEffect, useState } from 'react';
+import { API_ROUTES, BASE_API_URL, PATHS } from '@constants/index';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
-import { Button, Checkbox, Form, Input } from 'antd';
 import { setFields, setToken } from '@redux/auth-slice';
 import { history } from '@redux/configure-store';
 import { setIsLoading } from '@redux/loading-slice';
-import { useEffect, useState } from 'react';
+import { Button, Checkbox, Form, Input } from 'antd';
+
 import { useCheckEmailMutation, useLoginMutation } from '../../../api/methods-api';
 import { IErrorResponse } from '../form';
-import logoGoogle from '/assets/icons/google.svg';
-import { BASE_API_URL, API_ROUTES, PATHS } from '../../../constants/index';
+
 import './login-form.scss';
+
+import logoGoogle from '/assets/icons/google.svg';
 
 const LoginForm = () => {
     const dispatch = useAppDispatch();
@@ -20,8 +26,8 @@ const LoginForm = () => {
     const [checkEmail] = useCheckEmailMutation();
     const [isEmailValid, setIsEmailValid] = useState(false);
     const [data, setData] = useState({
-        email: email,
-        password: password,
+        email,
+        password,
         isRemember: false,
     });
 
@@ -65,6 +71,7 @@ const LoginForm = () => {
 
     const handleGoogleAuth = () => {
         const googleAuthUrl = `${BASE_API_URL}${API_ROUTES.authGoogle}`;
+
         window.location.href = googleAuthUrl;
     };
 
@@ -91,6 +98,7 @@ const LoginForm = () => {
                 onFieldsChange={(_, allFields) => {
                     const emailField = allFields.find((field) => field.name[0] === 'email');
                     const isValid = emailField && !emailField?.errors?.length;
+
                     setIsEmailValid(!!isValid);
                 }}
             >
@@ -132,7 +140,7 @@ const LoginForm = () => {
                 </Form.Item>
 
                 <Form.Item>
-                    <Form.Item name='remember' noStyle>
+                    <Form.Item name='remember' noStyle={true}>
                         <Checkbox
                             data-test-id='login-remember'
                             checked={data.isRemember}

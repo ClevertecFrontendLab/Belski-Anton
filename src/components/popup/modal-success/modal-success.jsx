@@ -1,9 +1,9 @@
+import { STATUS_CODES } from '@constants/index';
 import { Button, Modal, Result } from 'antd';
-import { STATUS_CODES } from '../../../constants/index';
 
 import './modal-success.scss';
-const ModalSuccess = ({ isOpen, onCancel }) => {
-    return (
+
+const ModalSuccess = ({ isOpen, onCancel }) => (
         <Modal
             className='wrapper-success-modal'
             title={null}
@@ -25,6 +25,5 @@ const ModalSuccess = ({ isOpen, onCancel }) => {
             />
         </Modal>
     );
-};
 
 export default ModalSuccess;

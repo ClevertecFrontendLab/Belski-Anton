@@ -1,28 +1,33 @@
-import { CalendarTwoTone, HeartFilled, IdcardOutlined, TrophyFilled } from '@ant-design/icons';
-import exit from '/assets/icons/icon-exit.svg';
-import { Layout, Menu } from 'antd';
-import logoFit from '/assets/icons/logo-fit-sidebar.svg';
-import logo from '/assets/icons/logo.svg';
-const { Sider } = Layout;
-import close from '/assets/icons/close.svg';
-import open from '/assets/icons/icon-switcher.svg';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from 'react';
+import { CalendarTwoTone, HeartFilled, IdcardOutlined, TrophyFilled } from '@ant-design/icons';
 import { MAX_WIDTH_SIDEBAR, MIN_WIDTH_SIDEBAR, MOB_WIDTH_SIDEBAR, PATHS } from '@constants/index';
-import { history } from '@redux/configure-store';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
-import { useLazyGetTrainingQuery } from '../../api/methods-api';
-import { setIsLoading } from '@redux/loading-slice';
+import close from '@public/icons/close.svg';
+import exit from '@public/icons/icon-exit.svg';
+import open from '@public/icons/icon-switcher.svg';
+import logo from '@public/icons/logo.svg';
+import logoFit from '@public/icons/logo-fit-sidebar.svg';
+import { history } from '@redux/configure-store';
 import { setIsError } from '@redux/error-training-slice';
+import { setIsLoading } from '@redux/loading-slice';
+import { Layout, Menu } from 'antd';
+
+import { useLazyGetTrainingQuery } from '../../api/methods-api';
+
 import './main-sidebar.scss';
+
+const { Sider } = Layout;
 
 export const SideBar = () => {
     const [collapsed, setCollapsed] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
-    const { token} = useAppSelector((state) => state.auth);
+    const { token } = useAppSelector((state) => state.auth);
     const [getTraining] = useLazyGetTrainingQuery();
     const dispatch = useAppDispatch();
 
-    
     const hanleGetTraining = () => {
         dispatch(setIsLoading(true));
         getTraining()
@@ -36,7 +41,17 @@ export const SideBar = () => {
         {
             key: '1',
             icon: <CalendarTwoTone twoToneColor='#061178' style={{ fontSize: '12.5px' }} />,
-            label: <span onClick={hanleGetTraining}>Календарь</span>,
+            label: (
+                <span
+                    role='button'
+                    tabIndex={0}
+                    onKeyDown={() => false}
+                    data-test-id='modal-create-exercise'
+                    onClick={hanleGetTraining}
+                >
+                    Календарь
+                </span>
+            ),
         },
         {
             key: '2',
@@ -51,7 +66,17 @@ export const SideBar = () => {
         {
             key: '4',
             icon: <IdcardOutlined style={{ fontSize: '12.5px', color: '#061178' }} />,
-            label: <span onClick={()=>history.push(PATHS.PROFILE)}>Профиль</span>,
+            label: (
+                <span
+                    role='button'
+                    tabIndex={0}
+                    onKeyDown={() => false}
+                    data-test-id='modal-create-exercise'
+                    onClick={() => history.push(PATHS.PROFILE)}
+                >
+                    Профиль
+                </span>
+            ),
         },
     ];
 
@@ -65,10 +90,11 @@ export const SideBar = () => {
             history.push(PATHS.AUTH);
         }
     }, [token, localStorage]);
+
     return (
         <Sider
             trigger={null}
-            collapsible
+            collapsible={true}
             collapsed={isMobile ? false : collapsed}
             width={isMobile ? MOB_WIDTH_SIDEBAR : MAX_WIDTH_SIDEBAR}
             collapsedWidth={isMobile ? MOB_WIDTH_SIDEBAR : MIN_WIDTH_SIDEBAR}
@@ -91,7 +117,13 @@ export const SideBar = () => {
                 }}
                 items={items}
             />
-            <div className='exit' onClick={logOut}>
+            <div
+                role='button'
+                tabIndex={0}
+                onKeyDown={() => false}
+                className='exit'
+                onClick={logOut}
+            >
                 {!isMobile && <img src={exit} alt='' />}
                 {(!collapsed || isMobile) && <span>Выход</span>}
             </div>

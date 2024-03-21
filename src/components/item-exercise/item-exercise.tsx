@@ -18,8 +18,7 @@ const ItemExercise = ({
     edit = false,
     isChecked = false,
     onClickCheckbox,
-}: IItemProps) => {
-    return (
+}: IItemProps) => (
         <div>
             <Input
                 data-test-id={`modal-drawer-right-input-exercise${idx}`}
@@ -81,6 +80,5 @@ const ItemExercise = ({
             </div>
         </div>
     );
-};
 
 export default ItemExercise;

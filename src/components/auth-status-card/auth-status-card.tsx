@@ -1,5 +1,6 @@
 import { history } from '@redux/configure-store';
 import { Button } from 'antd';
+
 import  './auth-status-card.scss';
 
 interface IPropsCard {
@@ -20,8 +21,7 @@ export const AuthStatusCard = ({
     dataTestId,
     path,
     className = '',
-}: IPropsCard) => {
-    return (
+}: IPropsCard) => (
         <div className={`wrapper-auth-status ${className}`}>
             <div className='card-status'>
                 <div>
@@ -42,4 +42,3 @@ export const AuthStatusCard = ({
             </div>
         </div>
     );
-};

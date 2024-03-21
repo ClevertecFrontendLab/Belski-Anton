@@ -1,8 +1,12 @@
-import { Button, Input, Modal, Rate } from 'antd';
+/* eslint-disable react/no-unstable-nested-components */
 import { useState } from 'react';
+import { StarFilled,StarTwoTone } from '@ant-design/icons';
+import { Button, Input, Modal, Rate } from 'antd';
+
 import { useCreateReviewMutation } from '../../../api/methods-api';
-import { StarTwoTone, StarFilled } from '@ant-design/icons';
+
 import './modal-write.scss';
+
 const { TextArea } = Input;
 const ModalWrite = ({ isOpen, onOk, centered, onCancel, onError }) => {
     const [createReview] = useCreateReviewMutation();

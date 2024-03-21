@@ -1,12 +1,16 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+/* eslint-disable import/no-extraneous-dependencies */
+import React,{ useState } from 'react';
 import { ArrowLeftOutlined, EditOutlined } from '@ant-design/icons';
 import ModelDataSaveErrorCalendar from '@components/popup/model-data-save-error-calendar/model-data-save-error-calendar';
+import { DATE_FORMATS } from '@constants/index';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { setIsLoading } from '@redux/loading-slice';
 import { Button, Divider, Select } from 'antd';
 import moment from 'moment';
-import { useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
 import { useUptadeTraningMutation } from '../../api/methods-api';
-import { DATE_FORMATS } from '@constants/index';
 
 interface ICardTrainingProps {
     openSidebar: () => void;
@@ -47,8 +51,15 @@ const CardTrainingEdit = ({ openSidebar, close, setError }: ICardTrainingProps) 
     };
 
     return (
-        <>
-            <div className='wrapper-card-training' data-test-id='modal-create-exercise' onClick={handleClick}>
+        <React.Fragment>
+            <div 
+            className='wrapper-card-training' 
+            data-test-id='modal-create-exercise' 
+            onClick={handleClick}
+            role="button"
+            tabIndex={0}
+            onKeyDown={()=> false}
+            >
                 <div className='header-select'>
                     <ArrowLeftOutlined onClick={close} />
                     <Select
@@ -60,7 +71,7 @@ const CardTrainingEdit = ({ openSidebar, close, setError }: ICardTrainingProps) 
                 <Divider className='divider-up' />
                 <div className='wrapper-save-training'>
                     {!!exercises.length && exercises.map((el, idx) => (
-                        <div key={idx} className='item-save-training'>
+                        <div key={uuidv4()} className='item-save-training'>
                             <div>{el.name}</div>
                             <EditOutlined
                                 data-test-id={`modal-update-training-edit-button${idx}`}
@@ -87,7 +98,7 @@ const CardTrainingEdit = ({ openSidebar, close, setError }: ICardTrainingProps) 
                 open={isModalDataSaveError}
                 setIsOpen={() => setIsModalDataSaveError(false)}
             />
-        </>
+        </React.Fragment>
     );
 };
 

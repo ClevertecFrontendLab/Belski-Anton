@@ -1,12 +1,17 @@
-import { Form, Input, Button } from 'antd';
-import { useChangePasswordMutation } from '../../../api/methods-api';
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable @typescript-eslint/no-unused-expressions */
 import { useEffect, useState } from 'react';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
-import { setIsLoading } from '@redux/loading-slice';
-import { history } from '@redux/configure-store';
-import { setFields } from '@redux/auth-slice';
 import { PATHS } from '@constants/index';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { setFields } from '@redux/auth-slice';
+import { history } from '@redux/configure-store';
+import { setIsLoading } from '@redux/loading-slice';
+import { Button,Form, Input } from 'antd';
+
+import { useChangePasswordMutation } from '../../../api/methods-api';
+
 import './change-password.scss';
+
 const ChangePassword = () => {
     const {
         auth: { password },
@@ -15,7 +20,7 @@ const ChangePassword = () => {
     } = useAppSelector((store) => store);
     const [changePassword] = useChangePasswordMutation();
     const [data, setData] = useState({
-        password: password,
+        password,
         confirmPassword: password,
     });
 
@@ -39,6 +44,7 @@ const ChangePassword = () => {
             })
             .finally(() => dispatch(setIsLoading(false)));
     };
+
     useEffect(() => {
         if (
             password &&
@@ -49,6 +55,7 @@ const ChangePassword = () => {
             sendData();
         }
     }, [password, router.previousLocations, isLoading]);
+
     return (
         <div className='wrapper-change-password'>
             <div className='text-change-pass'>Восстановление аккаунта</div>
@@ -75,7 +82,7 @@ const ChangePassword = () => {
                     style={{ display: 'flex', flexDirection: 'column' }}
                     name='confirm'
                     dependencies={['password']}
-                    hasFeedback
+                    hasFeedback={true}
                     rules={[
                         {
                             required: true,
@@ -86,6 +93,7 @@ const ChangePassword = () => {
                                 if (!value || getFieldValue('password') === value) {
                                     return Promise.resolve();
                                 }
+
                                 return Promise.reject(new Error('Пароли не совпадают'));
                             },
                         }),

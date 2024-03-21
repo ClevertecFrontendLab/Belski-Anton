@@ -1,12 +1,16 @@
-import { Badge, Button, Drawer } from 'antd';
+/* eslint-disable quotes */
+/* eslint-disable import/no-extraneous-dependencies */
 import { useEffect, useState } from 'react';
 import { CloseOutlined, EditOutlined, MinusOutlined, PlusOutlined } from '@ant-design/icons';
+import ItemExercise from '@components/item-exercise/item-exercise';
+import { color, WIDTH_TRAINING_SIDEBAR } from '@constants/index';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { Exercise, setExercises } from '@redux/traninig-slice';
-import ItemExercise from '@components/item-exercise/item-exercise';
-import './sidebar-editor-training.scss';
-import { WIDTH_TRAINING_SIDEBAR, color } from '@constants/index';
+import { Badge, Button, Drawer } from 'antd';
 import moment from 'moment';
+import { v4 as uuidv4 } from 'uuid';
+
+import './sidebar-editor-training.scss';
 
 interface DrawerControls {
     onClose: () => void;
@@ -37,17 +41,21 @@ const SidebarEditorTraining = ({ onClose, open, isMob = false }: DrawerControls)
     const onChangeExercise = (idx: number, newItem: Exercise) => {
         setAllExercises((prevExercises) => {
             const updatedExercises = [...prevExercises];
+
             updatedExercises[idx] = newItem;
+
             return updatedExercises;
         });
     };
     const saveExercises = () => {
         const fillArray = allExercises.filter((el) => el.name);
+
         dispatch(setExercises(fillArray));
     };
 
     const onDeleteItems = () => {
         const actualItems = allExercises.filter((_, idx) => !deleteItems.includes(idx));
+
         setAllExercises(actualItems);
         setDeleteItems([]);
     };
@@ -104,7 +112,7 @@ const SidebarEditorTraining = ({ onClose, open, isMob = false }: DrawerControls)
                     <ItemExercise
                         edit={true}
                         item={el}
-                        key={idx}
+                        key={uuidv4()}
                         idx={idx}
                         onChange={onChangeExercise}
                         onClickCheckbox={onClickCheckbox}
@@ -116,6 +124,9 @@ const SidebarEditorTraining = ({ onClose, open, isMob = false }: DrawerControls)
                     <div
                         className='btn-repeat'
                         onClick={() => setAllExercises([...allExercises, initialItemState])}
+                        role='button'
+                        tabIndex={0}
+                        onKeyDown={() => false}
                     >
                         <PlusOutlined style={{ color: '#2F54EB' }} />
                         <div>Добавить ещё</div>

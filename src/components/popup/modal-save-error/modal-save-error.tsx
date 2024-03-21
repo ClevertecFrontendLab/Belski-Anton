@@ -1,11 +1,10 @@
+import { STATUS_CODES } from '@constants/index'
 import { Button, Modal, ModalProps, Result } from 'antd';
-import { STATUS_CODES } from '../../../constants/index'
+
 import './modal-save-error.scss';
 
-const ModalSaveError = ({ open, onCancel, onOk }: ModalProps) => {
-    return (
-        <>
-            <Modal
+const ModalSaveError = ({ open, onCancel, onOk }: ModalProps) => (
+        <Modal
                 className='wrapper-error-modal'
                 title={null}
                 footer={null}
@@ -32,9 +31,8 @@ const ModalSaveError = ({ open, onCancel, onOk }: ModalProps) => {
                             Закрыть
                         </Button>,
                     ]}
-                ></Result>
+                 />
             </Modal>
-        </>
     );
-};
+
 export default ModalSaveError;

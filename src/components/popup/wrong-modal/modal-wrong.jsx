@@ -1,9 +1,10 @@
-import { Button, Modal, Result } from 'antd';
+import { PATHS, STATUS_CODES } from '@constants/index'
 import { history } from '@redux/configure-store';
-import { PATHS, STATUS_CODES } from '../../../constants/index'
+import { Button, Modal, Result } from 'antd';
+
 import './modal-wrong.scss';
-const ModalWrong = ({ isOpen, centered }) => {
-    return (
+
+const ModalWrong = ({ isOpen, centered }) => (
         <Modal className='wrapper-wrong-module' title={null} open={isOpen} centered={centered} footer={null} closable={false}>
             <Result
                 status={STATUS_CODES.INTERNAL_SERVER_ERROR}
@@ -22,6 +23,5 @@ const ModalWrong = ({ isOpen, centered }) => {
             />
         </Modal>
     );
-};
 
 export default ModalWrong;

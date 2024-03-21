@@ -1,11 +1,17 @@
-import { Badge, Drawer } from 'antd';
+
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+/* eslint-disable quotes */
 import { useState } from 'react';
-import './sidebar-add-training.scss';
 import { CloseOutlined, PlusOutlined } from '@ant-design/icons';
+import ItemExercise from '@components/item-exercise/item-exercise';
+import { color,WIDTH_TRAINING_SIDEBAR } from '@constants/index';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { Exercise, setExercises } from '@redux/traninig-slice';
-import ItemExercise from '@components/item-exercise/item-exercise';
-import { WIDTH_TRAINING_SIDEBAR, color } from '@constants/index';
+import { Badge, Drawer } from 'antd';
+import { v4 as uuidv4 } from 'uuid';
+
+import './sidebar-add-training.scss';
 
 interface DrawerControls {
     onClose: () => void;
@@ -31,14 +37,18 @@ const SideBarAddTraining = ({ onClose, open, isMob = false }: DrawerControls) =>
     const onChangeExercise = (idx: number, newItem: Exercise) => {
         setAllExercises((prevExercises) => {
             const updatedExercises = [...prevExercises];
+
             updatedExercises[idx] = newItem;
+
             return updatedExercises;
         });
     };
     const saveExercises = () => {
         const fillArray = allExercises.filter((el) => el.name);
+
         dispatch(setExercises(fillArray));
     };
+
     return (
         <div className='wrapper-drawer'>
             <Drawer
@@ -82,7 +92,7 @@ const SideBarAddTraining = ({ onClose, open, isMob = false }: DrawerControls) =>
                 </div>
 
                 {allExercises.map((el, idx) => (
-                    <ItemExercise item={el} key={idx} idx={idx} onChange={onChangeExercise} />
+                    <ItemExercise item={el} key={uuidv4()} idx={idx} onChange={onChangeExercise} />
                 ))}
 
                 <div

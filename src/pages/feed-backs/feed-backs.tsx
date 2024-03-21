@@ -1,18 +1,22 @@
-import Breadcrumbs from '@components/breadcrumb/breadcrumb';
-import { Avatar, Button, Rate } from 'antd';
+/* eslint-disable no-negated-condition */
+/* eslint-disable react-hooks/exhaustive-deps */
+import React,{ useEffect, useState } from 'react';
 import { UserOutlined } from '@ant-design/icons';
+import Breadcrumbs from '@components/breadcrumb/breadcrumb';
 import { IErrorResponse } from '@components/form/form';
 import NotReviews from '@components/not-reviews/not-reviews';
 import ModalSaveError from '@components/popup/modal-save-error/modal-save-error';
 import ModalSuccess from '@components/popup/modal-success/modal-success';
 import ModalWrite from '@components/popup/modal-write/modal-write';
 import ModalWrong from '@components/popup/wrong-modal/modal-wrong';
+import { PATHS } from '@constants/index';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
 import { clearAuthState } from '@redux/auth-slice';
 import { history } from '@redux/configure-store';
-import { useEffect, useState } from 'react';
+import { Avatar, Button, Rate } from 'antd';
+
 import { useGetReviewsQuery } from '../../api/methods-api';
-import { PATHS } from '@constants/index';
+
 import './feed-backs.scss';
 
 const routes = [
@@ -64,6 +68,7 @@ const FeedBacks = () => {
     useEffect(() => {
         if (isError) {
             const fetchError = error as IErrorResponse;
+
             if (fetchError.status === 403) {
                 localStorage.removeItem('token');
                 dispatch(clearAuthState());
@@ -87,7 +92,7 @@ const FeedBacks = () => {
 
             <div className='wrapper-feedbacks-content'>
                 {!!reviews?.length && (
-                    <>
+                    <React.Fragment>
                         <div className='wrapper-commit'>
                             {(showAllReviews ? reviews : reviews.slice(-4)).map((el) => (
                                 <div className='wrapper-card-commit' key={el.id}>
@@ -105,7 +110,7 @@ const FeedBacks = () => {
                                     </div>
                                     <div className='wrapper-rate-text'>
                                         <div className='wrapper-rate-date'>
-                                            <Rate disabled value={el.rating} />
+                                            <Rate disabled={true} value={el.rating} />
                                             <div className='date-commit'>
                                                 {new Date(el.createdAt).toLocaleDateString()}
                                             </div>
@@ -133,7 +138,7 @@ const FeedBacks = () => {
                                 {showAllReviews ? 'Свернуть все отзывы' : 'Развернуть все отзывы'}
                             </Button>
                         </div>
-                    </>
+                    </React.Fragment>
                 )}
                 {!!(reviews && !reviews.length) && <NotReviews onAddReview={showModal} />}
             </div>

@@ -1,18 +1,19 @@
-import { Button, Modal } from 'antd';
-import './model-data-save-error-calendar.scss';
 import { CloseCircleFilled } from '@ant-design/icons';
+import { Button, Modal } from 'antd';
+
+import './model-data-save-error-calendar.scss';
+
 interface ModelDataSaveErrorCalendarProps {
     open: boolean;
     setIsOpen: () => void;
 }
 
-const ModelDataSaveErrorCalendar = ({ open, setIsOpen }: ModelDataSaveErrorCalendarProps) => {
-    return (
+const ModelDataSaveErrorCalendar = ({ open, setIsOpen }: ModelDataSaveErrorCalendarProps) => (
         <div className='wrapper-modal-data-save-error'>
             <Modal
                 className='modal-data-save-error'
                 open={open}
-                centered
+                centered={true}
                 title={null}
                 footer={null}
                 closable={false}
@@ -47,6 +48,5 @@ const ModelDataSaveErrorCalendar = ({ open, setIsOpen }: ModelDataSaveErrorCalen
             </Modal>
         </div>
     );
-};
 
 export default ModelDataSaveErrorCalendar;

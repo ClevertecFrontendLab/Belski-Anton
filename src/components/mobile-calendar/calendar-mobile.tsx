@@ -1,29 +1,37 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable import/no-extraneous-dependencies */
+
+import React, { useEffect, useState } from 'react';
 import { EditFilled, EditOutlined, SettingOutlined } from '@ant-design/icons';
 import Breadcrumbs from '@components/breadcrumb/breadcrumb';
 import CardCreateTraine from '@components/card-creatate-traine/card-create-traine';
-import CardTrainingEdit from '@components/card-training-edit/card-training-edit';
 import CardTraining from '@components/card-training/card-training';
+import CardTrainingEdit from '@components/card-training-edit/card-training-edit';
 import ModalDataOpenErrorCalendar from '@components/popup/modal-data-open-error-calendar/modal-data-open-error-calendar';
+import ModelDataSaveErrorCalendar from '@components/popup/model-data-save-error-calendar/model-data-save-error-calendar';
+import SideBarAddTraining from '@components/sidebar-add-training/sidebar-add-training';
+import SidebarEditorTraining from '@components/sidebar-editor-training/sidebar-editor-training';
+import { color, DATE_FORMATS } from '@constants/index';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
 import {
-    TrainingState,
     clearTraining,
     setDate,
     setExercises,
     setName,
     setTraining,
+    TrainingState,
 } from '@redux/traninig-slice';
 import { Badge, Button, Calendar } from 'antd';
 import ruRu from 'antd/es/calendar/locale/ru_RU';
 import moment, { Moment } from 'moment';
-import 'moment/locale/ru';
-import { useEffect, useState } from 'react';
+import { v4 as uuidv4 } from 'uuid';
+
 import { useGetTrainingListQuery, useGetTrainingQuery } from '../../api/methods-api';
+
 import './calendar-mobile.scss';
-import { DATE_FORMATS, color } from '@constants/index';
-import SideBarAddTraining from '@components/sidebar-add-training/sidebar-add-training';
-import SidebarEditorTraining from '@components/sidebar-editor-training/sidebar-editor-training';
-import ModelDataSaveErrorCalendar from '@components/popup/model-data-save-error-calendar/model-data-save-error-calendar';
+
+import 'moment/locale/ru';
+
 moment.locale('ru');
 moment.updateLocale('ru', {
     weekdaysMin: ['Вс', 'Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб'],
@@ -82,9 +90,9 @@ const CalendarMobile = () => {
         dispatch(setExercises([]));
     };
 
-    const clickOnDate = (date: Moment) => {
-        if (moment(date).month() === moment().month()) {
-            dispatch(setDate(moment(date).format('DD.MM.YYYY')));
+    const clickOnDate = (time: Moment) => {
+        if (moment(time).month() === moment().month()) {
+            dispatch(setDate(moment(time).format('DD.MM.YYYY')));
         } else {
             dispatch(setDate(''));
         }
@@ -100,12 +108,13 @@ const CalendarMobile = () => {
     const renderTrainig = (d: Moment, isEdit = false) => {
         if (trainingData?.length && trainingListData) {
             const data = trainingData.filter((el) => moment(el.date).isSame(d, 'day'));
+
             return data.length ? (
                 <div className='wrapper-badge-training'>
                     {data.map((el, idx) => (
                         <div
                             className={`item-badge ${el.isImplementation ? 'disabled' : ''}`}
-                            key={`color-${idx}`}
+                            key={uuidv4()}
                         >
                             <Badge
                                 color={color.find((item) => item.name === el.name)?.color}
@@ -134,6 +143,8 @@ const CalendarMobile = () => {
                 </div>
             ) : undefined;
         }
+
+        return undefined;
     };
 
     const setError = () => {
@@ -142,6 +153,7 @@ const CalendarMobile = () => {
     };
     const renderCard = (d: Moment) => {
         const currentDate = d.format(DATE_FORMATS.FULL);
+
         if (currentDate === date) {
             return isContentVisible ? (
                 isEditCard ? (
@@ -173,6 +185,8 @@ const CalendarMobile = () => {
                 />
             );
         }
+
+        return null;
     };
 
     useEffect(() => {
@@ -182,8 +196,29 @@ const CalendarMobile = () => {
             setIsModalOpenDateError(false);
         }
     }, [isError]);
+
+    const cellCalenderMobile = (d: moment.Moment) => (
+        <React.Fragment>
+            <div
+                role='button'
+                tabIndex={0}
+                onKeyDown={() => false}
+                className='ant-picker-calendar-date-value'
+                onClick={() => {
+                    clickOnDate(d);
+                    setContentVisible(false);
+                }}
+            >
+                {d.format(DATE_FORMATS.DAY_SHORT)}
+            </div>
+            <div className='ant-picker-calendar-date-content'>
+                {!!(date && moment(date, DATE_FORMATS.FULL).isSame(d, 'day')) && renderCard(d)}
+            </div>
+        </React.Fragment>
+    );
+
     return (
-        <>
+        <React.Fragment>
             <div className='wrapper-mobile-calendar'>
                 <header>
                     <Breadcrumbs items={routes} />
@@ -195,24 +230,7 @@ const CalendarMobile = () => {
                     locale={ruRu}
                     fullscreen={false}
                     className='mobile-calendar'
-                    dateFullCellRender={(d) => (
-                        <>
-                            <div
-                                onClick={() => {
-                                    clickOnDate(d);
-                                    setContentVisible(false);
-                                }}
-                                className='ant-picker-calendar-date-value'
-                            >
-                                {' '}
-                                {d.format(DATE_FORMATS.DAY_SHORT)}
-                            </div>
-                            <div className='ant-picker-calendar-date-content'>
-                                {!!(date && moment(date, DATE_FORMATS.FULL).isSame(d, 'day')) &&
-                                    renderCard(d)}
-                            </div>
-                        </>
-                    )}
+                    dateFullCellRender={(d) => cellCalenderMobile(d)}
                 />
             </div>
             <ModalDataOpenErrorCalendar
@@ -227,7 +245,7 @@ const CalendarMobile = () => {
                 open={isModalDataSaveError}
                 setIsOpen={() => setIsModalDataSaveError(false)}
             />
-        </>
+        </React.Fragment>
     );
 };
 

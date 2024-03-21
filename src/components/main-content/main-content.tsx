@@ -1,14 +1,18 @@
-import { Layout } from 'antd';
 import { CalendarTwoTone, HeartFilled, IdcardOutlined } from '@ant-design/icons';
 import { MainCard } from '@components/main-card';
-import { history } from '@redux/configure-store';
 import { PATHS } from '@constants/index';
-import { useLazyGetTrainingQuery } from '../../api/methods-api';
 import { useAppDispatch } from '@hooks/typed-react-redux-hooks';
-import { setIsLoading } from '@redux/loading-slice';
+import { history } from '@redux/configure-store';
 import { setIsError } from '@redux/error-training-slice';
-const { Content } = Layout;
+import { setIsLoading } from '@redux/loading-slice';
+import { Layout } from 'antd';
+import { v4 as uuidv4 } from 'uuid';
+
+import { useLazyGetTrainingQuery } from '../../api/methods-api';
+
 import './main-content.scss';
+
+const { Content } = Layout;
 
 const cardsData = [
     {
@@ -24,7 +28,16 @@ const cardsData = [
     {
         title: 'Заполнить профиль',
         icon: <IdcardOutlined style={{ fontSize: '12px' }} twoToneColor='var(--color-Blue)' />,
-        subtitle: <span onClick={() => history.push(PATHS.PROFILE)}>Профиль</span>,
+        subtitle: (
+            <span
+                role='button'
+                tabIndex={0}
+                onKeyDown={() => false}
+                onClick={() => history.push(PATHS.PROFILE)}
+            >
+                Профиль
+            </span>
+        ),
     },
 ];
 
@@ -40,6 +53,7 @@ export const MainContent = () => {
             .catch(() => dispatch(setIsError(true)))
             .finally(() => dispatch(setIsLoading(false)));
     };
+
     return (
         <Content className='main-content'>
             <div className='main-text-description'>
@@ -66,8 +80,11 @@ export const MainContent = () => {
             </div>
             <div className='wrapper-list-cards'>
                 {cardsData.map((card, index) => (
-                    <MainCard key={`card-${index}`} title={card.title}>
+                    <MainCard key={uuidv4()} title={card.title}>
                         <div
+                            role='button'
+                            tabIndex={0}
+                            onKeyDown={() => false}
                             className='content'
                             onClick={index === 1 ? hanleGetTraining : undefined}
                             data-test-id={index === 1 ? 'menu-button-calendar' : undefined}

@@ -1,12 +1,14 @@
+import { useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
-import { Modal, Upload, message } from 'antd';
+import {Modal, Upload } from 'antd';
 import type { RcFile, UploadProps } from 'antd/es/upload';
 import type { UploadFile } from 'antd/es/upload/interface';
-import { useState } from 'react';
+
 import './upload-photo.scss';
 const getBase64 = (file: RcFile): Promise<string> =>
     new Promise((resolve, reject) => {
         const reader = new FileReader();
+
         reader.readAsDataURL(file);
         reader.onload = () => resolve(reader.result as string);
         reader.onerror = (error) => reject(error);

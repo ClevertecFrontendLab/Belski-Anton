@@ -1,9 +1,9 @@
-import { Modal, ModalProps, Button } from 'antd';
 import { CloseCircleOutlined, CloseOutlined } from '@ant-design/icons';
+import { Button,Modal, ModalProps } from 'antd';
+
 import './modal-data-open-error-calendar.scss';
 
-const ModalDataOpenErrorCalendar = ({ open, onCancel, onOk }: ModalProps) => {
-    return (
+const ModalDataOpenErrorCalendar = ({ open, onCancel, onOk }: ModalProps) => (
         <div className='wrapper-modal-data-open-error-calendar'>
             <Modal
                 open={open}
@@ -13,7 +13,7 @@ const ModalDataOpenErrorCalendar = ({ open, onCancel, onOk }: ModalProps) => {
                     backdropFilter: 'blur(3px',
                 }}
                 onCancel={onCancel}
-                centered
+                centered={true}
                 footer={null}
                 closeIcon={
                     <CloseOutlined
@@ -51,6 +51,5 @@ const ModalDataOpenErrorCalendar = ({ open, onCancel, onOk }: ModalProps) => {
             </Modal>
         </div>
     );
-};
 
 export default ModalDataOpenErrorCalendar;

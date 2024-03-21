@@ -1,19 +1,23 @@
+/* eslint-disable import/no-extraneous-dependencies */
+import React,{ useState } from 'react';
 import { ArrowLeftOutlined, EditOutlined } from '@ant-design/icons';
+import ModelDataSaveErrorCalendar from '@components/popup/model-data-save-error-calendar/model-data-save-error-calendar';
+import { DATE_FORMATS } from '@constants/index';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
+import iconCreateCard from '@public/icons/empty-image.svg';
+import { setIsLoading } from '@redux/loading-slice';
+import { setExercises, setName } from '@redux/traninig-slice';
 import { Button, Divider, Select } from 'antd';
-import iconCreateCard from '../../../public/assets/icons/empty-image.svg';
+import moment from 'moment';
+import { v4 as uuidv4 } from 'uuid';
+
 import {
     useCreateTrainigMutation,
     useGetTrainingListQuery,
     useGetTrainingQuery,
 } from '../../api/methods-api';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
-import { setExercises, setName } from '@redux/traninig-slice';
-import { useState } from 'react';
+
 import './card-training.scss';
-import ModelDataSaveErrorCalendar from '@components/popup/model-data-save-error-calendar/model-data-save-error-calendar';
-import { setIsLoading } from '@redux/loading-slice';
-import moment from 'moment';
-import { DATE_FORMATS } from '@constants/index';
 
 interface ICardTrainingProps {
     openSidebar: () => void;
@@ -60,11 +64,15 @@ const CardTraining = ({ openSidebar, close }: ICardTrainingProps) => {
         dispatch(setName(val));
         dispatch(setExercises([]));
     };
+
     return (
-        <>
+        <React.Fragment>
             <div
                 className='wrapper-card-training'
                 onClick={handleClick}
+                role="button"
+                tabIndex={0}
+                onKeyDown={()=> false}
                 data-test-id='modal-create-exercise'
             >
                 <div className='header-select'>
@@ -87,8 +95,8 @@ const CardTraining = ({ openSidebar, close }: ICardTrainingProps) => {
                 <Divider className='divider-up' />
                 {exercises.length ? (
                     <div className='wrapper-save-training'>
-                        {exercises.map((el, idx) => (
-                            <div key={idx} className='item-save-training'>
+                        {exercises.map((el) => (
+                            <div key={uuidv4()} className='item-save-training'>
                                 <div>{el.name}</div>
                                 <EditOutlined onClick={openSidebar} style={{ color: '#2F54EB' }} />
                             </div>
@@ -118,7 +126,7 @@ const CardTraining = ({ openSidebar, close }: ICardTrainingProps) => {
                 open={isModalDataSaveError}
                 setIsOpen={() => setIsModalDataSaveError(false)}
             />
-        </>
+        </React.Fragment>
     );
 };
 

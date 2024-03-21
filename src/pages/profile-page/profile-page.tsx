@@ -1,11 +1,7 @@
-import ProfileDetails from "@components/profile-details/profile-details";
+import ProfileDetails from '@components/profile-details/profile-details';
 
-const ProfilePage = () => {
-    return(
-        <>
+const ProfilePage = () => (
         <ProfileDetails/>
-        </>
     );
-};
 
 export default ProfilePage;

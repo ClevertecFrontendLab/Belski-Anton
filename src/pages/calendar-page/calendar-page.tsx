@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import CalendarDesktop from '@components/calendar-desktop/calendar-dekstop';
 import CalendarMobile from '@components/mobile-calendar/calendar-mobile';
 
@@ -21,7 +21,7 @@ const CalendarPage = () => {
         };
     }, []);
 
-    return <>{isMobile ? <CalendarMobile /> : <CalendarDesktop />}</>;
+    return isMobile ? <CalendarMobile /> : <CalendarDesktop />;
 };
 
 export default CalendarPage;

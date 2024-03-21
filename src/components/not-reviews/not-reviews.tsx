@@ -1,12 +1,12 @@
 import { Button } from 'antd';
+
 import './not-reviews.scss';
 
 interface NotReviewsProps {
     onAddReview: () => void;
 }
 
-const NotReviews = ({ onAddReview}:NotReviewsProps) => {
-    return (
+const NotReviews = ({ onAddReview}:NotReviewsProps) => (
         <div className='container-not-review'>
             <div className='wrapper-not-reviews'>
                 <div className='text-not-reviews'>
@@ -25,6 +25,5 @@ const NotReviews = ({ onAddReview}:NotReviewsProps) => {
             </div>
         </div>
     );
-};
 
 export default NotReviews;

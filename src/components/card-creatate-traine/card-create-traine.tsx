@@ -1,13 +1,16 @@
-import { Button, Divider } from 'antd';
-import './card-create-traine.scss';
+/* eslint-disable no-unneeded-ternary */
 import { CloseOutlined } from '@ant-design/icons';
-import iconCreateCard from '../../../public/assets/icons/empty-image.svg';
+import iconCreateCard from '@public/icons/empty-image.svg';
+import { Button, Divider } from 'antd';
+
+import './card-create-traine.scss';
+
 interface CardCreateTraineProps {
     clickDate: string;
     disabled: boolean;
     onClick: () => void;
     onCloseClick: () => void;
-    child?: JSX.Element;
+    child?: JSX.Element | null;
 }
 
 const handleCloseButtonClick = (onClick: () => void) => (e: React.MouseEvent<HTMLElement>) => {
@@ -22,8 +25,7 @@ const CardCreateTraine = ({
     onClick,
     onCloseClick,
     child,
-}: CardCreateTraineProps) => {
-    return (
+}: CardCreateTraineProps) => (
         <div className='wrapper-card-create-traine' data-test-id='modal-create-training'>
             <div className='header-card-create-traine'>
                 <div className='title-card-create-traine'>
@@ -55,6 +57,5 @@ const CardCreateTraine = ({
             </div>
         </div>
     );
-};
 
 export default CardCreateTraine;

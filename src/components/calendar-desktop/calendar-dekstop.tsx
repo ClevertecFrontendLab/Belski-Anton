@@ -1,22 +1,28 @@
+/* eslint-disable no-nested-ternary */
+/* eslint-disable import/no-extraneous-dependencies */
+import React, { useEffect, useState } from 'react';
+import { EditOutlined, SettingOutlined } from '@ant-design/icons';
 import Breadcrumbs from '@components/breadcrumb/breadcrumb';
+import CardCreateTraine from '@components/card-creatate-traine/card-create-traine';
+import CardTraining from '@components/card-training/card-training';
+import CardTrainingEdit from '@components/card-training-edit/card-training-edit';
+import ModalDataOpenErrorCalendar from '@components/popup/modal-data-open-error-calendar/modal-data-open-error-calendar';
+import SideBarAddTraining from '@components/sidebar-add-training/sidebar-add-training';
+import SidebarEditorTraining from '@components/sidebar-editor-training/sidebar-editor-training';
+import { color, DATE_FORMATS } from '@constants/index';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { setDate, setExercises, setName, setTraining, TrainingState } from '@redux/traninig-slice';
+import { Badge, Calendar } from 'antd';
 import ruRu from 'antd/es/calendar/locale/ru_RU';
 import moment, { Moment } from 'moment';
-import 'moment/locale/ru';
-import './calendar-dekstop.scss';
-import { useEffect, useState } from 'react';
-import { Badge, Calendar } from 'antd';
-import { EditOutlined, SettingOutlined } from '@ant-design/icons';
-import CardCreateTraine from '@components/card-creatate-traine/card-create-traine';
-import ModalDataOpenErrorCalendar from '@components/popup/modal-data-open-error-calendar/modal-data-open-error-calendar';
-import { useGetTrainingListQuery, useGetTrainingQuery } from '../../api/methods-api';
-import CardTraining from '@components/card-training/card-training';
+import { v4 as uuidv4 } from 'uuid';
 
-import SideBarAddTraining from '@components/sidebar-add-training/sidebar-add-training';
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
-import { TrainingState, setDate, setExercises, setName, setTraining } from '@redux/traninig-slice';
-import { DATE_FORMATS, color } from '@constants/index';
-import SidebarEditorTraining from '@components/sidebar-editor-training/sidebar-editor-training';
-import CardTrainingEdit from '@components/card-training-edit/card-training-edit';
+import { useGetTrainingListQuery, useGetTrainingQuery } from '../../api/methods-api';
+
+import './calendar-dekstop.scss';
+
+import 'moment/locale/ru';
+
 moment.locale('ru');
 
 moment.updateLocale('ru', {
@@ -76,8 +82,8 @@ const CalendarDekstop = () => {
         dispatch(setExercises([]));
     };
 
-    const clickOnDate = (date: Moment) => {
-        dispatch(setDate(moment(date).format(DATE_FORMATS.FULL)));
+    const clickOnDate = (time: Moment) => {
+        dispatch(setDate(moment(time).format(DATE_FORMATS.FULL)));
     };
 
     const onClickEdit = (training: TrainingState) => {
@@ -90,10 +96,11 @@ const CalendarDekstop = () => {
     const renderTrainig = (d: Moment, isEdit = false) => {
         if (trainingData?.length && trainingListData) {
             const data = trainingData.filter((el) => moment(el.date).isSame(d, 'day'));
+
             return data.length ? (
                 <div className='wrapper-badge-training'>
                     {data.map((el, idx) => (
-                        <div className='item-badge' key={`color-${idx}`}>
+                        <div className='item-badge' key={uuidv4()}>
                             <Badge
                                 color={color.find((item) => item.name === el.name)?.color}
                                 text={el.name}
@@ -112,11 +119,14 @@ const CalendarDekstop = () => {
                         </div>
                     ))}
                 </div>
-            ) : undefined;
+            ) : null;
         }
+
+        return null;
     };
     const renderCard = (d: Moment) => {
         const currentDate = d.format(DATE_FORMATS.FULL);
+
         if (currentDate === date) {
             return isContentVisible ? (
                 isEditCard ? (
@@ -147,6 +157,8 @@ const CalendarDekstop = () => {
                 />
             );
         }
+
+        return null;
     };
 
     useEffect(() => {
@@ -166,10 +178,28 @@ const CalendarDekstop = () => {
         setContentVisible(false);
     };
 
-   
+    const cellCalendar = (d: moment.Moment) => (
+        <div
+            onKeyDown={onClose}
+            role='button'
+            tabIndex={0}
+            className='cell-table'
+            style={{ zIndex: 0 }}
+            onClick={(e) => {
+                handleCellClick(e, d);
+            }}
+        >
+            <div className='ant-picker-calendar-date-value'>{d.format(DATE_FORMATS.DAY)}</div>
+            <div className='ant-picker-calendar-date-content'>
+                {date && moment(date, 'DD.MM.YYYY').isSame(d, 'day')
+                    ? renderCard(d)
+                    : renderTrainig(d)}
+            </div>
+        </div>
+    );
 
     return (
-        <>
+        <React.Fragment>
             <div className='wrapper-calendar-dekstop'>
                 <header>
                     <Breadcrumbs items={routes} />
@@ -183,24 +213,7 @@ const CalendarDekstop = () => {
                         onChange={setValue}
                         locale={ruRu}
                         className='wrapper-calendar'
-                        dateFullCellRender={(d) => (
-                            <div
-                                className='cell-table'
-                                style={{ zIndex: 0 }}
-                                onClick={(e) => {
-                                    handleCellClick(e, d);
-                                }}
-                            >
-                                <div className='ant-picker-calendar-date-value'>
-                                    {d.format(DATE_FORMATS.DAY)}
-                                </div>
-                                <div className='ant-picker-calendar-date-content'>
-                                    {date && moment(date, 'DD.MM.YYYY').isSame(d, 'day')
-                                        ? renderCard(d)
-                                        : renderTrainig(d)}
-                                </div>
-                            </div>
-                        )}
+                        dateFullCellRender={(d) => cellCalendar(d)}
                     />
                 </div>
             </div>
@@ -211,7 +224,7 @@ const CalendarDekstop = () => {
                 onCancel={() => setIsModalOpenDateError(false)}
             />
             <SidebarEditorTraining open={isEditorTraining} onClose={onCloseEdit} />
-        </>
+        </React.Fragment>
     );
 };
 

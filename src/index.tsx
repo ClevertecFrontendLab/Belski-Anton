@@ -1,30 +1,31 @@
+import React from 'react';
+import { createRoot } from 'react-dom/client';
+import { Provider } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import { HistoryRouter } from 'redux-first-history/rr6';
+import { AuthStatusCard } from '@components/auth-status-card';
+import { AuthForm } from '@components/form';
+import ChangePassword from '@components/password-recovery/change-password/change-password';
+import { PATHS } from '@constants/index';
+import BasePage from '@pages/base-page/base-page';
+import CalendarPage from '@pages/calendar-page/calendar-page';
+import FeedBacks from '@pages/feed-backs/feed-backs';
+import ProfilePage from '@pages/profile-page/profile-page';
+
+import CardPasswordReset from './components/password-recovery/reset-password/reset-password';
+import { AuthPage } from './pages/auth-page';
+import { history,store } from './redux/configure-store';
+import { MainPage } from './pages';
+
 import 'normalize.css';
 import './index.css';
 import 'antd/dist/antd.css';
 
-import React from 'react';
-import failed from '/assets/icons/failed.svg';
 import errorIcon from '/assets/icons/error.svg';
+import failed from '/assets/icons/failed.svg';
 import success from '/assets/icons/success.svg';
 import wrongIcon from '/assets/icons/wrong-icon.svg';
 
-import { createRoot } from 'react-dom/client';
-import { Provider } from 'react-redux';
-import { Route, Routes } from 'react-router-dom';
-
-import { MainPage } from './pages';
-import { AuthPage } from './pages/auth-page';
-import { HistoryRouter } from 'redux-first-history/rr6';
-import { store, history } from './redux/configure-store';
-import { PATHS } from './constants/index';
-import { AuthForm } from '@components/form';
-import { AuthStatusCard } from '@components/auth-status-card';
-import CardPasswordReset from './components/password-recovery/reset-password/reset-password';
-import ChangePassword from '@components/password-recovery/change-password/change-password';
-import FeedBacks from '@pages/feed-backs/feed-backs';
-import BasePage from '@pages/base-page/base-page';
-import CalendarPage from '@pages/calendar-page/calendar-page';
-import ProfilePage from '@pages/profile-page/profile-page';
 const domNode = document.getElementById('root') as HTMLDivElement;
 const root = createRoot(domNode);
 
@@ -34,7 +35,7 @@ root.render(
             <HistoryRouter history={history}>
                 <Routes>
                     <Route path='/' element={<BasePage />}>
-                        <Route index element={<MainPage />} />
+                        <Route index={true} element={<MainPage />} />
                         <Route path={PATHS.MAIN} element={<MainPage />} />
                         <Route path={PATHS.FEEDBACKS} element={<FeedBacks />} />
                         <Route path={PATHS.CALENDAR} element={<CalendarPage />} />

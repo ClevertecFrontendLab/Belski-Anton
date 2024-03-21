@@ -1,14 +1,19 @@
-import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
-import { useRegistrationMutation } from '../../../api/methods-api';
-import { Button, Form, Input } from 'antd';
-import { useState, useEffect } from 'react';
-import { history } from '@redux/configure-store';
-import { clearAuthState, setFields } from '@redux/auth-slice';
-import { setIsLoading } from '@redux/loading-slice';
-import { IErrorResponse } from '../form';
-import logoGoogle from '/assets/icons/google.svg';
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react/jsx-curly-brace-presence */
+import { useEffect,useState } from 'react';
 import { PATHS } from '@constants/index';
+import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
+import logoGoogle from '@public/icons/google.svg';
+import { clearAuthState, setFields } from '@redux/auth-slice';
+import { history } from '@redux/configure-store';
+import { setIsLoading } from '@redux/loading-slice';
+import { Button, Form, Input } from 'antd';
+
+import { useRegistrationMutation } from '../../../api/methods-api';
+import { IErrorResponse } from '../form';
+
 import './registration-form.scss';
+
 const RegistrationForm = () => {
     const dispatch = useAppDispatch();
     const {
@@ -17,8 +22,8 @@ const RegistrationForm = () => {
     } = useAppSelector((state) => state);
     const [registration] = useRegistrationMutation();
     const [data, setData] = useState({
-        email: email,
-        password: password,
+        email,
+        password,
         confirmPassword: password,
         isRemember: false,
     });
@@ -93,7 +98,7 @@ const RegistrationForm = () => {
 
                 <Form.Item
                     dependencies={['password']}
-                    hasFeedback
+                    hasFeedback={true}
                     name='password'
                     rules={[
                         { required: true, message: 'Пожалуйста, введите свой пароль!!' },
@@ -126,6 +131,7 @@ const RegistrationForm = () => {
                                 if (!value || getFieldValue('password') === value) {
                                     return Promise.resolve();
                                 }
+
                                 return Promise.reject(new Error('Пароли не совпадают'));
                             },
                         }),
@@ -154,7 +160,7 @@ const RegistrationForm = () => {
 
                 <Form.Item>
                     <Button
-                        disabled
+                        disabled={true}
                         type='primary'
                         htmlType='submit'
                         className='registration-google-btn'

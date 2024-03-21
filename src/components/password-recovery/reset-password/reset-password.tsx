@@ -1,14 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+import { useEffect, useState } from 'react';
+import VerificationInput from 'react-verification-input';
+import { PATHS } from '@constants/index';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
-import errorIcon from '@public/assets/icons/error.svg';
-import recovery from '@public/assets/icons/recovery.svg';
+import errorIcon from '@public/icons/error.svg';
+import recovery from '@public/icons/recovery.svg';
 import { clearAuthState } from '@redux/auth-slice';
 import { history } from '@redux/configure-store';
 import { setIsLoading } from '@redux/loading-slice';
-import { useEffect, useState } from 'react';
-import VerificationInput from 'react-verification-input';
+
 import { useConfirmEmailMutation } from '../../../api/methods-api';
-import { PATHS } from '@constants/index';
+
 import './reset-password.scss';
+
 const CardPasswordReset = () => {
     const [value, setValue] = useState('');
     const [error, setError] = useState(false);

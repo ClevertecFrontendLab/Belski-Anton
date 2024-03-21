@@ -1,10 +1,11 @@
-import { Layout } from 'antd';
 import { SettingOutlined } from '@ant-design/icons';
-const { Header } = Layout;
+import { Layout } from 'antd';
+
 import './main-header.scss';
 
-export const CustomHeader = () => {
-    return (
+const { Header } = Layout;
+
+export const CustomHeader = () => (
         <Header style={{ height: 'auto', lineHeight: '1', padding: '16px  24px 20px' }}>
             <div className='breadcrumbs'>
                 <span>Главная</span>
@@ -21,4 +22,3 @@ export const CustomHeader = () => {
             </div>
         </Header>
     );
-};
