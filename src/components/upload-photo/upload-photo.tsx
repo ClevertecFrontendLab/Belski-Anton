@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { PlusOutlined } from '@ant-design/icons';
-import {Modal, Upload } from 'antd';
+import { Modal, Upload } from 'antd';
 import type { RcFile, UploadProps } from 'antd/es/upload';
 import type { UploadFile } from 'antd/es/upload/interface';
 
@@ -38,7 +38,7 @@ const UploadPhoto = () => {
     const uploadButton = (
         <div>
             <PlusOutlined />
-            <div style={{ marginTop: 8 }}>Загрузить фото для профиля</div>
+            <div>Загрузить фото для профиля</div>
         </div>
     );
 
@@ -51,10 +51,6 @@ const UploadPhoto = () => {
                 onPreview={handlePreview}
                 onChange={handleChange}
                 className='container'
-                // beforeUpload={() => {
-                //     return false;
-                // }}
-                progress={{ strokeWidth: 2, showInfo: false ,strokeColor:'#108ee9'}}
                 showUploadList={true}
             >
                 {fileList.length >= 1 ? null : uploadButton}

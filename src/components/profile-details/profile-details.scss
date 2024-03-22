@@ -7,18 +7,48 @@
             justify-content: space-between;
             align-items: center;
             padding: 16px 24px;
+            .header-title {
+                color: $gray-10;
+                font-size: $font-size-extra-small;
+            }
             .header-setting {
                 display: flex;
                 align-items: center;
-                gap: 20px;
+                gap: 14px;
+                margin-right: 13px;
             }
         }
     }
-    .main-profile-details{
-      background-color:$white-color;
-      max-width: 1184px;
-      height:calc(100vh - 140px ); 
-      margin: 24px 24px 42px;
+    .main-profile-details {
+        background-color: $white-color;
+        max-width: 1184px;
+        height: calc(100vh - 140px);
+        margin: 24px 24px 42px;
+        padding: 24px;
+        border-radius: 15px;
+        .text-title {
+            color: $gray-10;
+            font-size: $font-size-normal;
+        }
+        .wrapper-profile-details {
+            padding-top: 24px;
+            .wrapper-upload-input {
+                display: flex;
+                gap: 16px;
+                margin-bottom: 24px;
+            }
+        }
+        .private {
+            margin-bottom: 24px;
+        }
+    }
+    .wrapper-btn-profile {
+        margin-top: 56px;
 
+        .btn-profile {
+            height: $button-height;
+            width: 206px;
+            font-size: $font-size-normal;
+        }
     }
 }
