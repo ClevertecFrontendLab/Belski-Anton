@@ -11,6 +11,7 @@ import BasePage from '@pages/base-page/base-page';
 import CalendarPage from '@pages/calendar-page/calendar-page';
 import FeedBacks from '@pages/feed-backs/feed-backs';
 import ProfilePage from '@pages/profile-page/profile-page';
+import SettingsPage from '@pages/settings-page/settings-page';
 
 import CardPasswordReset from './components/password-recovery/reset-password/reset-password';
 import { AuthPage } from './pages/auth-page';
@@ -40,6 +41,7 @@ root.render(
                         <Route path={PATHS.FEEDBACKS} element={<FeedBacks />} />
                         <Route path={PATHS.CALENDAR} element={<CalendarPage />} />
                         <Route path={PATHS.PROFILE} element={<ProfilePage />} />
+                        <Route path={PATHS.SETTINGS} element={<SettingsPage />} />
                     </Route>
                     <Route
                         path={PATHS.AUTH}

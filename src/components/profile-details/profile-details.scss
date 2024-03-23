@@ -16,6 +16,7 @@
                 align-items: center;
                 gap: 14px;
                 margin-right: 13px;
+                cursor: pointer;
             }
         }
     }
@@ -23,6 +24,7 @@
         background-color: $white-color;
         max-width: 1184px;
         height: calc(100vh - 140px);
+        height: 100vh;
         margin: 24px 24px 42px;
         padding: 24px;
         border-radius: 15px;
@@ -50,5 +52,10 @@
             width: 206px;
             font-size: $font-size-normal;
         }
+    }
+    @media(max-width:768px){
+       .wrapper-upload-input {
+        flex-direction: column-reverse;
+       }
     }
 }

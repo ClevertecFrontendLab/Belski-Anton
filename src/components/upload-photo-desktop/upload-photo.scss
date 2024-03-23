@@ -1,0 +1,31 @@
+@import '../../constants/variables.scss';
+.upload-photo-wrapper {
+    .ant-upload-list-item.ant-upload-list-item-error.ant-upload-list-item-list-type-picture-card {
+        border: 1px solid $gray-5;
+    }
+}
+
+@media (max-width: 768px) {
+    .wrapper-upload-mobile {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+
+        .btn-upload {
+            padding: 10px 22.5px ;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            border: 1px solid $gray-5;
+            height: $button-height;
+        }
+    }
+}
+
+.wrapper-modal-error-message {
+    .ant-btn.ant-btn-primary {
+        background-color: $primary-blue-color;
+        height: $button-height;
+    }
+}
