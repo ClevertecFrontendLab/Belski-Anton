@@ -32,11 +32,13 @@
         .ant-picker-calendar-header {
             background-color: $geekblue-1;
         }
-
-        .ant-picker-body {
-            padding: 0;
+        .ant-picker-panel{
+            .ant-picker-body {
+                padding-top: 0;
+            }
+    
         }
-
+       
         thead {
             background-color: $geekblue-1;
         }

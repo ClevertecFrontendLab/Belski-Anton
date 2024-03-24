@@ -1,7 +1,7 @@
 import { SettingOutlined } from '@ant-design/icons';
 import NameSurnameAgeInput from '@components/form-profile/name-surname-age-input';
 import ProfilePassword from '@components/profile-password/profile-password';
-import UploadPhoto from '@components/upload-photo-desktop/upload-photo';
+import UploadPhoto from '@components/upload-photo/upload-photo';
 import { PATHS } from '@constants/index';
 import { history } from '@redux/configure-store';
 import { Button } from 'antd';
@@ -20,7 +20,7 @@ const ProfileDetails = () => (
                 tabIndex={0}
                 onKeyDown={() => false}
                 >
-                    <SettingOutlined />
+                    <SettingOutlined  />
                     <span className='title'>Настройки</span>
                 </div>
             </div>

@@ -49,7 +49,7 @@ const UploadPhoto = () => {
     const [fileList, setFileList] = useState<UploadFile[]>([]);
     const [listType, setListType] = useState<'picture-card' | 'picture'>('picture-card');
     const [uploadIcon, setUploadIcon] = useState<React.ReactNode>(<PlusOutlined />);
-    const [uploadButtonText, setUploadButtonText] = useState('Загрузить фото для профиля');
+    const [uploadButtonText, setUploadButtonText] = useState('Загрузить фото профиля');
 
     const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) =>
         setFileList(newFileList);
@@ -59,7 +59,7 @@ const UploadPhoto = () => {
             if (window.innerWidth >= 768) {
                 setListType('picture-card');
                 setUploadIcon(<PlusOutlined color='red' />);
-                setUploadButtonText('Загрузить фото для профиля');
+                setUploadButtonText('Загрузить фото  профиля');
             } else {
                 setListType('picture');
                 setUploadIcon(<UploadOutlined style={{ color: '#D9D9D9' }} />);
@@ -78,13 +78,13 @@ const UploadPhoto = () => {
     const uploadButton = (
         <div className='btn-upload'>
             {uploadIcon}
-            <div>{uploadButtonText}</div>
+            <div className='text-btn'>{uploadButtonText}</div>
         </div>
     );
 
     return (
         <div className='wrapper-upload-mobile'>
-            {!!(listType === 'picture') && <div>Загрузить фото профиля: </div>}
+            {!!(listType === 'picture') && <div className='text-upload-mobile'>Загрузить фото профиля: </div>}
             <div className='upload-photo-wrapper'>
                 <Upload
                     action=''
