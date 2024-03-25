@@ -34,6 +34,8 @@ const cardsData = [
                 tabIndex={0}
                 onKeyDown={() => false}
                 onClick={() => history.push(PATHS.PROFILE)}
+                data-test-id='menu-button-profile'
+
             >
                 Профиль
             </span>

@@ -1,14 +1,114 @@
 @import '../../constants/variables.scss';
-.wrapper-settings-profile{
-   background-color: #f5f5f5;
-   min-height: 100%;
-   .wrapper-header-settings-profile{
-      background-color:$geekblue-1 ;
-      padding: 18px 24px;
-      .header-settings-profile{
-         display: flex;
-         gap: 10px;
-         cursor: pointer;
-      }
-   }
+.wrapper-settings-profile {
+    background-color: #f5f5f5;
+    min-height: 100%;
+    .wrapper-header-settings-profile {
+        background-color: $geekblue-1;
+        padding: 18px 24px;
+        .header-settings-profile {
+            display: flex;
+            gap: 19px;
+            cursor: pointer;
+            .text-setting {
+                color: $gray-10;
+                font-size: $font-size-extra-small;
+                font-weight: $font-weight-600;
+            }
+        }
+    }
+    .wrapper-main-settings {
+        background-color: $white-color;
+        margin: 24px 24px 42px;
+        height: 100vh;
+        .inner-main-settings {
+            padding: 24px;
+            .title-main-settings {
+                font-size: $font-size-extra-small;
+                font-weight: $font-weight-500;
+                margin-bottom: 16px;
+            }
+            .wrapper-tariff {
+                display: flex;
+                gap: 25px;
+                margin-bottom: 39px;
+                .ant-card.ant-card-bordered {
+                    box-shadow: 0 14px 28px $black-opacity-10;
+                    border: none;
+                    .ant-card-head-title {
+                        font-weight: $font-weight-500;
+                        flex: none;
+                        padding: 0;
+                    }
+                    .ant-card-extra {
+                        color: $gray-10;
+                        padding-top: 10px;
+                        > a {
+                            color: $primary-blue-color;
+                        }
+                    }
+                    .ant-card-body {
+                        min-height: 95px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        .status-free-tariff {
+                            display: flex;
+                            gap: 10px;
+                            .text-status-free-tariff {
+                                color: $geekblue-10;
+                                font-size: $font-size-normal;
+                                font-weight: $font-weight-600;
+                            }
+                        }
+                        .ant-btn {
+                            color: $white-color;
+                            background-color: $primary-blue-color;
+                            height: $button-height;
+                            border: none;
+                        }
+                    }
+                }
+            }
+            .wrapper-switcher {
+                max-width: 505px;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                margin-bottom: 40px;
+                .wrapper-switcher-training,
+                .wrapper-switcher-push,
+                .wrapper-switcher-theme {
+                    display: flex;
+                    justify-content: space-between;
+                    .switcher-training,
+                    .switcher-push,
+                    .switcher-theme {
+                        font-weight: $font-weight-600;
+                        > .anticon-exclamation-circle {
+                            margin-left: 10px;
+                        }
+                    }
+                    .switcher-theme {
+                        color: $gray-6;
+                    }
+                }
+            }
+            .wrapper-bnt {
+                display: flex;
+                gap: 8px;
+                min-height: 112px;
+                align-items: flex-end;
+                > :first-child {
+                    background-color: $primary-blue-color;
+                    color: $white-color;
+                    height: $button-height;
+                }
+                > :last-child {
+                    border: none;
+                    height: $button-height;
+                    color: $primary-blue-color;
+                }
+            }
+        }
+    }
 }
