@@ -1,7 +1,7 @@
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { BASE_API_URL, API_ROUTES } from '../constants/index';
+import { API_ROUTES, BASE_API_URL } from '@constants/index';
 import { store } from '@redux/configure-store';
 import { Exercise } from '@redux/traninig-slice';
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
 interface IPropsRegistration {
     email: string;
@@ -79,15 +79,39 @@ interface TrainingListItem {
     key: string;
 }
 
+interface IIMage {
+    name: string;
+    url: string;
+}
+
+interface ITariff {
+    tariffId: string;
+    expired: string;
+}
+
+export interface IUser {
+    email?: string;
+    firstName?: string;
+    lastName?: string;
+    birthday?: string;
+    imgSrc?: string;
+    password?: string;
+    readyForJointTraining?: boolean;
+    sendNotification?: boolean;
+    tariff?: ITariff;
+}
+
 export const authApi = createApi({
     reducerPath: 'authApi',
     baseQuery: fetchBaseQuery({
         baseUrl: BASE_API_URL,
         prepareHeaders: (headers) => {
             const token = localStorage.getItem('token') || store.getState().auth.token;
+
             if (token) {
                 headers.set('Authorization', `Bearer ${token}`);
             }
+
             return headers;
         },
     }),
@@ -175,6 +199,25 @@ export const authApi = createApi({
             }),
             providesTags: ['TrainingList'],
         }),
+        uploadImage: builder.mutation<IIMage, FormData>({
+            query: (image) => ({
+                url: API_ROUTES.uploadImage,
+                method: 'POST',
+                body: image,
+            }),
+        }),
+        getUserData: builder.query<IUser, void>({
+            query: () => ({
+                url: API_ROUTES.userMe,
+            }),
+        }),
+        updateUserData: builder.mutation<IUser, IUser>({
+            query: (body) => ({
+                method: 'PUT',
+                url: API_ROUTES.user,
+                body,
+            }),
+        }),
     }),
 });
 
@@ -191,4 +234,7 @@ export const {
     useCreateTrainigMutation,
     useUptadeTraningMutation,
     useGetTrainingListQuery,
+    useUploadImageMutation,
+    useGetUserDataQuery,
+    useUpdateUserDataMutation,
 } = authApi;

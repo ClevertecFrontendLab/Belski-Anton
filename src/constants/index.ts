@@ -20,6 +20,9 @@ export const API_ROUTES = {
     updateTraining: '/training',
     deleteTraining: '/training',
     getTrainingList: '/catalogs/training-list',
+    uploadImage:'/upload-image',
+    userMe:'/user/me',
+    user: '/user',
 };
 
 export const STATUS_CODES: { [key: string]: ResultStatusType } = {

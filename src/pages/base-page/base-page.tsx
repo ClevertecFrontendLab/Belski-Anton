@@ -7,6 +7,8 @@ import { PATHS } from '@constants/index';
 import { useAppSelector } from '@hooks/typed-react-redux-hooks';
 import { Layout } from 'antd';
 
+import { useGetUserDataQuery } from '../../api/methods-api';
+
 import './base-page.scss';
 
 const BasePage = () => {
@@ -14,6 +16,8 @@ const BasePage = () => {
     const location = useLocation();
     const { isLoading } = useAppSelector((store) => store.load);
     const { isError } = useAppSelector((store) => store.error);
+
+   useGetUserDataQuery()
 
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
