@@ -4,12 +4,13 @@ import { Form, Input } from 'antd';
 import './profile-password.scss';
 
 const ProfilePassword = ({ user, setUser }: IPropsUser) => {
-    const [form] = Form.useForm();
+    // const [form] = Form.useForm();
+    console.log(user);
 
     return (
         <div className='wrapper-profile-password'>
             <Form
-                form={form}
+                // form={form}
                 className='form-profile-password'
                 name='basic'
                 labelCol={{ span: 8 }}
@@ -17,6 +18,7 @@ const ProfilePassword = ({ user, setUser }: IPropsUser) => {
                 autoComplete='on'
             >
                 <Form.Item
+                    name='email'
                     rules={[
                         { required: true, message: '' },
                         {
