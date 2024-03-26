@@ -82,6 +82,18 @@
         margin: 24px 24px 42px;
         padding: 24px;
         border-radius: 15px;
+        display: flex;
+        flex-direction: column;
+
+        .alert-success {
+            max-width: 395px;
+            margin: 0 auto;
+            margin-top: auto;
+
+            @media (max-width: 768px) {
+                margin-top: 10px;
+            }
+        }
 
         .text-title {
             color: $gray-10;

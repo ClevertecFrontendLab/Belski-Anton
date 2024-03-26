@@ -89,16 +89,19 @@ interface ITariff {
     expired: string;
 }
 
-export interface IUser {
+export interface IUpdateUser {
     email?: string;
     firstName?: string;
     lastName?: string;
     birthday?: string;
     imgSrc?: string;
     password?: string;
-    readyForJointTraining?: boolean;
-    sendNotification?: boolean;
-    tariff?: ITariff;
+}
+
+interface IResponseUserDataDto extends IUpdateUser {
+    readyForJointTraining: boolean;
+    sendNotification: boolean;
+    tariff: ITariff[];
 }
 
 export const authApi = createApi({
@@ -206,12 +209,12 @@ export const authApi = createApi({
                 body: image,
             }),
         }),
-        getUserData: builder.query<IUser, void>({
+        getUserData: builder.query<IResponseUserDataDto, void>({
             query: () => ({
                 url: API_ROUTES.userMe,
             }),
         }),
-        updateUserData: builder.mutation<IUser, IUser>({
+        updateUserData: builder.mutation<IResponseUserDataDto, IUpdateUser>({
             query: (body) => ({
                 method: 'PUT',
                 url: API_ROUTES.user,

@@ -1,17 +1,17 @@
 /* eslint-disable import/no-extraneous-dependencies */
 import { useEffect, useState } from 'react';
 import { SettingOutlined } from '@ant-design/icons';
-import UploadPhoto from '@components/upload-photo/upload-photo';
+import UploadPhoto, { renderModalError } from '@components/upload-photo/upload-photo';
 import { DATE_FORMATS, PATHS } from '@constants/index';
 import { history } from '@redux/configure-store';
-import { Button, DatePicker, Form, Input } from 'antd';
+import { Alert, Button, DatePicker, Form, Input } from 'antd';
 import moment from 'moment';
 
-import { IUser, useGetUserDataQuery, useUpdateUserDataMutation } from '../../api/methods-api';
+import { IUpdateUser, useGetUserDataQuery, useUpdateUserDataMutation } from '../../api/methods-api';
 
 import './profile-page.scss';
 
-interface IUserData extends IUser {
+interface IUserData extends IUpdateUser {
     confirmPassword: string;
 }
 
@@ -31,8 +31,7 @@ const ProfilePage = () => {
     const [user, setUser] = useState<IUserData | null>(null);
     const [form] = Form.useForm();
     const [isDisabled, setDisabled] = useState(true);
-
-    console.log(user);
+    const [isShowAlert, setIsShowAlert] = useState(false);
 
     useEffect(() => {
         if (data) {
@@ -43,6 +42,9 @@ const ProfilePage = () => {
     const updateUserPhoto = (url: string) => {
         if (user) {
             setUser({ ...user, imgSrc: url });
+            if (isDisabled && url) {
+                setDisabled(false);
+            }
         }
     };
 
@@ -56,13 +58,13 @@ const ProfilePage = () => {
     const onSubmit = (values: IUserData) => {
         const { confirmPassword, ...newFields } = values;
         const differentValue = Object.entries(newFields).filter(
-            ([key, value]) => data && data[key as keyof IUser] !== value && value,
+            ([key, value]) => data && data[key as keyof IUpdateUser] !== value && value,
         );
         const newData = differentValue.reduce((acc, [key, value]) => {
-            acc[key as keyof IUser] = value;
+            acc[key as keyof IUpdateUser] = value;
 
             return acc;
-        }, {} as IUser);
+        }, {} as IUpdateUser);
 
         if (user?.imgSrc !== data?.imgSrc) {
             newData.imgSrc = user?.imgSrc;
@@ -72,7 +74,16 @@ const ProfilePage = () => {
             newData.birthday = moment.utc(newFields?.birthday, DATE_FORMATS.FULL).format();
         }
 
-        updateUserData(newData).unwrap();
+        updateUserData(newData)
+            .unwrap()
+            .then(() => setIsShowAlert(true))
+            .catch(() =>
+                renderModalError(
+                    'При сохранении данных произошла ошибка',
+                    'Придется попробовать еше раз',
+                ),
+            )
+            .finally(() => setDisabled(true));
     };
 
     return (
@@ -99,7 +110,10 @@ const ProfilePage = () => {
                         onFinish={onSubmit}
                         onValuesChange={onChangeHandler}
                         form={form}
-                        initialValues={user}
+                        initialValues={{
+                            ...user,
+                            birthday: user.birthday ? moment.utc(user.birthday) : '',
+                        }}
                     >
                         <div className='text-title'>Личная информация</div>
                         <div className='wrapper-profile-details'>
@@ -110,19 +124,22 @@ const ProfilePage = () => {
                                 />
                                 <div className='wrapper-name-surname-age-input'>
                                     <Form.Item name='firstName'>
-                                        <Input placeholder='Имя' />
+                                        <Input placeholder='Имя' data-test-id='profile-name' />
                                     </Form.Item>
                                     <Form.Item name='lastName'>
-                                        <Input placeholder='Фамилия' />
+                                        <Input
+                                            placeholder='Фамилия'
+                                            data-test-id='profile-surname'
+                                        />
                                     </Form.Item>
-                                    {/* <Form.Item name="birthday">
-                                    <DatePicker
-                                        defaultValue={moment(user.birthday, 'DD.MM.YYYY')}
-                                        format='DD.MM.YYYY'
-                                        placeholder='Дата рождения'
-                                        style={{ width: '100%' }}
-                                    />
-                                </Form.Item> */}
+                                    <Form.Item name='birthday'>
+                                        <DatePicker
+                                            data-test-id='profile-birthday'
+                                            format='DD.MM.YYYY'
+                                            placeholder='Дата рождения'
+                                            style={{ width: '100%' }}
+                                        />
+                                    </Form.Item>
                                 </div>
                             </div>
                             <div className='text-title private'>Приватность и авторизация</div>
@@ -138,7 +155,7 @@ const ProfilePage = () => {
                                     ]}
                                     name='email'
                                 >
-                                    <Input addonBefore='e-mail' />
+                                    <Input addonBefore='e-mail' data-test-id='profile-email' />
                                 </Form.Item>
                                 <Form.Item
                                     dependencies={['password']}
@@ -155,6 +172,7 @@ const ProfilePage = () => {
                                     help='Пароль не менее 8 символов, c заглавной буквой и цифрой'
                                 >
                                     <Input.Password
+                                        data-test-id='profile-password'
                                         value={user.password}
                                         onChange={(e) =>
                                             setUser({ ...user, password: e.target.value })
@@ -185,8 +203,8 @@ const ProfilePage = () => {
                                 >
                                     <Input.Password
                                         placeholder='Повторите пароль'
-                                        data-test-id='registration-confirm-password'
                                         className='confirm-password'
+                                        data-test-id='profile-repeat-password'
                                     />
                                 </Form.Item>
                             </div>
@@ -195,11 +213,22 @@ const ProfilePage = () => {
                                 type='primary'
                                 disabled={isDisabled}
                                 htmlType='submit'
+                                data-test-id='profile-submit'
                             >
                                 Сохранить изменения
                             </Button>
                         </div>
                     </Form>
+                    {isShowAlert && (
+                        <Alert
+                            data-test-id='alert'
+                            className='alert-success'
+                            message='Данные профиля успешно обновлены'
+                            type='success'
+                            closable={true}
+                            afterClose={() => setIsShowAlert(false)}
+                        />
+                    )}
                 </div>
             )}
         </div>
