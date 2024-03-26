@@ -1,16 +1,23 @@
 @import '../../constants/variables.scss';
 .wrapper-profile-details {
+    .form-container {
+        max-width: 480px;
+    }
+
     .header-profile-details {
         background-color: $geekblue-1;
+
         .inner-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             padding: 16px 24px;
+
             .header-title {
                 color: $gray-10;
                 font-size: $font-size-extra-small;
             }
+
             .header-setting {
                 display: flex;
                 align-items: center;
@@ -20,6 +27,53 @@
             }
         }
     }
+
+    .wrapper-name-surname-age-input {
+        width: 100%;
+
+        .ant-form-item {
+            margin-bottom: 15px;
+
+            .ant-input {
+                height: $button-height;
+            }
+        }
+
+        .ant-picker {
+            height: $button-height;
+        }
+    }
+
+    .wrapper-profile-password {
+        .ant-form-item {
+            margin-bottom: 30px;
+        }
+
+        .ant-form-item.ant-form-item-with-help {
+            margin-bottom: 45px;
+        }
+
+        .ant-form-item-explain {
+            font-size: $font-size-small;
+        }
+
+        .ant-input-group-wrapper {
+            max-width: 480px;
+
+            .ant-input {
+                height: $button-height;
+            }
+        }
+
+        .ant-form-item-control-input-content {
+            max-width: 480px;
+        }
+
+        .ant-input-affix-wrapper {
+            height: $button-height;
+        }
+    }
+
     .main-profile-details {
         background-color: $white-color;
         max-width: 1184px;
@@ -28,71 +82,87 @@
         margin: 24px 24px 42px;
         padding: 24px;
         border-radius: 15px;
+
         .text-title {
             color: $gray-10;
             font-size: $font-size-normal;
             font-weight: $font-weight-500;
         }
+
         .wrapper-profile-details {
             padding-top: 24px;
+
             .wrapper-upload-input {
                 display: flex;
                 gap: 16px;
                 margin-bottom: 24px;
             }
         }
-        .private {
-            margin-bottom: 24px;
-        }
-    }
-    .wrapper-btn-profile {
-        margin-top: 56px;
 
-        .btn-profile {
-            height: $button-height;
-            width: 206px;
-            font-size: $font-size-normal;
+        .private {
+            margin-bottom: 12px;
         }
     }
+
+    .btn-profile {
+        margin-top: 24px;
+        height: $button-height;
+        width: 206px;
+        font-size: $font-size-normal;
+        background-color: #2f54eb;
+        color: #fff;
+
+        &:disabled {
+            background-color: #f5f5f5;
+            color: #00000040;
+        }
+    }
+
     @media (max-width: 768px) {
         .wrapper-upload-input {
             flex-direction: column-reverse;
         }
     }
+
     @media (max-width: 400px) {
         .header-profile-details .inner-header {
             display: block;
+
             .header-setting {
                 flex-direction: row-reverse;
                 margin: 8px 7px 0 0;
+
                 .title {
                     display: none;
                 }
             }
+
             .header-title {
                 font-size: $font-size-medium;
             }
         }
+
         .main-profile-details {
+            height: auto;
             border-radius: 0;
             margin: 24px 0 42px;
+
             .wrapper-profile-details {
                 padding-top: 20px;
+
                 .wrapper-upload-input {
                     gap: 0;
                     margin-bottom: 33px;
-                    .private{
-                       margin-bottom: 21px;
-                    }
                 }
             }
-            .wrapper-btn-profile{
-                margin-top: 49px;
-                .btn-profile{
-                    width: 100%;
-                }
+
+            .private {
+                margin-bottom: 18px;
+            }
+
+            .btn-profile {
+                width: 100%;
             }
         }
     }
 }
-

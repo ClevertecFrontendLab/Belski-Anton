@@ -1,11 +1,16 @@
 @import '../../constants/variables.scss';
+
 .upload-photo-wrapper {
-    .ant-upload-list-item.ant-upload-list-item-error.ant-upload-list-item-list-type-picture-card {
-        border: 1px solid $gray-5;
-    }
-    .btn-upload{
-        width:70px;
-        color: $gray-color; 
+    // .ant-upload-list-item.ant-upload-list-item-error.ant-upload-list-item-list-type-picture-card {
+    //     border: 1px solid $gray-5;
+    //     .ant-upload-list-item-name[title]{
+    //        content: 'png';
+    //     }
+    // }
+
+    .btn-upload {
+        width: 70px;
+        color: $gray-color;
     }
 }
 
@@ -14,6 +19,7 @@
         display: flex;
         align-items: center;
         gap: 16px;
+        max-width: 312px;
 
         .btn-upload {
             padding: 10px 22.5px;
@@ -26,6 +32,10 @@
             color: $gray-color;
             width: 147px;
         }
+        .ant-upload-list-item-name[title] {
+            width: 0;
+            opacity: 0;
+        }
     }
 }
 
@@ -36,10 +46,16 @@
     }
 }
 
-@media(max-width:400px){
-    .wrapper-upload-mobile{
-        .text-upload-mobile{
+@media (max-width: 400px) {
+    .wrapper-upload-mobile {
+        .text-upload-mobile {
             font-size: $font-size-small;
         }
+        .ant-upload-list-item-info {
+            max-width: 297px;
+        }
+    }
+    .ant-upload-list-picture .ant-upload-span {
+        width: 297px;
     }
 }

@@ -1,98 +1,104 @@
 import { useEffect, useState } from 'react';
 import { PlusOutlined, UploadOutlined } from '@ant-design/icons';
+import { API_ROUTES, BASE_API_URL, PATHS } from '@constants/index';
+import { useAppSelector } from '@hooks/typed-react-redux-hooks';
+import useWindowSize from '@hooks/use-window-size';
 import { Modal, Upload } from 'antd';
-import type { RcFile, UploadProps } from 'antd/es/upload';
+import type { UploadProps } from 'antd/es/upload';
 import type { UploadFile } from 'antd/es/upload/interface';
 
 import './upload-photo.scss';
 
-const beforeUpload = (file: RcFile) => {
-    const isJpgOrPng = file.type === 'image/jpeg' || file.type === 'image/png';
-
-    if (!isJpgOrPng) {
-        Modal.error({
-            title: 'Файл слишком большой ',
-            content: 'Выберите файл размером [......] МБ.',
-            className: 'wrapper-modal-error-message',
-            style: {
-                marginTop: '20vh',
-            },
-            okText: 'Закрыть',
-            maskStyle: {},
-        });
-
-        return false;
-    }
-    const isLt2M = file.size / 1024 / 1024 < 2;
-
-    if (!isLt2M) {
-        Modal.error({
-            title: 'Файл слишком большой ',
-            content: 'Выберите файл размером [......] МБ.',
-            className: 'wrapper-modal-error-message',
-            style: {
-                marginTop: '20vh',
-            },
-            okText: 'Закрыть',
-            maskStyle: {
-                 background:'#6b6e75',
-            },
-        });
-
-        return false;
-    }
-
-    return isJpgOrPng && isLt2M;
+const renderModalError = () => {
+    Modal.error({
+        title: 'Файл слишком большой',
+        content: 'Выберите файл размером до 5 МБ.',
+        className: 'wrapper-modal-error-message',
+        style: {
+            marginTop: '20vh',
+        },
+        okText: 'Закрыть',
+        maskStyle: {
+            background: '#6b6e75',
+        },
+    });
 };
 
-const UploadPhoto = () => {
-    const [fileList, setFileList] = useState<UploadFile[]>([]);
+interface IPropsUploadPhoto {
+    initialValue: string,
+    setUserPhoto: (arg: string) => void
+}
+
+
+const UploadPhoto = ({ initialValue, setUserPhoto }: IPropsUploadPhoto) => {
+    const isMobile = useWindowSize()
+    const { token } = useAppSelector((state) => state.auth)
+    const [fileList, setFileList] = useState<UploadFile[]>([{
+        uid: '1',
+        name: 'image.png',
+        status: 'error',
+        url: initialValue,
+    }]);
     const [listType, setListType] = useState<'picture-card' | 'picture'>('picture-card');
     const [uploadIcon, setUploadIcon] = useState<React.ReactNode>(<PlusOutlined />);
     const [uploadButtonText, setUploadButtonText] = useState('Загрузить фото профиля');
 
-    const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) =>
-        setFileList(newFileList);
+    const handleChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
+        setFileList(newFileList)
+         
+        const uploadFile = newFileList[0];
+
+        if (uploadFile && uploadFile.status === 'error') {
+            renderModalError()
+            setUserPhoto('')
+            setFileList([{ uid: '-5', url: '', name: uploadFile.name, status: 'error' }])
+        } else if (uploadFile?.response?.url) {
+            setUserPhoto(uploadFile.response.url)
+            setUserPhoto(`${PATHS.PHOTO_DOMAIN}${uploadFile.response.url}`)
+        }
+    }
 
     useEffect(() => {
-        const handleResize = () => {
-            if (window.innerWidth >= 768) {
-                setListType('picture-card');
-                setUploadIcon(<PlusOutlined color='red' />);
-                setUploadButtonText('Загрузить фото  профиля');
-            } else {
-                setListType('picture');
-                setUploadIcon(<UploadOutlined style={{ color: '#D9D9D9' }} />);
-                setUploadButtonText('Загрузить');
-            }
-        };
+        if (isMobile) {
+            setListType('picture');
+            setUploadIcon(<UploadOutlined style={{ color: '#D9D9D9' }} />);
+            setUploadButtonText('Загрузить');
+        } else {
+            setListType('picture-card');
+            setUploadIcon(<PlusOutlined color='red' />);
+            setUploadButtonText('Загрузить фото  профиля');
+        }
 
-        window.addEventListener('resize', handleResize);
-        handleResize();
+    }, [isMobile])
 
-        return () => {
-            window.removeEventListener('resize', handleResize);
-        };
-    }, []);
+
+
 
     const uploadButton = (
         <div className='btn-upload'>
             {uploadIcon}
             <div className='text-btn'>{uploadButtonText}</div>
         </div>
-    );
+    )
+    
+    
+
+    
 
     return (
         <div className='wrapper-upload-mobile'>
-            {!!(listType === 'picture') && <div className='text-upload-mobile'>Загрузить фото профиля: </div>}
+            {!!(listType === 'picture' && fileList.length === 0) && <div className='text-upload-mobile'>Загрузить фото профиля: </div>}
             <div className='upload-photo-wrapper'>
                 <Upload
-                    action=''
+                    headers={{ Authorization: `Bearer ${localStorage.getItem('token') || token}` }}
+                    action={`${BASE_API_URL}${API_ROUTES.uploadImage}`}
+                    accept="image/png, image/jpeg"
                     listType={listType}
                     fileList={fileList}
                     onChange={handleChange}
-                    beforeUpload={beforeUpload}
                     showUploadList={true}
+                    maxCount={1}
+                    progress={{ strokeWidth: 2, showInfo: false, strokeColor: '#108ee9' }}
                 >
                     {fileList.length >= 1 ? null : uploadButton}
                 </Upload>
