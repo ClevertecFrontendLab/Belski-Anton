@@ -23,6 +23,7 @@ export const API_ROUTES = {
     uploadImage: '/upload-image',
     userMe: '/user/me',
     user: '/user',
+    getTariffList:'/catalogs/tariff-list'
 };
 
 export const STATUS_CODES: { [key: string]: ResultStatusType } = {

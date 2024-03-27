@@ -104,6 +104,21 @@ interface IResponseUserDataDto extends IUpdateUser {
     tariff: ITariff[];
 }
 
+interface IPeriod {
+    text: string;
+    cost: number;
+    days: number;
+}
+
+
+
+interface IGetTariffList {
+    text: string;
+    cost: number;
+    days: number;
+    periods: IPeriod[];
+}
+
 export const authApi = createApi({
     reducerPath: 'authApi',
     baseQuery: fetchBaseQuery({
@@ -221,6 +236,11 @@ export const authApi = createApi({
                 body,
             }),
         }),
+        getTariffList: builder.query<IGetTariffList,void>({
+            query: () => ({
+                url: API_ROUTES.getTariffList,
+            }),
+        }),
     }),
 });
 
@@ -240,4 +260,5 @@ export const {
     useUploadImageMutation,
     useGetUserDataQuery,
     useUpdateUserDataMutation,
+    useGetTariffListQuery,
 } = authApi;

@@ -1,0 +1,110 @@
+@import '../../constants/variables.scss';
+.sidebar-tariff {
+    .ant-drawer-content-wrapper {
+        .ant-drawer-content {
+            .ant-drawer-wrapper-body {
+                .ant-drawer-header {
+                    display: flex;
+                    border-bottom: none;
+                    padding: 24px 30px;
+                    margin-bottom: 15px;
+                    .ant-drawer-close {
+                        font-size: $font-size-small;
+                        margin-right: 0;
+                    }
+                    .ant-drawer-header-title {
+                        flex-direction: row-reverse;
+                        .wrapper-title {
+                            font-size: $font-size-extra-small;
+                            letter-spacing: 1px;
+                        }
+                    }
+                }
+
+                .ant-drawer-body {
+                    padding: 24px 32px;
+                    .wrapper-statistics-tariff {
+                        .title-statistics {
+                            display: flex;
+                            flex-direction: row-reverse;
+                            gap: 14px;
+                            margin-bottom: 21px;
+                            > div {
+                                padding: 4px 8px;
+                                width: 56px;
+                                text-align: center;
+                            }
+                            > :first-child {
+                                background-color: $geekblue7-opacity;
+                                color: $geekblue-7;
+                                opacity: 0.8;
+                            }
+                            > :last-child {
+                                background-color: $gray-4;
+                            }
+                        }
+                        .statistics-data {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 12px;
+                            height: 272px;
+                            margin-bottom: 33px;
+                            .statistics-month,
+                            .statistics-all,
+                            .training-together,
+                            .marathon,
+                            .ios,
+                            .android,
+                            .gpt-chat {
+                                display: grid;
+                                grid-template-columns: 187px auto auto;
+                                gap: 30px;
+                                .title {
+                                    width: 187px;
+                                }
+
+                                .anticon {
+                                    display: inline-block;
+                                    font-size: 18px;
+                                }
+                            }
+                        }
+                        .wrapper-tariff-cost {
+                            height: 478px;
+                            .title-tariff-cost {
+                                font-weight: $font-weight-600;
+                                margin-bottom: 30px;
+                                letter-spacing: 1px;
+                            }
+                            .wrapper-content-tariff-cost {
+                                display: flex;
+                                flex-direction: column;
+                                gap: 24px;
+                                padding-right: 10px;
+                                .content-tariff-cost {
+                                    display: flex;
+                                    justify-content: space-between;
+                                    align-items: center;
+                                    .text-tariff-cost {
+                                        width: 177px;
+                                    }
+                                    .count-tariff-cost {
+                                        width: 40px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                .wrapper-btn-tariff {
+                    .btn-tariff {
+                        color: $white-color;
+                        background-color: $primary-blue-color;
+                        height: $button-height;
+                        width: 100%
+                    }
+                }
+            }
+        }
+    }
+}

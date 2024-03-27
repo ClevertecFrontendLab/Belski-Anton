@@ -9,6 +9,7 @@
             display: flex;
             gap: 19px;
             cursor: pointer;
+            align-items: center;
             .text-setting {
                 color: $gray-10;
                 font-size: $font-size-extra-small;
@@ -25,7 +26,7 @@
             .title-main-settings {
                 font-size: $font-size-extra-small;
                 font-weight: $font-weight-500;
-                margin-bottom: 16px;
+                margin-bottom: 8px;
             }
             .wrapper-tariff {
                 display: flex;
@@ -43,8 +44,10 @@
                     .ant-card-extra {
                         color: $gray-10;
                         padding-top: 10px;
-                        > a {
+                        > button {
                             color: $primary-blue-color;
+                            border:none;
+                            padding: 0; 
                         }
                     }
                     .ant-card-body {
