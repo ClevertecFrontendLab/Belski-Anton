@@ -1,5 +1,7 @@
+/* eslint-disable quotes */
 import { CheckCircleFilled, CloseCircleOutlined, CloseOutlined } from '@ant-design/icons';
-import { Button, Drawer, Radio } from 'antd';
+import useWindowSize from '@hooks/use-window-size';
+import { Button, Divider, Drawer, Radio } from 'antd';
 
 import './sidebar-tariff.scss';
 
@@ -8,8 +10,10 @@ interface DrawerControls {
     onClose: () => void;
 }
 
-const SidebarTariff = ({ open, onClose }: DrawerControls) => (
-    <Drawer
+const SidebarTariff = ({ open, onClose }: DrawerControls) => {
+    const isMob = useWindowSize(500)
+
+    return(<Drawer
         className='sidebar-tariff'
         title={
             <div className='wrapper-title'>
@@ -23,11 +27,12 @@ const SidebarTariff = ({ open, onClose }: DrawerControls) => (
                 }}
             />
         }
-        placement='right'
-        onClose={onClose}
+        height={isMob ? `90vh` : `100%`}
+        placement={isMob ? 'bottom' : 'right'}
+        
+        // onClose={onClose}
         open={open}
         maskStyle={{ backgroundColor: 'rgba(0, 0, 0, 0)' }}
-        width={408}
     >
         <div className='wrapper-statistics-tariff'>
             <div className='title-statistics'>
@@ -83,26 +88,28 @@ const SidebarTariff = ({ open, onClose }: DrawerControls) => (
                     </div>
                     <div className='content-tariff-cost'>
                         <div className='text-tariff-cost'>9 месяцев</div>
-                        <div  className='count-tariff-cost'>8,5 $</div>
+                        <div className='count-tariff-cost'>8,5 $</div>
                         <Radio />
                     </div>
 
                     <div className='content-tariff-cost'>
                         <div className='text-tariff-cost'>12 месяцев</div>
-                        <div  className='count-tariff-cost'>10 $</div>
+                        <div className='count-tariff-cost'>10 $</div>
                         <Radio />
                     </div>
                 </div>
             </div>
-           <div className='wrapper-btn-tariff'>
-                <Button 
-                className='btn-tariff'
-                disabled={false}>
-                    Выбрать и оплатить
-                </Button>
-           </div >
         </div>
-    </Drawer>
-);
+
+        <div className='wrapper-btn-tariff'>
+            <Divider style={{marginBottom:'12px',marginTop:'0'}} />
+
+            <Button className='btn-tariff' disabled={false}>
+                Выбрать и оплатить
+            </Button>
+        </div>
+    </Drawer>)
+    
+    };
 
 export default SidebarTariff;

@@ -1,6 +1,7 @@
 @import '../../constants/variables.scss';
 .sidebar-tariff {
     .ant-drawer-content-wrapper {
+        width: 408px !important;
         .ant-drawer-content {
             .ant-drawer-wrapper-body {
                 .ant-drawer-header {
@@ -22,6 +23,8 @@
                 }
 
                 .ant-drawer-body {
+                    display: flex;
+                    flex-direction: column;
                     padding: 24px 32px;
                     .wrapper-statistics-tariff {
                         .title-statistics {
@@ -70,7 +73,6 @@
                             }
                         }
                         .wrapper-tariff-cost {
-                            height: 478px;
                             .title-tariff-cost {
                                 font-weight: $font-weight-600;
                                 margin-bottom: 30px;
@@ -97,11 +99,51 @@
                     }
                 }
                 .wrapper-btn-tariff {
+                    margin-top: auto;
                     .btn-tariff {
                         color: $white-color;
                         background-color: $primary-blue-color;
                         height: $button-height;
-                        width: 100%
+                        width: 100%;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 450px) {
+    .sidebar-tariff {
+        .ant-drawer-content-wrapper {
+            width: 0;
+            width: 100% !important;
+            .ant-drawer-content {
+                .ant-drawer-wrapper-body {
+                    .ant-drawer-header{
+                        padding: 24px 16px;
+                    }
+                    .ant-drawer-body {
+                        display: initial;
+                        padding:0 16px;
+                        .wrapper-statistics-tariff {
+                            .title-statistics {
+                                font-size: 12px;
+                                margin-bottom: 10px;
+                            }
+                            .statistics-data{
+                                gap: 8px;
+                                height: initial;
+                                gap: 5px;
+                                margin-bottom: 24px;
+                            } 
+                            .wrapper-tariff-cost{
+                                gap: 15px;
+                                margin-bottom: 10px;
+                                .title-tariff-cost {
+                                    margin-bottom: 12px;
+                                }
+                            }
+                        }
                     }
                 }
             }

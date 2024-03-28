@@ -132,7 +132,7 @@ const SettingsProfile = () => {
                     </div>
                 </div>
             </div>
-            <SidebarTariff open={isOpenTariff} onClose={closeTariff} />
+            <SidebarTariff open={isOpenTariff} onClose={closeTariff}  />
         </React.Fragment>
     );
 };
