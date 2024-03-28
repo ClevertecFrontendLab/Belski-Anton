@@ -39,6 +39,7 @@ export const PATHS = {
     CALENDAR: '/calendar',
     PROFILE: '/profile',
     SETTINGS: '/settings',
+    NOT_PAGE:'*',
     AUTH_REGISTRATION: '/auth/registration',
     RESULT_SUCCESS: '/result/success',
     RESULT_SUCCESS_CHANGE_PASSWORD: '/result/success-change-password',

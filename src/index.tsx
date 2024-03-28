@@ -10,6 +10,7 @@ import { PATHS } from '@constants/index';
 import BasePage from '@pages/base-page/base-page';
 import CalendarPage from '@pages/calendar-page/calendar-page';
 import FeedBacks from '@pages/feed-backs/feed-backs';
+import NotPage from '@pages/not-page/not-page';
 import ProfilePage from '@pages/profile-page/profile-page';
 import SettingsPage from '@pages/settings-page/settings-page';
 
@@ -42,6 +43,7 @@ root.render(
                         <Route path={PATHS.CALENDAR} element={<CalendarPage />} />
                         <Route path={PATHS.PROFILE} element={<ProfilePage />} />
                         <Route path={PATHS.SETTINGS} element={<SettingsPage />} />
+                        <Route path={PATHS.NOT_PAGE} element={<NotPage />} />
                     </Route>
                     <Route
                         path={PATHS.AUTH}

@@ -7,16 +7,10 @@ import { history } from '@redux/configure-store';
 import { Button, Card, Switch, Tooltip } from 'antd';
 import { SwitchSize } from 'antd/lib/switch';
 
-import { useGetTariffListQuery } from '../../api/methods-api';
-
 import './settings-profile.scss';
 
 const SettingsProfile = () => {
     const [isOpenTariff, setOpenTariff] = useState(false);
-
-    const {data}=useGetTariffListQuery()
-    console.log(data);
-    
 
     const [switchSize, setSwitchSize] = useState<SwitchSize | undefined>('default');
     const [tooltipPlacement, setTooltipPlacement] = useState<
@@ -51,7 +45,7 @@ const SettingsProfile = () => {
     return (
         <React.Fragment>
             <div className='wrapper-settings-profile'>
-                <div className='wrapper-header-settings-profile'>
+                <div className='wrapper-header-settings-profile' data-test-id='settings-back'>
                     <div
                         className='header-settings-profile'
                         onClick={() => history.go(-1)}

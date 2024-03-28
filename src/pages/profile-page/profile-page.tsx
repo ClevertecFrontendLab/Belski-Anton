@@ -42,13 +42,14 @@ const ProfilePage = () => {
     const updateUserPhoto = (url: string) => {
         if (user) {
             setUser({ ...user, imgSrc: url });
+
             if (isDisabled && url) {
                 setDisabled(false);
             }
         }
     };
 
-    const onChangeHandler = (_, fields: IUserData) => {
+    const onChangeHandler = (_: unknown, fields: IUserData) => {
         const { confirmPassword, ...newFields } = fields;
         const isNotDifferentData = JSON.stringify(user) === JSON.stringify(newFields);
 
@@ -124,7 +125,7 @@ const ProfilePage = () => {
                                 />
                                 <div className='wrapper-name-surname-age-input'>
                                     <Form.Item name='firstName'>
-                                        <Input placeholder='Имя' data-test-id='profile-name' />
+                                        <Input data-test-id='profile-name' placeholder='Имя' />
                                     </Form.Item>
                                     <Form.Item name='lastName'>
                                         <Input
@@ -155,7 +156,7 @@ const ProfilePage = () => {
                                     ]}
                                     name='email'
                                 >
-                                    <Input addonBefore='e-mail' data-test-id='profile-email' />
+                                    <Input data-test-id='profile-email' addonBefore='e-mail' />
                                 </Form.Item>
                                 <Form.Item
                                     dependencies={['password']}
@@ -202,9 +203,9 @@ const ProfilePage = () => {
                                     ]}
                                 >
                                     <Input.Password
+                                        data-test-id='profile-repeat-password'
                                         placeholder='Повторите пароль'
                                         className='confirm-password'
-                                        data-test-id='profile-repeat-password'
                                     />
                                 </Form.Item>
                             </div>
