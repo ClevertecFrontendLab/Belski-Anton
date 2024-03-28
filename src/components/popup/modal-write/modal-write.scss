@@ -1,5 +1,5 @@
 @import '../../../constants/variables.scss';
-wrapper-write-modal {
+.wrapper-write-modal {
     .ant-modal-body {
         padding-top: 20px;
     }
@@ -23,7 +23,7 @@ wrapper-write-modal {
     }
 
     .btn-write-new-commit {
-        height: 40px;
+        height: $button-height;
         background-color: $primary-blue-color;
     }
     @media (max-width: 360px) {
