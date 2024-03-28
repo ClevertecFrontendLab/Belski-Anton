@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowLeftOutlined, CheckOutlined, ExclamationCircleOutlined } from '@ant-design/icons';
+import ModalBuyTariff from '@components/popup/modal-buy-tariff/modal-buy-tariff';
 import ModalWrite from '@components/popup/modal-write/modal-write';
 import SidebarTariff from '@components/sidebar-tariff/sidebar-tariff';
 import { PATHS } from '@constants/index';
@@ -14,6 +15,7 @@ import './settings-profile.scss';
 const SettingsProfile = () => {
     const [isOpenTariff, setOpenTariff] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isModalBuyTariff, setIsModalBuyTariff] = useState(true);
     const [switchSize, setSwitchSize] = useState<SwitchSize | undefined>('default');
     const [tooltipPlacement, setTooltipPlacement] = useState<
         'bottomLeft' | 'bottomRight' | 'topLeft' | 'topRight'
@@ -31,10 +33,11 @@ const SettingsProfile = () => {
         setIsModalOpen(false);
     };
 
-    
     const handleShowErorModulSave = () => {
         setIsModalOpen(false);
     };
+    
+  
 
     useEffect(() => {
         const handleResize = () => {
@@ -95,7 +98,7 @@ const SettingsProfile = () => {
                                 extra={<Button onClick={openTariff}>Подробнее</Button>}
                                 cover={<img alt='icon' src={pro} />}
                             >
-                                <Button>Активировать</Button>
+                                <Button onClick={openTariff}>Активировать</Button>
                             </Card>
                         </div>
                         <div className='wrapper-switcher'>
@@ -161,6 +164,7 @@ const SettingsProfile = () => {
                 centered={true}
                 onError={handleShowErorModulSave}
             />
+            <ModalBuyTariff open={isModalBuyTariff}  />
         </React.Fragment>
     );
 };

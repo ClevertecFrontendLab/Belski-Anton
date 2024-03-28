@@ -9,8 +9,9 @@ import CardTrainingEdit from '@components/card-training-edit/card-training-edit'
 import ModalDataOpenErrorCalendar from '@components/popup/modal-data-open-error-calendar/modal-data-open-error-calendar';
 import SideBarAddTraining from '@components/sidebar-add-training/sidebar-add-training';
 import SidebarEditorTraining from '@components/sidebar-editor-training/sidebar-editor-training';
-import { color, DATE_FORMATS } from '@constants/index';
+import { color, DATE_FORMATS, PATHS } from '@constants/index';
 import { useAppDispatch, useAppSelector } from '@hooks/typed-react-redux-hooks';
+import { history } from '@redux/configure-store';
 import { setDate, setExercises, setName, setTraining, TrainingState } from '@redux/traninig-slice';
 import { Badge, Calendar } from 'antd';
 import ruRu from 'antd/es/calendar/locale/ru_RU';
@@ -205,7 +206,13 @@ const CalendarDekstop = () => {
                     <Breadcrumbs items={routes} />
                 </header>
                 <div>
-                    <div className='wrapper-setting-calendar'>
+                    <div 
+                    className='wrapper-setting-calendar' 
+                    onClick={()=>history.push(PATHS.SETTINGS)}
+                    role='button'
+                    tabIndex={0}
+                    onKeyDown={() => false}
+                    >
                         <span className='title'>Настройки</span>
                         <SettingOutlined />
                     </div>

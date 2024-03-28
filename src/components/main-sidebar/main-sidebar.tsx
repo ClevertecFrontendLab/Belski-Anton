@@ -106,7 +106,11 @@ export const SideBar = () => {
             onBreakpoint={(broken) => setIsMobile(broken)}
         >
             <div className={`logo ${isMobile ? 'mob' : ''}`}>
-                <img src={collapsed && !isMobile ? logoFit : logo} alt='' />
+                <img 
+                src={collapsed && !isMobile ? logoFit : logo} alt='logo'
+                 
+                 onClick={()=>history.push(PATHS.MAIN)}
+                 />
             </div>
             <Menu
                 style={{

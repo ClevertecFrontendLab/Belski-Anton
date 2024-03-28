@@ -2,6 +2,8 @@ import { SettingOutlined } from '@ant-design/icons';
 import { Layout } from 'antd';
 
 import './main-header.scss';
+import { history } from '@redux/configure-store';
+import { PATHS } from '@constants/index';
 
 const { Header } = Layout;
 
@@ -15,7 +17,13 @@ export const CustomHeader = () => (
                     Приветствуем тебя в CleverFit — приложении,
                     <br /> которое поможет тебе добиться своей мечты!
                 </div>
-                <div className='wrapper-header-settings'>
+                <div 
+                className='wrapper-header-settings'
+                onClick={()=>history.push(PATHS.SETTINGS)}
+                role='button'
+                tabIndex={0}
+                onKeyDown={() => false}
+                >
                     <SettingOutlined />
                     <span className='title'>Настройки</span>
                 </div>

@@ -1,0 +1,20 @@
+@import '../../../constants/variables.scss';
+
+.result-buy-tariff {
+    .ant-result-success {
+        .ant-result-icon {
+            .anticon {
+              color: $primary-blue-color;
+            }
+        }
+        .ant-result-title{
+         font-weight: $font-weight-600;
+         margin-bottom: 24px;
+        }
+        .ant-result-subtitle{
+         :first-child{
+            margin-bottom: 24px;
+         }
+        }
+    }
+}

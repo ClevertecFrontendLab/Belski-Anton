@@ -105,6 +105,10 @@
                         background-color: $primary-blue-color;
                         height: $button-height;
                         width: 100%;
+                        &:disabled{
+                            background-color:$gray-3;
+                            color:$gray-6 ;
+                        }
                     }
                 }
             }
